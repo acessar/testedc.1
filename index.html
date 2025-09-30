@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dezain Code - Desenvolvimento Web Profissional</title>
+    <link rel="stylesheet" href="style.css">
+
+    
+    <!-- Fontes Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Ícones Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- AOS - Animate On Scroll -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- GSAP para animações avançadas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="script.js"></script>
+</head>
+<body>
+    
+    <!-- Botão WhatsApp Flutuante -->
+    <a href="https://wa.me/5583991816152?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20desenvolvimento%20web!" 
+       class="whatsapp-float" 
+       target="_blank"
+       aria-label="Falar no WhatsApp">
+        <i data-lucide="message-circle"></i>
+        <span class="pulse-ring"></span>
+    </a>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="nav-logo">
+                <i data-lucide="code-2" class="logo-icon"></i>
+                <span class="logo-text">Dezain Code</span>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Início</a></li>
+                <li><a href="#servicos" class="nav-link">Serviços</a></li>
+                <li><a href="#benefits" class="nav-link">Benefícios</a></li>
+                <li><a href="#plans" class="nav-link">Planos</a></li>
+                <li><a href="#briefing" class="nav-link">Briefing</a></li>
+                <li><a href="#parceiros" class="nav-link">Parceiros</a></li>
+                <li><a href="#faq" class="nav-link">FAQ</a></li>
+            </ul>
+            
+            <a href="#briefing" class="nav-cta">
+                Começar Projeto
+                <i data-lucide="arrow-right" class="cta-icon"></i>
+            </a>
+            
+            <button class="mobile-menu-toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="grid-pattern"></div>
+        </div>
+        
+        <div class="container hero-content">
+            <div class="hero-badge" data-aos="fade-up">
+                <i data-lucide="sparkles"></i>
+                <span>Desenvolvimento Web de Alto Impacto</span>
+            </div>
+            
+            <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
+                Soluções Web que <span class="gradient-text">Impulsionam</span> Seu Negócio
+            </h1>
+            
+            <p class="hero-description" data-aos="fade-up" data-aos-delay="200">
+                Sites otimizados para conversão que funcionam 24/7, aumentando suas vendas e atraindo novos clientes com tecnologia de ponta
+            </p>
+            
+            <div class="hero-cta-group" data-aos="fade-up" data-aos-delay="300">
+                <a href="#plans" class="btn btn-primary btn-large">
+                    <span>Alavancar Meu Negócio</span>
+                    <i data-lucide="arrow-right"></i>
+                </a>
+                <a href="https://wa.me/5583991816152?text=Ol%C3%A1%2C%20preciso%20de%20um%20site%20profissional!" 
+                   class="btn btn-outline btn-large" 
+                   target="_blank">
+                    <i data-lucide="phone"></i>
+                    <span>Falar com Especialista</span>
+                </a>
+            </div>
+            
+            <div class="hero-stats" data-aos="fade-up" data-aos-delay="400">
+                <div class="stat-item">
+                    <div class="stat-number" data-count="98">98</div>
+                    <div class="stat-label">% Satisfação</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="20">20</div>
+                    <div class="stat-label">+ Projetos</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="5">5</div>
+                    <div class="stat-label">.5 Avaliação</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Serviços Section -->
+    <section id="servicos" class="servicos">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-badge">
+                    <i data-lucide="briefcase"></i>
+                    Nossos Serviços
+                </span>
+                <h2 class="section-title">O que oferecemos para você</h2>
+                <p class="section-description">Soluções completas em desenvolvimento web para impulsionar seu negócio digital</p>
+            </div>
+            
+            <div class="servicos-grid">
+                <div class="servico-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="servico-icon-wrapper">
+                        <div class="servico-icon">
+                            <i data-lucide="globe"></i>
+                        </div>
+                        <div class="icon-glow"></div>
+                    </div>
+                    <h3 class="servico-title">Site</h3>
+                    <p class="servico-description">Criação de sites modernos, rápidos e responsivos — prontos para vender.</p>
+                    <a href="#plans" class="servico-link">
+                        Saiba mais
+                        <i data-lucide="arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="servico-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="servico-icon-wrapper">
+                        <div class="servico-icon">
+                            <i data-lucide="bot"></i>
+                        </div>
+                        <div class="icon-glow"></div>
+                    </div>
+                    <h3 class="servico-title">Chatbot</h3>
+                    <p class="servico-description">Atendimento automático que qualifica leads e reduz tempo de resposta.</p>
+                    <a href="#briefing" class="servico-link">
+                        Peça orçamento
+                        <i data-lucide="arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="servico-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="servico-icon-wrapper">
+                        <div class="servico-icon">
+                            <i data-lucide="palette"></i>
+                        </div>
+                        <div class="icon-glow"></div>
+                    </div>
+                    <h3 class="servico-title">Personalização</h3>
+                    <p class="servico-description">Atualizações temáticas para campanhas sazonais (Natal, Black Friday etc.).</p>
+                    <a href="#briefing" class="servico-link">
+                        Peça orçamento
+                        <i data-lucide="arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="servico-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="servico-icon-wrapper">
+                        <div class="servico-icon">
+                            <i data-lucide="wrench"></i>
+                        </div>
+                        <div class="icon-glow"></div>
+                    </div>
+                    <h3 class="servico-title">Manutenção</h3>
+                    <p class="servico-description">Correções, atualizações e suporte técnico contínuo.</p>
+                    <a href="#briefing" class="servico-link">
+                        Peça orçamento
+                        <i data-lucide="arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="benefits">
+        <div class="container">
+            <div class="benefits-layout">
+                <div class="benefits-content" data-aos="fade-right">
+                    <span class="section-badge">
+                        <i data-lucide="zap"></i>
+                        Por que escolher
+                    </span>
+                    <h2 class="section-title">Transforme visualizações em vendas reais</h2>
+                    <p class="benefits-text">
+                        Um site não é apenas um cartão de visitas digital - é uma máquina de vendas trabalhando 24 horas por dia.
+                    </p>
+                    <p class="benefits-text">
+                        Nossos sites são estrategicamente projetados para converter visitantes em clientes, com elementos de persuasão e chamadas para ação eficientes que funcionam enquanto você dorme.
+                    </p>
+                    
+                    <div class="benefits-stats">
+                        <div class="benefit-stat">
+                            <div class="stat-icon">
+                                <i data-lucide="users"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-number">98%</div>
+                                <div class="stat-label">Clientes Satisfeitos</div>
+                            </div>
+                        </div>
+                        <div class="benefit-stat">
+                            <div class="stat-icon">
+                                <i data-lucide="trophy"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-number">5.0</div>
+                                <div class="stat-label">Avaliação Média</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="https://wa.me/5583991816152?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20os%20benef%C3%ADcios!" 
+                       class="btn btn-primary" 
+                       target="_blank">
+                        Falar com Consultor
+                        <i data-lucide="arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="benefits-features" data-aos="fade-left">
+                    <div class="benefit-feature">
+                        <div class="feature-icon">
+                            <i data-lucide="rocket"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Aumento das vendas</h3>
+                            <p>Interfaces intuitivas e fluxos de navegação pensados para aumentar as conversões e fazer sua empresa vender mais.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-feature">
+                        <div class="feature-icon">
+                            <i data-lucide="smartphone"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>100% Responsivo</h3>
+                            <p>Sites que funcionam perfeitamente em qualquer dispositivo, garantindo a melhor experiência para seus clientes.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-feature">
+                        <div class="feature-icon">
+                            <i data-lucide="headphones"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Suporte técnico</h3>
+                            <p>Equipe disponível para resolver qualquer problema e garantir que seu site esteja sempre funcionando.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-feature">
+                        <div class="feature-icon">
+                            <i data-lucide="sparkles"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Design exclusivo</h3>
+                            <p>Visual moderno e profissional que transmite confiança e valoriza sua marca no mercado.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Plans Section -->
+    <section id="plans" class="plans">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-badge">
+                    <i data-lucide="package"></i>
+                    Nossos Planos
+                </span>
+                <h2 class="section-title">Escolha o plano ideal</h2>
+                <p class="section-description">Transparência e flexibilidade para o seu negócio crescer</p>
+            </div>
+            
+            <div class="plans-grid">
+                <div class="plan-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="plan-header">
+                        <h3 class="plan-name">Site PRO</h3>
+                        <p class="plan-subtitle">Ideal para começar</p>
+                    </div>
+                    <div class="plan-price">
+                        <span class="price-old">R$ 1.500</span>
+                        <span class="price-current">R$ 600</span>
+                    </div>
+                    <ul class="plan-features">
+                        <li><i data-lucide="check"></i> Design moderno e responsivo</li>
+                        <li><i data-lucide="check"></i> Até 5 seções personalizadas</li>
+                        <li><i data-lucide="check"></i> Formulário de contato integrado</li>
+                        <li><i data-lucide="check"></i> Links para redes sociais</li>
+                        <li><i data-lucide="check"></i> Otimização SEO básica</li>
+                        <li class="feature-highlight"><i data-lucide="check"></i> 60 dias de manutenção gratuita</li>
+                    </ul>
+                    <a href="#briefing" class="btn btn-outline btn-block">Escolher Plano</a>
+                </div>
+                
+                <div class="plan-card plan-featured" data-aos="fade-up" data-aos-delay="200">
+                    <div class="plan-badge">
+                        <i data-lucide="star"></i>
+                        Mais Escolhido
+                    </div>
+                    <div class="plan-header">
+                        <h3 class="plan-name">Site PREMIUM</h3>
+                        <p class="plan-subtitle">Recomendado para crescer</p>
+                    </div>
+                    <div class="plan-price">
+                        <span class="price-old">R$ 2.500</span>
+                        <span class="price-current">R$ 1.000</span>
+                    </div>
+                    <ul class="plan-features">
+                        <li><i data-lucide="check"></i> Tudo do plano PRO +</li>
+                        <li><i data-lucide="check"></i> Até 10 seções personalizadas</li>
+                        <li><i data-lucide="check"></i> Integração WhatsApp Business</li>
+                        <li><i data-lucide="check"></i> Galeria de imagens/produtos</li>
+                        <li><i data-lucide="check"></i> Animações e efeitos avançados</li>
+                        <li><i data-lucide="check"></i> Otimização SEO avançada</li>
+                        <li class="feature-highlight"><i data-lucide="check"></i> 60 dias de manutenção gratuita</li>
+                    </ul>
+                    <a href="#briefing" class="btn btn-primary btn-block">Escolher Plano</a>
+                </div>
+                
+                <div class="plan-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="plan-header">
+                        <h3 class="plan-name">Personalizado</h3>
+                        <p class="plan-subtitle">Solução completa</p>
+                    </div>
+                    <div class="plan-price">
+                        <span class="price-current price-custom">Sob consulta</span>
+                    </div>
+                    <ul class="plan-features">
+                        <li><i data-lucide="check"></i> Projeto 100% personalizado</li>
+                        <li><i data-lucide="check"></i> Seções ilimitadas</li>
+                        <li><i data-lucide="check"></i> Funcionalidades customizadas</li>
+                        <li><i data-lucide="check"></i> Integração com sistemas externos</li>
+                        <li><i data-lucide="check"></i> Painel administrativo</li>
+                        <li><i data-lucide="check"></i> Suporte prioritário</li>
+                        <li class="feature-highlight"><i data-lucide="check"></i> 60 dias de manutenção gratuita</li>
+                    </ul>
+                    <a href="#briefing" class="btn btn-outline btn-block">Solicitar Orçamento</a>
+                </div>
+            </div>
+            
+            <div class="payment-info" data-aos="fade-up" data-aos-delay="400">
+                <h3 class="payment-title">
+                    <i data-lucide="credit-card"></i>
+                    Condições de Pagamento
+                </h3>
+                <div class="payment-grid">
+                    <div class="payment-item">
+                        <i data-lucide="coins"></i>
+                        <span><strong>Sinal:</strong> 50% no aceite da proposta</span>
+                    </div>
+                    <div class="payment-item">
+                        <i data-lucide="credit-card"></i>
+                        <span><strong>Parcelamento:</strong> PIX, boleto ou cartão em até 12x</span>
+                    </div>
+                    <div class="payment-item">
+                        <i data-lucide="shield-check"></i>
+                        <span><strong>Garantia:</strong> Satisfação ou dinheiro de volta</span>
+                    </div>
+                    <div class="payment-item">
+                        <i data-lucide="file-check"></i>
+                        <span><strong>Final:</strong> Na entrega e aprovação do projeto</span>
+                    </div>
+                </div>
+                
+                <div class="special-offer" data-aos="fade-up" data-aos-delay="500">
+                    <div class="offer-content">
+                        <i data-lucide="star"></i>
+                        <div class="offer-text">
+                            <h4>Plano Mensal de Personalizações</h4>
+                            <p>10 personalizações de site/chatbot por <strong>R$ 3.000/mês</strong> - Ideal para empresas que precisam de atualizações constantes</p>
+                        </div>
+                    </div>
+                    <a href="https://wa.me/5583991816152?text=Quero%20saber%20mais%20sobre%20o%20plano%20mensal!" class="btn btn-primary" target="_blank">
+                        Falar sobre Plano Mensal
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Briefing Section -->
+    <section id="briefing" class="briefing">
+        <div class="container">
+            <div class="briefing-layout">
+                <div class="briefing-info" data-aos="fade-right">
+                    <span class="section-badge">
+                        <i data-lucide="file-text"></i>
+                        Começar Projeto
+                    </span>
+                    <h2 class="section-title">Vamos começar seu projeto?</h2>
+                    <p class="briefing-description">
+                        Preencha o formulário e envie diretamente para nosso WhatsApp. Retornamos em até 24 horas com uma proposta personalizada.
+                    </p>
+                    
+                    <div class="briefing-steps">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Preencha o formulário</h4>
+                                <p>Conte sobre seu negócio e objetivos</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Envie pelo WhatsApp</h4>
+                                <p>Redirecionamento automático</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Receba sua proposta</h4>
+                                <p>Resposta em até 24 horas</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="briefing-bonus">
+                        <i data-lucide="gift"></i>
+                        <span>Preencha agora e ganhe 10% de desconto adicional!</span>
+                    </div>
+                </div>
+                
+                <form class="briefing-form" id="briefingForm" data-aos="fade-left">
+                    <div class="form-group">
+                        <label for="name">Nome completo</label>
+                        <input type="text" id="name" name="name" required>
+                        <i data-lucide="user" class="input-icon"></i>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email" required>
+                        <i data-lucide="mail" class="input-icon"></i>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">WhatsApp</label>
+                        <input type="tel" id="phone" name="phone" required>
+                        <i data-lucide="phone" class="input-icon"></i>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="business">Nome do negócio</label>
+                        <input type="text" id="business" name="business" required>
+                        <i data-lucide="briefcase" class="input-icon"></i>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="segment">Segmento/Nicho</label>
+                        <input type="text" id="segment" name="segment" required>
+                        <i data-lucide="tag" class="input-icon"></i>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="objective">Objetivo principal do site</label>
+                        <select id="objective" name="objective" required>
+                            <option value="">Selecione...</option>
+                            <option value="Vender produtos/serviços">Vender produtos/serviços</option>
+                            <option value="Captar leads/contatos">Captar leads/contatos</option>
+                            <option value="Apenas informativo">Apenas informativo</option>
+                            <option value="Site institucional">Site institucional</option>
+                            <option value="Outro">Outro</option>
+                        </select>
+                        <i data-lucide="target" class="input-icon"></i>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="plan">Qual plano tem interesse?</label>
+                        <select id="plan" name="plan" required>
+                            <option value="">Selecione...</option>
+                            <option value="Site PRO">Site PRO</option>
+                            <option value="Site PREMIUM">Site PREMIUM</option>
+                            <option value="Projeto Personalizado">Projeto Personalizado</option>
+                            <option value="Não sei ainda">Não sei ainda</option>
+                        </select>
+                        <i data-lucide="package" class="input-icon"></i>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Informações adicionais</label>
+                        <textarea id="message" name="message" rows="4"></textarea>
+                        <i data-lucide="message-square" class="input-icon"></i>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <span>Enviar para WhatsApp</span>
+                        <i data-lucide="send"></i>
+                    </button>
+                    
+                    <div class="form-notice">
+                        <i data-lucide="shield-check"></i>
+                        <span>Seus dados estão seguros e serão usados apenas para contato</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section id="parceiros" class="parceiros">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-badge">
+                    <i data-lucide="handshake"></i>
+                    Programa de Parcerias
+                </span>
+                <h2 class="section-title">Vamos crescer juntos?</h2>
+                <p class="section-description">Seja nosso parceiro e ofereça soluções digitais de qualidade aos seus clientes</p>
+            </div>
+            
+            <div class="parceiros-benefits">
+                <div class="parceiro-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="parceiro-icon">
+                        <i data-lucide="trending-up"></i>
+                    </div>
+                    <h3>Comissões Atrativas</h3>
+                    <p>Ganhe comissões recorrentes em cada projeto indicado ou desenvolvido em parceria</p>
+                </div>
+                
+                <div class="parceiro-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="parceiro-icon">
+                        <i data-lucide="tag"></i>
+                    </div>
+                    <h3>Modelo White-Label</h3>
+                    <p>Revenda nossos serviços com sua marca. Seus clientes, nossa execução técnica</p>
+                </div>
+                
+                <div class="parceiro-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="parceiro-icon">
+                        <i data-lucide="headphones"></i>
+                    </div>
+                    <h3>Suporte Dedicado</h3>
+                    <p>Equipe técnica disponível para tirar dúvidas e garantir qualidade nas entregas</p>
+                </div>
+                
+                <div class="parceiro-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="parceiro-icon">
+                        <i data-lucide="zap"></i>
+                    </div>
+                    <h3>Prazos Preferenciais</h3>
+                    <p>Parceiros têm prioridade no atendimento e prazos diferenciados</p>
+                </div>
+            </div>
+            
+            <div class="parceiros-form-wrapper" data-aos="fade-up" data-aos-delay="500">
+                <div class="form-intro">
+                    <i data-lucide="file-text"></i>
+                    <p>Ao preencher o formulário, você receberá nosso Guia de Parceria em PDF com informações detalhadas</p>
+                </div>
+                
+                <form class="parceiros-form" id="parceirosForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="parceiro-nome">Nome Completo</label>
+                            <input type="text" id="parceiro-nome" name="nome" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="parceiro-empresa">Empresa/Agência</label>
+                            <input type="text" id="parceiro-empresa" name="empresa">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="parceiro-cidade">Cidade/Estado</label>
+                            <input type="text" id="parceiro-cidade" name="cidade" placeholder="Cidade - UF" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="parceiro-telefone">Telefone/WhatsApp</label>
+                            <input type="tel" id="parceiro-telefone" name="telefone" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="parceiro-email">E-mail</label>
+                        <input type="email" id="parceiro-email" name="email" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="parceiro-tipo">Tipo de Parceria</label>
+                            <select id="parceiro-tipo" name="tipo" required>
+                                <option value="">Selecione...</option>
+                                <option value="Revenda (White-label)">Revenda (White-label)</option>
+                                <option value="Co-desenvolvimento">Co-desenvolvimento</option>
+                                <option value="Indicação de clientes">Indicação de clientes</option>
+                                <option value="Outro">Outro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="parceiro-experiencia">Experiência na área</label>
+                            <select id="parceiro-experiencia" name="experiencia">
+                                <option value="">Selecione...</option>
+                                <option value="Menos de 1 ano">Menos de 1 ano</option>
+                                <option value="1-3 anos">1-3 anos</option>
+                                <option value="3-5 anos">3-5 anos</option>
+                                <option value="Mais de 5 anos">Mais de 5 anos</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="parceiro-observacoes">Observações</label>
+                        <textarea id="parceiro-observacoes" name="observacoes" rows="4" maxlength="500"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <span>Quero Ser Parceiro</span>
+                        <i data-lucide="arrow-right"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-badge">
+                    <i data-lucide="help-circle"></i>
+                    Dúvidas
+                </span>
+                <h2 class="section-title">Perguntas Frequentes</h2>
+                <p class="section-description">Encontre respostas rapidamente para as dúvidas mais comuns</p>
+            </div>
+            
+            <div class="faq-search" data-aos="fade-up" data-aos-delay="100">
+                <i data-lucide="search"></i>
+                <input type="text" id="faqSearch" placeholder="Buscar pergunta...">
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-category" data-aos="fade-up" data-aos-delay="200">
+                    <div class="category-header">
+                        <i data-lucide="dollar-sign"></i>
+                        <h3>Orçamento</h3>
+                    </div>
+                    <div class="faq-items">
+                        <div class="faq-item active">
+                            <div class="faq-question">
+                                <span>Como funciona o orçamento?</span>
+                                <i data-lucide="chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Preencha o formulário de briefing com as informações do seu projeto. Nossa equipe analisará suas necessidades e enviará um orçamento detalhado e personalizado em até 24 horas úteis via WhatsApp.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <span>O orçamento é gratuito?</span>
+                                <i data-lucide="chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Sim! A elaboração do orçamento é 100% gratuita e sem compromisso. Você receberá uma proposta completa detalhando funcionalidades, prazos e investimento necessário.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-category" data-aos="fade-up" data-aos-delay="300">
+                    <div class="category-header">
+                        <i data-lucide="clock"></i>
+                        <h3>Prazos</h3>
+                    </div>
+                    <div class="faq-items">
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <span>Qual o prazo médio de entrega?</span>
+                                <i data-lucide="chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Sites PRO ficam prontos em 7 a 14 dias úteis. Sites PREMIUM levam de 14 a 21 dias úteis. Projetos personalizados têm prazos definidos conforme complexidade.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <span>Os prazos podem ser personalizados?</span>
+                                <i data-lucide="chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Sim! Se precisar do site em prazo menor, trabalhamos em regime de urgência mediante taxa adicional. Também ajustamos o cronograma conforme sua disponibilidade.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-category" data-aos="fade-up" data-aos-delay="400">
+                    <div class="category-header">
+                        <i data-lucide="wrench"></i>
+                        <h3>Manutenção</h3>
+                    </div>
+                    <div class="faq-items">
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <span>O que está incluído na manutenção de 60 dias?</span>
+                                <i data-lucide="chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p><strong>A manutenção de 60 dias inclui:</strong></p>
+                                <ul>
+                                    <li>Correção de bugs e erros técnicos</li>
+                                    <li>Updates de segurança e pequenas atualizações</li>
+                                    <li>Alterações de conteúdo (textos, imagens) até 5 horas de trabalho</li>
+                                    <li>Suporte técnico via WhatsApp</li>
+                                </ul>
+                                <p><strong>Não estão incluídos:</strong></p>
+                                <ul>
+                                    <li>Novas funcionalidades ou módulos</li>
+                                    <li>Redesign completo ou alterações estruturais</li>
+                                    <li>Integrações com novos sistemas</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <span>Qual o prazo de resposta do suporte?</span>
+                                <i data-lucide="chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Garantimos resposta inicial em até 24 horas úteis via WhatsApp. Correções urgentes são priorizadas conforme SLA acordado em contrato.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-category" data-aos="fade-up" data-aos-delay="500">
+                    <div class="category-header">
+                        <i data-lucide="credit-card"></i>
+                        <h3>Pagamentos</h3>
+                    </div>
+                    <div class="faq-items">
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <span>Quais são as condições de pagamento?</span>
+                                <i data-lucide="chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <ul>
+                                    <li>Sinal de 50% no aceite da proposta</li>
+                                    <li>Pagamento final de 50% na entrega e aprovação</li>
+                                    <li>Formas aceitas: PIX, boleto, cartão em até 12x</li>
+                                    <li>Garantia de satisfação ou dinheiro de volta</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-cta" data-aos="fade-up" data-aos-delay="600">
+                <i data-lucide="message-circle"></i>
+                <h3>Ainda tem dúvidas?</h3>
+                <p>Fale diretamente com nossa equipe</p>
+                <a href="https://wa.me/5583991816152?text=Tenho%20d%C3%BAvidas%20sobre%20os%20servi%C3%A7os!" class="btn btn-primary" target="_blank">
+                    Falar com Especialista
+                    <i data-lucide="arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <i data-lucide="code-2"></i>
+                        <span>Dezain Code</span>
+                    </div>
+                    <p class="footer-description">Transformando visões em resultados digitais com sites modernos, responsivos e otimizados para vendas.</p>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/arthur.fellp/" target="_blank" aria-label="Instagram">
+                            <i data-lucide="instagram"></i>
+                        </a>
+                        <a href="https://wa.me/5583991816152" target="_blank" aria-label="WhatsApp">
+                            <i data-lucide="message-circle"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Serviços</h4>
+                    <ul>
+                        <li><a href="#servicos">Desenvolvimento de Sites</a></li>
+                        <li><a href="#servicos">Chatbots</a></li>
+                        <li><a href="#servicos">Personalização</a></li>
+                        <li><a href="#servicos">Manutenção</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#plans">Planos</a></li>
+                        <li><a href="#benefits">Benefícios</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Contato</h4>
+                    <ul class="footer-contact">
+                        <li>
+                            <i data-lucide="map-pin"></i>
+                            <span>João Pessoa - Paraíba</span>
+                        </li>
+                        <li>
+                            <i data-lucide="phone"></i>
+                            <a href="tel:+5583993690482">(83) 99369-0482</a>
+                        </li>
+                    </ul>
+                    <a href="https://wa.me/5583993690482" class="btn btn-primary btn-sm" target="_blank">
+                        <i data-lucide="message-circle"></i>
+                        WhatsApp
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Dezain Code. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script-redesign.js"></script>
+</body>
+</html>
