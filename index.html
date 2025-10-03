@@ -4,198 +4,1834 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dezain Code - Desenvolvimento Web Profissional</title>
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <style>
+        :root {
+            --bg-dark: #0a0e27;
+            --bg-card: #1a1f3a;
+            --bg-elevated: #252b48;
+            --accent-primary: #00bfa5;
+            --accent-secondary: #667eea;
+            --accent-glow: rgba(0, 191, 165, 0.4);
+            --text-primary: #f5f5f5;
+            --text-secondary: #b8c5d6;
+            --text-muted: #7b8a9e;
+            --border-subtle: rgba(255, 255, 255, 0.1);
+            --gradient-tech: linear-gradient(135deg, #667eea 0%, #00bfa5 100%);
+            --gradient-card: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(0, 191, 165, 0.1) 100%);
+        }
 
-    
-    <!-- Fontes Google -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
-    <!-- Ícones Lucide -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    
-    <!-- AOS - Animate On Scroll -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
-    <!-- GSAP para animações avançadas -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="script.js"></script>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 2px, var(--text-primary) 2px, var(--text-primary) 3px),
+                repeating-linear-gradient(90deg, transparent, transparent 2px, var(--text-primary) 2px, var(--text-primary) 3px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Scroll Reveal Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .slide-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .slide-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Urgency Badge */
+        .urgency-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, rgba(255, 59, 48, 0.2), rgba(255, 149, 0, 0.2));
+            border: 2px solid rgba(255, 59, 48, 0.5);
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #ff3b30;
+            animation: pulse-border 2s infinite;
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes pulse-border {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(255, 59, 48, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 0 8px rgba(255, 59, 48, 0);
+            }
+        }
+
+        .urgency-badge i {
+            animation: shake 1s infinite;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
+        }
+
+        /* Highlight Badge */
+        .highlight-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: var(--gradient-tech);
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 700;
+            color: white;
+            animation: glow-pulse 2s infinite;
+        }
+
+        @keyframes glow-pulse {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(0, 191, 165, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(0, 191, 165, 0.8);
+            }
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(10, 14, 39, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 20px 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            background: var(--gradient-tech);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(5deg); }
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-tech);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-primary);
+            transform: translateY(-2px);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 140px 0 100px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #001538, #002966);
+        }
+
+        .tech-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(rgba(0, 194, 255, 0.05) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(0, 112, 243, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: 1;
+        }
+
+        .particles-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(1px);
+            animation: floatParticle 20s infinite linear;
+        }
+
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-30px) translateX(20px) rotate(90deg);
+            }
+            50% {
+                transform: translateY(-10px) translateX(40px) rotate(180deg);
+            }
+            75% {
+                transform: translateY(-40px) translateX(10px) rotate(270deg);
+            }
+            100% {
+                transform: translateY(0) translateX(0) rotate(360deg);
+            }
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            z-index: 0;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            position: relative;
+            z-index: 3;
+        }
+
+        .hero h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+            text-shadow: 0 2px 10px rgba(0, 194, 255, 0.3);
+            letter-spacing: -1px;
+        }
+
+        .hero h1 span {
+            background: var(--gradient-tech);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            line-height: 1.8;
+            font-weight: 500;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 32px;
+        }
+
+        .btn {
+            padding: 18px 36px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 15px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: var(--gradient-tech);
+            color: white;
+            box-shadow: 0 8px 24px var(--accent-glow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-primary:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px var(--accent-glow);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--accent-primary);
+            border: 2px solid var(--accent-primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--accent-primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            position: relative;
+            display: inline-block;
+            letter-spacing: -1px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 5px;
+            background: var(--gradient-tech);
+            border-radius: 3px;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 24px auto 0;
+            font-weight: 500;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 24px;
+            padding: 40px 32px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-card);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(0, 191, 165, 0.3);
+            border-color: var(--accent-primary);
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-icon-wrapper {
+            margin-bottom: 32px;
+            position: relative;
+            z-index: 1;
+            transition: all 0.4s ease;
+            display: inline-block;
+        }
+
+        .service-card:hover .service-icon-wrapper {
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        .service-icon-wrapper i {
+            font-size: 120px !important;
+            background: var(--gradient-tech);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+            filter: drop-shadow(0 12px 24px rgba(0, 191, 165, 0.6));
+            line-height: 1;
+        }
+
+        .service-card:hover .service-icon-wrapper i {
+            filter: drop-shadow(0 18px 36px rgba(0, 191, 165, 0.8));
+        }
+
+        .service-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
+            letter-spacing: -0.5px;
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            font-weight: 500;
+        }
+
+        .service-features {
+            list-style: none;
+            margin: 20px 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-features li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover .service-features li {
+            transform: translateX(5px);
+        }
+
+        .service-features li::before {
+            content: '→';
+            color: var(--accent-primary);
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .service-card .btn {
+            font-size: 14px;
+            padding: 12px 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Counter Animation */
+        .counter-number {
+            font-family: 'Poppins', sans-serif;
+            font-size: 52px;
+            font-weight: 800;
+            background: var(--gradient-tech);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+            letter-spacing: -1px;
+        }
+
+        .counter {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 32px 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .counter:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 191, 165, 0.3);
+        }
+
+        .counter-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        /* Plans Section */
+        .plans {
+            padding: 100px 0;
+            background: var(--bg-elevated);
+        }
+
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .plan-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border-subtle);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .plan-card.featured {
+            border-color: var(--accent-primary);
+            transform: scale(1.05);
+            box-shadow: 0 20px 50px rgba(0, 191, 165, 0.3);
+        }
+
+        .plan-card.featured::before {
+            content: 'MAIS POPULAR';
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background: var(--gradient-tech);
+            color: white;
+            padding: 6px 40px;
+            font-size: 12px;
+            font-weight: 700;
+            transform: rotate(45deg);
+            z-index: 10;
+            letter-spacing: 1px;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 24px 48px rgba(0, 191, 165, 0.3);
+        }
+
+        .plan-card.featured:hover {
+            transform: translateY(-12px) scale(1.05);
+        }
+
+        .plan-header {
+            background: var(--gradient-card);
+            padding: 40px 32px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .plan-card.featured .plan-header {
+            background: var(--gradient-tech);
+        }
+
+        .plan-name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .plan-price {
+            font-size: 48px;
+            font-weight: 800;
+            margin: 16px 0;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: -2px;
+        }
+
+        .plan-price span {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .plan-features {
+            padding: 32px;
+        }
+
+        .plan-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .plan-feature i {
+            font-size: 28px;
+            background: var(--gradient-tech);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-top: 2px;
+            filter: drop-shadow(0 4px 8px rgba(0, 191, 165, 0.3));
+            line-height: 1;
+        }
+
+        .plan-footer {
+            padding: 0 32px 32px;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 100px 0;
+            background: var(--bg-elevated);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            margin-top: 48px;
+            align-items: center;
+        }
+
+        .benefits-text h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .benefits-text p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.8;
+            font-weight: 500;
+        }
+
+        .counter-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin: 32px 0;
+        }
+
+        .benefits-list {
+            display: grid;
+            gap: 24px;
+        }
+
+        .benefit-item {
+            display: flex;
+            gap: 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 28px;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-item:hover {
+            transform: translateX(8px);
+            border-color: var(--accent-primary);
+            box-shadow: 0 10px 30px rgba(0, 191, 165, 0.2);
+        }
+
+        .benefit-icon {
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .benefit-item:hover .benefit-icon {
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        .benefit-icon i {
+            font-size: 80px !important;
+            background: var(--gradient-tech);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+            filter: drop-shadow(0 10px 20px rgba(0, 191, 165, 0.5));
+            line-height: 1;
+        }
+
+        .benefit-item:hover .benefit-icon i {
+            filter: drop-shadow(0 15px 30px rgba(0, 191, 165, 0.7));
+        }
+
+        .benefit-item h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 19px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.3px;
+        }
+
+        .benefit-item p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        /* Showcase */
+        .showcase {
+            padding: 100px 0;
+            background: var(--bg-dark);
+        }
+
+        .showcase-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+            margin-top: 48px;
+        }
+
+        .showcase-description h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .showcase-description p {
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            line-height: 1.8;
+            font-weight: 500;
+        }
+
+        .showcase-features {
+            list-style: none;
+            margin: 32px 0;
+        }
+
+        .showcase-features li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            font-size: 16px;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+        }
+
+        .showcase-features li:hover {
+            transform: translateX(8px);
+        }
+
+        .showcase-features li i {
+            font-size: 32px;
+            background: var(--gradient-tech);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 4px 8px rgba(0, 191, 165, 0.3));
+            line-height: 1;
+        }
+
+        .showcase-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .showcase-images img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            transition: transform 0.4s ease;
+            cursor: pointer;
+        }
+
+        .showcase-images img:hover {
+            transform: translateY(-12px) scale(1.05);
+        }
+
+        /* Payment Section */
+        .payment {
+            padding: 100px 0;
+            background: var(--bg-dark);
+        }
+
+        .payment-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            margin-top: 48px;
+        }
+
+        .payment-features {
+            display: grid;
+            gap: 24px;
+        }
+
+        .payment-feature {
+            display: flex;
+            gap: 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 28px;
+            transition: all 0.3s ease;
+        }
+
+        .payment-feature:hover {
+            transform: translateX(8px);
+            border-color: var(--accent-primary);
+        }
+
+        .payment-feature .feature-icon {
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .payment-feature:hover .feature-icon {
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        .payment-feature .feature-icon i {
+            font-size: 80px !important;
+            background: var(--gradient-tech);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+            filter: drop-shadow(0 10px 20px rgba(0, 191, 165, 0.5));
+            line-height: 1;
+        }
+
+        .payment-feature:hover .feature-icon i {
+            filter: drop-shadow(0 15px 30px rgba(0, 191, 165, 0.7));
+        }
+
+        .payment-feature h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 19px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .payment-feature p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .payment-process {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 24px;
+            padding: 40px;
+        }
+
+        .payment-process h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .process-steps {
+            display: grid;
+            gap: 24px;
+        }
+
+        .process-step {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-tech);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 20px;
+            flex-shrink: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .process-step h4 {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .process-step p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        /* Briefing Section */
+        .briefing {
+            padding: 100px 0;
+            background: var(--bg-elevated);
+        }
+
+        .briefing-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            margin-top: 48px;
+        }
+
+        .briefing-info h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .briefing-info p {
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            line-height: 1.8;
+            font-weight: 500;
+        }
+
+        .briefing-steps {
+            display: grid;
+            gap: 24px;
+        }
+
+        .briefing-step {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .briefing-step:hover {
+            transform: translateX(8px);
+            border-color: var(--accent-primary);
+        }
+
+        .briefing-step .step-number {
+            width: 40px;
+            height: 40px;
+            font-size: 18px;
+        }
+
+        .briefing-step h4 {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .briefing-step p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .briefing-form {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 24px;
+            padding: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--text-primary);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 16px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 15px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2300bfa5' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: calc(100% - 15px) center;
+            padding-right: 40px;
+        }
+
+        .form-notice {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-weight: 500;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 100px 0;
+            background: var(--bg-dark);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            margin-bottom: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: var(--accent-primary);
+            transform: translateX(8px);
+        }
+
+        .faq-question {
+            padding: 28px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            font-size: 17px;
+            user-select: none;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+            font-size: 24px;
+            background: var(--gradient-tech);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 28px 28px;
+        }
+
+        .faq-answer p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-weight: 500;
+        }
+
+        .faq-cta {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .faq-cta a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Partner Section */
+        .partner {
+            padding: 100px 0;
+            background: var(--bg-elevated);
+        }
+
+        .partner-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+            margin-top: 48px;
+        }
+
+        .partner-info {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 24px;
+            padding: 48px;
+        }
+
+        .partner-info h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            background: var(--gradient-tech);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .partner-info p {
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            line-height: 1.8;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .partner-benefits {
+            display: grid;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .partner-whatsapp-cta {
+            background: var(--bg-card);
+            border: 2px solid var(--accent-primary);
+            border-radius: 24px;
+            padding: 48px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .partner-whatsapp-cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 191, 165, 0.1) 0%, transparent 70%);
+            animation: pulse-bg 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse-bg {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        .partner-whatsapp-cta h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .partner-whatsapp-cta p {
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            font-size: 16px;
+            position: relative;
+            z-index: 1;
+            font-weight: 500;
+        }
+
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+            color: white;
+            padding: 22px 44px;
+            border-radius: 16px;
+            font-weight: 800;
+            font-size: 18px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 12px 36px rgba(37, 211, 102, 0.4);
+            position: relative;
+            z-index: 1;
+            border: none;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 16px 48px rgba(37, 211, 102, 0.6);
+        }
+
+        .btn-whatsapp i {
+            font-size: 26px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 64px;
+            height: 64px;
+            background: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            transition: all 0.3s ease;
+            animation: pulse-whatsapp 2s infinite;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.15);
+            box-shadow: 0 12px 32px rgba(37, 211, 102, 0.6);
+        }
+
+        @keyframes pulse-whatsapp {
+            0%, 100% { box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4); }
+            50% { box-shadow: 0 8px 24px rgba(37, 211, 102, 0.8), 0 0 0 16px rgba(37, 211, 102, 0.1); }
+        }
+
+        .whatsapp-btn i {
+            font-size: 34px;
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-card);
+            border-top: 1px solid var(--border-subtle);
+            padding: 80px 0 32px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .footer-col h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 19px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-primary);
+            transform: translateX(5px);
+            display: inline-block;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .social-link {
+            width: 44px;
+            height: 44px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-subtle);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--gradient-tech);
+            border-color: transparent;
+            color: white;
+            transform: translateY(-4px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 32px;
+            border-top: 1px solid var(--border-subtle);
+            color: var(--text-muted);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 44px;
+            }
+
+            .section-title {
+                font-size: 40px;
+            }
+
+            .service-icon-wrapper i {
+                font-size: 100px !important;
+            }
+
+            .benefit-icon i,
+            .payment-feature .feature-icon i {
+                font-size: 70px !important;
+            }
+
+            .services-grid,
+            .plans-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+
+            .showcase-content,
+            .benefits-grid,
+            .payment-grid,
+            .briefing-grid,
+            .partner-content {
+                gap: 48px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 100px 0 80px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .section-subtitle {
+                font-size: 16px;
+            }
+
+            .service-icon-wrapper i {
+                font-size: 90px !important;
+            }
+
+            .benefit-icon i,
+            .payment-feature .feature-icon i {
+                font-size: 60px !important;
+            }
+
+            .showcase-features li i {
+                font-size: 28px;
+            }
+
+            .plan-feature i {
+                font-size: 24px;
+            }
+
+            .showcase-content,
+            .benefits-grid,
+            .payment-grid,
+            .briefing-grid,
+            .partner-content {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .showcase-images {
+                grid-template-columns: 1fr;
+            }
+
+            .plan-card.featured {
+                transform: scale(1);
+            }
+
+            .counter-container {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .cta-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+                padding: 16px 28px;
+                font-size: 14px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card {
+                padding: 32px 24px;
+            }
+
+            .benefits-text h3,
+            .showcase-description h3 {
+                font-size: 28px;
+            }
+
+            .partner-info h3,
+            .partner-whatsapp-cta h3 {
+                font-size: 26px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .urgency-badge {
+                font-size: 12px;
+                padding: 10px 16px;
+            }
+
+            .plan-price {
+                font-size: 40px;
+            }
+
+            .plan-name {
+                font-size: 22px;
+            }
+
+            .whatsapp-btn {
+                width: 56px;
+                height: 56px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .whatsapp-btn i {
+                font-size: 28px;
+            }
+
+            .btn-whatsapp {
+                font-size: 16px;
+                padding: 18px 32px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .service-icon-wrapper i {
+                font-size: 70px !important;
+            }
+
+            .benefit-icon i,
+            .payment-feature .feature-icon i {
+                font-size: 50px !important;
+            }
+
+            .showcase-features li i {
+                font-size: 24px;
+            }
+
+            .plan-feature i {
+                font-size: 20px;
+            }
+
+            .service-card,
+            .benefit-item,
+            .payment-feature {
+                padding: 24px 20px;
+            }
+
+            .plan-card {
+                margin: 0 10px;
+            }
+
+            .briefing-form,
+            .payment-process,
+            .partner-info {
+                padding: 28px 24px;
+            }
+
+            .counter-number {
+                font-size: 42px;
+            }
+
+            .btn {
+                padding: 14px 24px;
+                font-size: 13px;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
+            .logo-icon {
+                width: 28px;
+                height: 28px;
+            }
+        }
+    </style>
 </head>
 <body>
-    
-    <!-- Botão WhatsApp Flutuante -->
-    <a href="https://wa.me/5583991816152?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20desenvolvimento%20web!" 
-       class="whatsapp-float" 
-       target="_blank"
-       aria-label="Falar no WhatsApp">
-        <i data-lucide="message-circle"></i>
-        <span class="pulse-ring"></span>
+    <div class="bg-pattern"></div>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/5583991816152" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
     </a>
 
     <!-- Header -->
-    <header class="header">
-        <nav class="nav-container">
-            <div class="nav-logo">
-                <i data-lucide="code-2" class="logo-icon"></i>
-                <span class="logo-text">Dezain Code</span>
+    <header>
+        <div class="container">
+            <div class="header-container">
+                <div class="logo">
+                    <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="url(#grad1)">
+                        <defs>
+                            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#00bfa5;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+                    </svg>
+                    Dezain Code
+                </div>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#services">Serviços</a></li>
+                        <li><a href="#benefits">Benefícios</a></li>
+                        <li><a href="#plans">Planos</a></li>
+                        <li><a href="#showcase">Portfolio</a></li>
+                        <li><a href="#briefing">Briefing</a></li>
+                        <li><a href="#partner">Parceria</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </nav>
             </div>
-            
-            <ul class="nav-menu">
-                <li><a href="#home" class="nav-link">Início</a></li>
-                <li><a href="#servicos" class="nav-link">Serviços</a></li>
-                <li><a href="#benefits" class="nav-link">Benefícios</a></li>
-                <li><a href="#plans" class="nav-link">Planos</a></li>
-                <li><a href="#briefing" class="nav-link">Briefing</a></li>
-                <li><a href="#parceiros" class="nav-link">Parceiros</a></li>
-                <li><a href="#faq" class="nav-link">FAQ</a></li>
-            </ul>
-            
-            <a href="#briefing" class="nav-cta">
-                Começar Projeto
-                <i data-lucide="arrow-right" class="cta-icon"></i>
-            </a>
-            
-            <button class="mobile-menu-toggle" aria-label="Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </nav>
+        </div>
     </header>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="hero-bg">
-            <div class="gradient-orb orb-1"></div>
-            <div class="gradient-orb orb-2"></div>
-            <div class="grid-pattern"></div>
-        </div>
-        
-        <div class="container hero-content">
-            <div class="hero-badge" data-aos="fade-up">
-                <i data-lucide="sparkles"></i>
-                <span>Desenvolvimento Web de Alto Impacto</span>
-            </div>
-            
-            <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
-                Soluções Web que <span class="gradient-text">Impulsionam</span> Seu Negócio
-            </h1>
-            
-            <p class="hero-description" data-aos="fade-up" data-aos-delay="200">
-                Sites otimizados para conversão que funcionam 24/7, aumentando suas vendas e atraindo novos clientes com tecnologia de ponta
-            </p>
-            
-            <div class="hero-cta-group" data-aos="fade-up" data-aos-delay="300">
-                <a href="#plans" class="btn btn-primary btn-large">
-                    <span>Alavancar Meu Negócio</span>
-                    <i data-lucide="arrow-right"></i>
-                </a>
-                <a href="https://wa.me/5583991816152?text=Ol%C3%A1%2C%20preciso%20de%20um%20site%20profissional!" 
-                   class="btn btn-outline btn-large" 
-                   target="_blank">
-                    <i data-lucide="phone"></i>
-                    <span>Falar com Especialista</span>
-                </a>
-            </div>
-            
-            <div class="hero-stats" data-aos="fade-up" data-aos-delay="400">
-                <div class="stat-item">
-                    <div class="stat-number" data-count="98">98</div>
-                    <div class="stat-label">% Satisfação</div>
+        <div class="tech-grid"></div>
+        <div class="particles-container" id="particles"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1><span>Soluções Web Profissionais</span> Para Seu Negócio</h1>
+                <p>Sites otimizados para conversão que funcionam 24/7 aumentando suas vendas e atraindo novos clientes</p>
+                <div class="cta-group">
+                    <a href="#plans" class="btn btn-primary">
+                        <span>ALAVANCAR MEU NEGÓCIO</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="https://wa.me/5583991816152?text=Ol%C3%A1%2C%20preciso%20de%20um%20site%20que%20venda%20para%20meu%20neg%C3%B3cio!" class="btn btn-outline" target="_blank">FALAR COM ESPECIALISTA</a>
                 </div>
-                <div class="stat-divider"></div>
-                <div class="stat-item">
-                    <div class="stat-number" data-count="20">20</div>
-                    <div class="stat-label">+ Projetos</div>
+                <div class="urgency-badge">
+                    <i class="fas fa-fire"></i>
+                    <span>Promoção por tempo limitado: 60% OFF até 30/05</span>
                 </div>
-                <div class="stat-divider"></div>
-                <div class="stat-item">
-                    <div class="stat-number" data-count="5">5</div>
-                    <div class="stat-label">.5 Avaliação</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="scroll-indicator">
-            <div class="mouse">
-                <div class="wheel"></div>
             </div>
         </div>
     </section>
 
-    <!-- Serviços Section -->
-    <section id="servicos" class="servicos">
+    <!-- Services Section -->
+    <section id="services" class="services">
         <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-badge">
-                    <i data-lucide="briefcase"></i>
-                    Nossos Serviços
-                </span>
-                <h2 class="section-title">O que oferecemos para você</h2>
-                <p class="section-description">Soluções completas em desenvolvimento web para impulsionar seu negócio digital</p>
+            <div class="section-header">
+                <h2 class="section-title fade-in">Nossos Serviços</h2>
+                <p class="section-subtitle fade-in">Soluções tecnológicas completas para impulsionar seu negócio no digital</p>
             </div>
-            
-            <div class="servicos-grid">
-                <div class="servico-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="servico-icon-wrapper">
-                        <div class="servico-icon">
-                            <i data-lucide="globe"></i>
-                        </div>
-                        <div class="icon-glow"></div>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon-wrapper">
+                        <i class="fas fa-laptop-code"></i>
                     </div>
-                    <h3 class="servico-title">Site</h3>
-                    <p class="servico-description">Criação de sites modernos, rápidos e responsivos — prontos para vender.</p>
-                    <a href="#plans" class="servico-link">
-                        Saiba mais
-                        <i data-lucide="arrow-right"></i>
-                    </a>
+                    <div class="highlight-badge">MAIS VENDIDO</div>
+                    <h3>Desenvolvimento de Sites</h3>
+                    <p>Criação de sites modernos, rápidos e responsivos — prontos para vender.</p>
+                    <ul class="service-features">
+                        <li>Sites Institucionais</li>
+                        <li>Cartão de Visitas Digital</li>
+                        <li>E-commerce completo</li>
+                        <li>Blog corporativo</li>
+                        <li>Venda de ingressos online</li>
+                    </ul>
+                    <a href="https://wa.me/5583991816152?text=Quero%20saber%20mais%20sobre%20desenvolvimento%20de%20sites" class="btn btn-outline" target="_blank">Saiba mais</a>
                 </div>
-                
-                <div class="servico-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="servico-icon-wrapper">
-                        <div class="servico-icon">
-                            <i data-lucide="bot"></i>
-                        </div>
-                        <div class="icon-glow"></div>
+
+                <div class="service-card fade-in">
+                    <div class="service-icon-wrapper">
+                        <i class="fas fa-robot"></i>
                     </div>
-                    <h3 class="servico-title">Chatbot</h3>
-                    <p class="servico-description">Atendimento automático que qualifica leads e reduz tempo de resposta.</p>
-                    <a href="#briefing" class="servico-link">
-                        Peça orçamento
-                        <i data-lucide="arrow-right"></i>
-                    </a>
+                    <h3>Chatbot Inteligente</h3>
+                    <p>Atendimento automático que trabalha 24 horas por dia.</p>
+                    <ul class="service-features">
+                        <li>Captação de leads qualificados</li>
+                        <li>Atendimento de dúvidas frequentes</li>
+                        <li>Suporte automatizado</li>
+                        <li>Integração com WhatsApp</li>
+                        <li>Redução de tempo de resposta</li>
+                    </ul>
+                    <a href="https://wa.me/5583991816152?text=Quero%20saber%20mais%20sobre%20chatbot" class="btn btn-outline" target="_blank">Saiba mais</a>
                 </div>
-                
-                <div class="servico-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="servico-icon-wrapper">
-                        <div class="servico-icon">
-                            <i data-lucide="palette"></i>
-                        </div>
-                        <div class="icon-glow"></div>
+
+                <div class="service-card fade-in">
+                    <div class="service-icon-wrapper">
+                        <i class="fas fa-paint-roller"></i>
                     </div>
-                    <h3 class="servico-title">Personalização</h3>
-                    <p class="servico-description">Atualizações temáticas para campanhas sazonais (Natal, Black Friday etc.).</p>
-                    <a href="#briefing" class="servico-link">
-                        Peça orçamento
-                        <i data-lucide="arrow-right"></i>
-                    </a>
+                    <h3>Personalização Sazonal</h3>
+                    <p>Atualizações temáticas para campanhas sazonais por R$ 300/mês.</p>
+                    <ul class="service-features">
+                        <li>Natal, Black Friday, Páscoa</li>
+                        <li>Mudanças de layout</li>
+                        <li>Atualização de copywriting</li>
+                        <li>Banners promocionais</li>
+                        <li>Campanhas especiais</li>
+                    </ul>
+                    <a href="https://wa.me/5583991816152?text=Quero%20saber%20mais%20sobre%20personalização" class="btn btn-outline" target="_blank">Saiba mais</a>
                 </div>
-                
-                <div class="servico-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="servico-icon-wrapper">
-                        <div class="servico-icon">
-                            <i data-lucide="wrench"></i>
-                        </div>
-                        <div class="icon-glow"></div>
+
+                <div class="service-card fade-in">
+                    <div class="service-icon-wrapper">
+                        <i class="fas fa-tools"></i>
                     </div>
-                    <h3 class="servico-title">Manutenção</h3>
-                    <p class="servico-description">Correções, atualizações e suporte técnico contínuo.</p>
-                    <a href="#briefing" class="servico-link">
-                        Peça orçamento
-                        <i data-lucide="arrow-right"></i>
-                    </a>
+                    <h3>Manutenção e Suporte</h3>
+                    <p>Correções, atualizações e suporte técnico contínuo.</p>
+                    <ul class="service-features">
+                        <li>Correção de bugs e erros</li>
+                        <li>Ajustes de conteúdo</li>
+                        <li>Mudanças de layout</li>
+                        <li>Otimização de copywriting</li>
+                        <li>Suporte técnico prioritário</li>
+                    </ul>
+                    <a href="https://wa.me/5583991816152?text=Quero%20saber%20mais%20sobre%20manutenção" class="btn btn-outline" target="_blank">Saiba mais</a>
                 </div>
             </div>
         </div>
@@ -204,87 +1840,66 @@
     <!-- Benefits Section -->
     <section id="benefits" class="benefits">
         <div class="container">
-            <div class="benefits-layout">
-                <div class="benefits-content" data-aos="fade-right">
-                    <span class="section-badge">
-                        <i data-lucide="zap"></i>
-                        Por que escolher
-                    </span>
-                    <h2 class="section-title">Transforme visualizações em vendas reais</h2>
-                    <p class="benefits-text">
-                        Um site não é apenas um cartão de visitas digital - é uma máquina de vendas trabalhando 24 horas por dia.
-                    </p>
-                    <p class="benefits-text">
-                        Nossos sites são estrategicamente projetados para converter visitantes em clientes, com elementos de persuasão e chamadas para ação eficientes que funcionam enquanto você dorme.
-                    </p>
-                    
-                    <div class="benefits-stats">
-                        <div class="benefit-stat">
-                            <div class="stat-icon">
-                                <i data-lucide="users"></i>
-                            </div>
-                            <div class="stat-content">
-                                <div class="stat-number">98%</div>
-                                <div class="stat-label">Clientes Satisfeitos</div>
-                            </div>
+            <div class="section-header">
+                <h2 class="section-title fade-in">Por que investir em um site profissional?</h2>
+                <p class="section-subtitle fade-in">Conheça os benefícios de ter um site desenvolvido pela Dezain Code</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefits-text slide-left">
+                    <h3>Transforme visualizações em vendas reais</h3>
+                    <p>Um site não é apenas um cartão de visitas digital - é uma máquina de vendas trabalhando 24 horas por dia.</p>
+                    <p>Nossos sites são estrategicamente projetados para converter visitantes em clientes, com elementos de persuasão e chamadas para ação eficientes que funcionam enquanto você dorme.</p>
+                    <div class="counter-container">
+                        <div class="counter">
+                            <div class="counter-number" data-target="98">0</div>
+                            <div class="counter-label">Clientes satisfeitos</div>
                         </div>
-                        <div class="benefit-stat">
-                            <div class="stat-icon">
-                                <i data-lucide="trophy"></i>
-                            </div>
-                            <div class="stat-content">
-                                <div class="stat-number">5.0</div>
-                                <div class="stat-label">Avaliação Média</div>
-                            </div>
+                        <div class="counter">
+                            <div class="counter-number" data-target="20">0</div>
+                            <div class="counter-label">Projetos entregues</div>
+                        </div>
+                        <div class="counter">
+                            <div class="counter-number" data-target="5">0</div>
+                            <div class="counter-label">Avaliação média</div>
                         </div>
                     </div>
-                    
-                    <a href="https://wa.me/5583991816152?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20os%20benef%C3%ADcios!" 
-                       class="btn btn-primary" 
-                       target="_blank">
-                        Falar com Consultor
-                        <i data-lucide="arrow-right"></i>
-                    </a>
+                    <a href="https://wa.me/5583991816152?text=Gostaria%20de%20mais%20informações!" class="btn btn-primary" target="_blank">FALAR COM CONSULTOR</a>
                 </div>
-                
-                <div class="benefits-features" data-aos="fade-left">
-                    <div class="benefit-feature">
-                        <div class="feature-icon">
-                            <i data-lucide="rocket"></i>
+                <div class="benefits-list slide-right">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-rocket"></i>
                         </div>
-                        <div class="feature-content">
-                            <h3>Aumento das vendas</h3>
-                            <p>Interfaces intuitivas e fluxos de navegação pensados para aumentar as conversões e fazer sua empresa vender mais.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="benefit-feature">
-                        <div class="feature-icon">
-                            <i data-lucide="smartphone"></i>
-                        </div>
-                        <div class="feature-content">
-                            <h3>100% Responsivo</h3>
-                            <p>Sites que funcionam perfeitamente em qualquer dispositivo, garantindo a melhor experiência para seus clientes.</p>
+                        <div>
+                            <h4>Aumento das vendas</h4>
+                            <p>Interfaces intuitivas e fluxos de navegação pensados para aumentar as conversões.</p>
                         </div>
                     </div>
-                    
-                    <div class="benefit-feature">
-                        <div class="feature-icon">
-                            <i data-lucide="headphones"></i>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-mobile-alt"></i>
                         </div>
-                        <div class="feature-content">
-                            <h3>Suporte técnico</h3>
-                            <p>Equipe disponível para resolver qualquer problema e garantir que seu site esteja sempre funcionando.</p>
+                        <div>
+                            <h4>100% Responsivo</h4>
+                            <p>Sites que funcionam perfeitamente em qualquer dispositivo.</p>
                         </div>
                     </div>
-                    
-                    <div class="benefit-feature">
-                        <div class="feature-icon">
-                            <i data-lucide="sparkles"></i>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-headset"></i>
                         </div>
-                        <div class="feature-content">
-                            <h3>Design exclusivo</h3>
-                            <p>Visual moderno e profissional que transmite confiança e valoriza sua marca no mercado.</p>
+                        <div>
+                            <h4>Suporte técnico</h4>
+                            <p>Equipe disponível para garantir que seu site esteja sempre funcionando.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <div>
+                            <h4>Design exclusivo</h4>
+                            <p>Visual moderno e profissional criado especificamente para o seu negócio.</p>
                         </div>
                     </div>
                 </div>
@@ -295,355 +1910,331 @@
     <!-- Plans Section -->
     <section id="plans" class="plans">
         <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-badge">
-                    <i data-lucide="package"></i>
-                    Nossos Planos
-                </span>
-                <h2 class="section-title">Escolha o plano ideal</h2>
-                <p class="section-description">Transparência e flexibilidade para o seu negócio crescer</p>
+            <div class="section-header">
+                <h2 class="section-title fade-in">Planos e Investimento</h2>
+                <p class="section-subtitle fade-in">Escolha o plano ideal. Pagamento: 50% de entrada + 50% na entrega.</p>
             </div>
-            
             <div class="plans-grid">
-                <div class="plan-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="plan-card scale-in">
                     <div class="plan-header">
                         <h3 class="plan-name">Site PRO</h3>
-                        <p class="plan-subtitle">Ideal para começar</p>
+                        <div class="plan-price">R$ 600 <span>/único</span></div>
+                        <p>Entrada de R$ 300 + R$ 300 na entrega</p>
                     </div>
-                    <div class="plan-price">
-                        <span class="price-old">R$ 1.500</span>
-                        <span class="price-current">R$ 600</span>
-                    </div>
-                    <ul class="plan-features">
-                        <li><i data-lucide="check"></i> Design moderno e responsivo</li>
-                        <li><i data-lucide="check"></i> Até 5 seções personalizadas</li>
-                        <li><i data-lucide="check"></i> Formulário de contato integrado</li>
-                        <li><i data-lucide="check"></i> Links para redes sociais</li>
-                        <li><i data-lucide="check"></i> Otimização SEO básica</li>
-                        <li class="feature-highlight"><i data-lucide="check"></i> 60 dias de manutenção gratuita</li>
-                    </ul>
-                    <a href="#briefing" class="btn btn-outline btn-block">Escolher Plano</a>
-                </div>
-                
-                <div class="plan-card plan-featured" data-aos="fade-up" data-aos-delay="200">
-                    <div class="plan-badge">
-                        <i data-lucide="star"></i>
-                        Mais Escolhido
-                    </div>
-                    <div class="plan-header">
-                        <h3 class="plan-name">Site PREMIUM</h3>
-                        <p class="plan-subtitle">Recomendado para crescer</p>
-                    </div>
-                    <div class="plan-price">
-                        <span class="price-old">R$ 2.500</span>
-                        <span class="price-current">R$ 1.000</span>
-                    </div>
-                    <ul class="plan-features">
-                        <li><i data-lucide="check"></i> Tudo do plano PRO +</li>
-                        <li><i data-lucide="check"></i> Até 10 seções personalizadas</li>
-                        <li><i data-lucide="check"></i> Integração WhatsApp Business</li>
-                        <li><i data-lucide="check"></i> Galeria de imagens/produtos</li>
-                        <li><i data-lucide="check"></i> Animações e efeitos avançados</li>
-                        <li><i data-lucide="check"></i> Otimização SEO avançada</li>
-                        <li class="feature-highlight"><i data-lucide="check"></i> 60 dias de manutenção gratuita</li>
-                    </ul>
-                    <a href="#briefing" class="btn btn-primary btn-block">Escolher Plano</a>
-                </div>
-                
-                <div class="plan-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="plan-header">
-                        <h3 class="plan-name">Personalizado</h3>
-                        <p class="plan-subtitle">Solução completa</p>
-                    </div>
-                    <div class="plan-price">
-                        <span class="price-current price-custom">Sob consulta</span>
-                    </div>
-                    <ul class="plan-features">
-                        <li><i data-lucide="check"></i> Projeto 100% personalizado</li>
-                        <li><i data-lucide="check"></i> Seções ilimitadas</li>
-                        <li><i data-lucide="check"></i> Funcionalidades customizadas</li>
-                        <li><i data-lucide="check"></i> Integração com sistemas externos</li>
-                        <li><i data-lucide="check"></i> Painel administrativo</li>
-                        <li><i data-lucide="check"></i> Suporte prioritário</li>
-                        <li class="feature-highlight"><i data-lucide="check"></i> 60 dias de manutenção gratuita</li>
-                    </ul>
-                    <a href="#briefing" class="btn btn-outline btn-block">Solicitar Orçamento</a>
-                </div>
-            </div>
-            
-            <div class="payment-info" data-aos="fade-up" data-aos-delay="400">
-                <h3 class="payment-title">
-                    <i data-lucide="credit-card"></i>
-                    Condições de Pagamento
-                </h3>
-                <div class="payment-grid">
-                    <div class="payment-item">
-                        <i data-lucide="coins"></i>
-                        <span><strong>Sinal:</strong> 50% no aceite da proposta</span>
-                    </div>
-                    <div class="payment-item">
-                        <i data-lucide="credit-card"></i>
-                        <span><strong>Parcelamento:</strong> PIX, boleto ou cartão em até 12x</span>
-                    </div>
-                    <div class="payment-item">
-                        <i data-lucide="shield-check"></i>
-                        <span><strong>Garantia:</strong> Satisfação ou dinheiro de volta</span>
-                    </div>
-                    <div class="payment-item">
-                        <i data-lucide="file-check"></i>
-                        <span><strong>Final:</strong> Na entrega e aprovação do projeto</span>
-                    </div>
-                </div>
-                
-                <div class="special-offer" data-aos="fade-up" data-aos-delay="500">
-                    <div class="offer-content">
-                        <i data-lucide="star"></i>
-                        <div class="offer-text">
-                            <h4>Plano Mensal de Personalizações</h4>
-                            <p>10 personalizações de site/chatbot por <strong>R$ 3.000/mês</strong> - Ideal para empresas que precisam de atualizações constantes</p>
+                    <div class="plan-features">
+                        <div class="plan-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Site institucional completo</span>
+                        </div>
+                        <div class="plan-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Design responsivo e moderno</span>
+                        </div>
+                        <div class="plan-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Até 5 páginas</span>
+                        </div>
+                        <div class="plan-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Integração com WhatsApp</span>
+                        </div>
+                        <div class="plan-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>60 dias de manutenção grátis</span>
+                        </div>
+                        <div class="plan-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Entrega em 7-14 dias</span>
                         </div>
                     </div>
-                    <a href="https://wa.me/5583991816152?text=Quero%20saber%20mais%20sobre%20o%20plano%20mensal!" class="btn btn-primary" target="_blank">
-                        Falar sobre Plano Mensal
-                    </a>
+                    <div class="plan-footer">
+                        <a href="https://wa.me/5583991816152?text=Quero%20contratar%20o%20Plano%20PRO" class="btn btn-outline" target="_blank" style="width: 100%; justify-content: center;">Escolher Plano</a>
+                    </div>
+                </div>
+
+                <div class="plan-card featured scale-in">
+                    <div class="plan-header">
+                        <h3 class="plan-name">Site PREMIUM</h3>
+                        <div class="plan-price">R$ 1.200 <span>/único</span></div>
+                        <p>Entrada de R$ 600 + R$ 600 na entrega</p>
+                    </div>
+                    <div class="plan-features">
+                        <div class="plan-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Tudo do Plano PRO +</span>
+                        </div>
+                        <div class="plan-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Até 10 páginas</span>
+                        </div>
+                        <div class="plan-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Catálogo de produtos</span>
+                        </div>
+                        <div class="plan-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Formulários personalizados</span>
+                        </div>
+                        <div class="plan-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>SEO básico otimizado</span>
+                        </div>
+                        <div class="plan-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>90 dias de manutenção grátis</span>
+                        </div>
+                        <div class="plan-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Suporte prioritário</span>
+                        </div>
+                    </div>
+                    <div class="plan-footer">
+                        <a href="https://wa.me/5583991816152?text=Quero%20contratar%20o%20Plano%20PREMIUM" class="btn btn-primary" target="_blank" style="width: 100%; justify-content: center;">Escolher Plano</a>
+                    </div>
+                </div>
+
+                <div class="plan-card scale-in">
+                    <div class="plan-header">
+                        <h3 class="plan-name">Personalizado</h3>
+                        <div class="plan-price">Sob consulta</div>
+                        <p>Negociamos condições especiais</p>
+                    </div>
+                    <div class="plan-features">
+                        <div class="plan-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Páginas ilimitadas</span>
+                        </div>
+                        <div class="plan-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Funcionalidades customizadas</span>
+                        </div>
+                        <div class="plan-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Integração com APIs</span>
+                        </div>
+                        <div class="plan-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Chatbot inteligente</span>
+                        </div>
+                        <div class="plan-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Dashboard administrativo</span>
+                        </div>
+                        <div class="plan-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Suporte VIP dedicado</span>
+                        </div>
+                    </div>
+                    <div class="plan-footer">
+                        <a href="https://wa.me/5583991816152?text=Quero%20um%20orçamento%20personalizado" class="btn btn-outline" target="_blank" style="width: 100%; justify-content: center;">Peça Orçamento</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Briefing Section -->
-    <section id="briefing" class="briefing">
+    <!-- Showcase Section -->
+    <section id="showcase" class="showcase">
         <div class="container">
-            <div class="briefing-layout">
-                <div class="briefing-info" data-aos="fade-right">
-                    <span class="section-badge">
-                        <i data-lucide="file-text"></i>
-                        Começar Projeto
-                    </span>
-                    <h2 class="section-title">Vamos começar seu projeto?</h2>
-                    <p class="briefing-description">
-                        Preencha o formulário e envie diretamente para nosso WhatsApp. Retornamos em até 24 horas com uma proposta personalizada.
-                    </p>
-                    
-                    <div class="briefing-steps">
-                        <div class="step-item">
+            <div class="section-header">
+                <h2 class="section-title fade-in">Portfolio de Projetos</h2>
+                <p class="section-subtitle fade-in">Conheça alguns dos sites que desenvolvemos</p>
+            </div>
+            <div class="showcase-content">
+                <div class="showcase-description slide-left">
+                    <h3>Sites que Vendem de Verdade</h3>
+                    <p>Cada projeto é pensado estrategicamente para converter visitantes em clientes. Utilizamos as melhores práticas de UX/UI e otimização para garantir resultados.</p>
+                    <ul class="showcase-features">
+                        <li><i class="fas fa-check"></i> Design exclusivo e profissional</li>
+                        <li><i class="fas fa-check"></i> Carregamento ultra-rápido</li>
+                        <li><i class="fas fa-check"></i> Otimizado para SEO</li>
+                        <li><i class="fas fa-check"></i> Integração com redes sociais</li>
+                        <li><i class="fas fa-check"></i> Formulários e CTAs estratégicos</li>
+                    </ul>
+                    <a href="https://wa.me/5583991816152?text=Quero%20ver%20mais%20projetos!" class="btn btn-primary" target="_blank">Ver Mais Projetos</a>
+                </div>
+                <div class="showcase-images slide-right">
+                    <img src="https://via.placeholder.com/400x500/1a1f3a/00bfa5?text=Projeto+1" alt="Projeto 1">
+                    <img src="https://via.placeholder.com/400x500/1a1f3a/667eea?text=Projeto+2" alt="Projeto 2">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Section -->
+    <section id="payment" class="payment">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title fade-in">Pagamento</h2>
+                <p class="section-subtitle fade-in">Métodos flexíveis e seguros para a contratação dos nossos serviços</p>
+            </div>
+            <div class="payment-grid">
+                <div class="payment-features slide-left">
+                    <h3 style="font-family: 'Poppins', sans-serif; font-size: 32px; font-weight: 800; margin-bottom: 24px;">Vantagens exclusivas</h3>
+                    <div class="payment-feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div>
+                            <h4>Pagamento Seguro</h4>
+                            <p>50% de entrada para iniciar + 50% após aprovação final do projeto.</p>
+                        </div>
+                    </div>
+                    <div class="payment-feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <div>
+                            <h4>Métodos flexíveis</h4>
+                            <p>Aceitamos PIX, transferência bancária ou cartão de crédito em até 12x.</p>
+                        </div>
+                    </div>
+                    <div class="payment-feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-file-contract"></i>
+                        </div>
+                        <div>
+                            <h4>Direitos autorais garantidos</h4>
+                            <p>Após conclusão e pagamento, você recebe todos os direitos e código fonte.</p>
+                        </div>
+                    </div>
+                    <div class="payment-feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <div>
+                            <h4>Segurança garantida</h4>
+                            <p>Sistemas de pagamento com criptografia avançada.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="payment-process slide-right">
+                    <h3>Como funciona o processo</h3>
+                    <div class="process-steps">
+                        <div class="process-step">
                             <div class="step-number">1</div>
-                            <div class="step-content">
-                                <h4>Preencha o formulário</h4>
-                                <p>Conte sobre seu negócio e objetivos</p>
+                            <div>
+                                <h4>Aprovação do projeto</h4>
+                                <p>Você recebe o link para testar todas as funcionalidades do site.</p>
                             </div>
                         </div>
-                        <div class="step-item">
+                        <div class="process-step">
                             <div class="step-number">2</div>
-                            <div class="step-content">
-                                <h4>Envie pelo WhatsApp</h4>
-                                <p>Redirecionamento automático</p>
+                            <div>
+                                <h4>Confirmação e pagamento</h4>
+                                <p>Após aprovar, você realiza o pagamento através do método escolhido.</p>
                             </div>
                         </div>
-                        <div class="step-item">
+                        <div class="process-step">
                             <div class="step-number">3</div>
-                            <div class="step-content">
-                                <h4>Receba sua proposta</h4>
-                                <p>Resposta em até 24 horas</p>
+                            <div>
+                                <h4>Entrega completa</h4>
+                                <p>Com pagamento confirmado, você recebe todo o código-fonte e direitos.</p>
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="briefing-bonus">
-                        <i data-lucide="gift"></i>
+                    <a href="https://wa.me/5583991816152?text=Gostaria%20de%20saber%20sobre%20formas%20de%20pagamento!" class="btn btn-primary" target="_blank" style="width: 100%; justify-content: center; margin-top: 24px;">FALAR SOBRE PAGAMENTO</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Briefing Form Section -->
+    <section id="briefing" class="briefing">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title fade-in">Vamos começar seu projeto?</h2>
+                <p class="section-subtitle fade-in">Preencha o formulário para entendermos melhor as necessidades do seu negócio</p>
+            </div>
+            <div class="briefing-grid">
+                <div class="briefing-info slide-left">
+                    <h3>Informações importantes</h3>
+                    <p>Para desenvolvermos o site ideal para o seu negócio, precisamos entender melhor suas necessidades e objetivos. Preencha o formulário e envie diretamente para nosso WhatsApp.</p>
+                    <div class="briefing-steps">
+                        <div class="briefing-step">
+                            <div class="step-number">1</div>
+                            <div>
+                                <h4>Preencha o formulário</h4>
+                                <p>Responda as perguntas sobre seu negócio e objetivos</p>
+                            </div>
+                        </div>
+                        <div class="briefing-step">
+                            <div class="step-number">2</div>
+                            <div>
+                                <h4>Envie pelo WhatsApp</h4>
+                                <p>Você será redirecionado para finalizar o envio</p>
+                            </div>
+                        </div>
+                        <div class="briefing-step">
+                            <div class="step-number">3</div>
+                            <div>
+                                <h4>Receba sua proposta</h4>
+                                <p>Responderemos com uma proposta personalizada em até 24h</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="urgency-badge" style="margin-top: 24px;">
+                        <i class="fas fa-gift"></i>
                         <span>Preencha agora e ganhe 10% de desconto adicional!</span>
                     </div>
                 </div>
-                
-                <form class="briefing-form" id="briefingForm" data-aos="fade-left">
-                    <div class="form-group">
-                        <label for="name">Nome completo</label>
-                        <input type="text" id="name" name="name" required>
-                        <i data-lucide="user" class="input-icon"></i>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">E-mail</label>
-                        <input type="email" id="email" name="email" required>
-                        <i data-lucide="mail" class="input-icon"></i>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="phone">WhatsApp</label>
-                        <input type="tel" id="phone" name="phone" required>
-                        <i data-lucide="phone" class="input-icon"></i>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="business">Nome do negócio</label>
-                        <input type="text" id="business" name="business" required>
-                        <i data-lucide="briefcase" class="input-icon"></i>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="segment">Segmento/Nicho</label>
-                        <input type="text" id="segment" name="segment" required>
-                        <i data-lucide="tag" class="input-icon"></i>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="objective">Objetivo principal do site</label>
-                        <select id="objective" name="objective" required>
-                            <option value="">Selecione...</option>
-                            <option value="Vender produtos/serviços">Vender produtos/serviços</option>
-                            <option value="Captar leads/contatos">Captar leads/contatos</option>
-                            <option value="Apenas informativo">Apenas informativo</option>
-                            <option value="Site institucional">Site institucional</option>
-                            <option value="Outro">Outro</option>
-                        </select>
-                        <i data-lucide="target" class="input-icon"></i>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="plan">Qual plano tem interesse?</label>
-                        <select id="plan" name="plan" required>
-                            <option value="">Selecione...</option>
-                            <option value="Site PRO">Site PRO</option>
-                            <option value="Site PREMIUM">Site PREMIUM</option>
-                            <option value="Projeto Personalizado">Projeto Personalizado</option>
-                            <option value="Não sei ainda">Não sei ainda</option>
-                        </select>
-                        <i data-lucide="package" class="input-icon"></i>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message">Informações adicionais</label>
-                        <textarea id="message" name="message" rows="4"></textarea>
-                        <i data-lucide="message-square" class="input-icon"></i>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary btn-block">
-                        <span>Enviar para WhatsApp</span>
-                        <i data-lucide="send"></i>
-                    </button>
-                    
-                    <div class="form-notice">
-                        <i data-lucide="shield-check"></i>
-                        <span>Seus dados estão seguros e serão usados apenas para contato</span>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Partners Section -->
-    <section id="parceiros" class="parceiros">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-badge">
-                    <i data-lucide="handshake"></i>
-                    Programa de Parcerias
-                </span>
-                <h2 class="section-title">Vamos crescer juntos?</h2>
-                <p class="section-description">Seja nosso parceiro e ofereça soluções digitais de qualidade aos seus clientes</p>
-            </div>
-            
-            <div class="parceiros-benefits">
-                <div class="parceiro-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="parceiro-icon">
-                        <i data-lucide="trending-up"></i>
-                    </div>
-                    <h3>Comissões Atrativas</h3>
-                    <p>Ganhe comissões recorrentes em cada projeto indicado ou desenvolvido em parceria</p>
-                </div>
-                
-                <div class="parceiro-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="parceiro-icon">
-                        <i data-lucide="tag"></i>
-                    </div>
-                    <h3>Modelo White-Label</h3>
-                    <p>Revenda nossos serviços com sua marca. Seus clientes, nossa execução técnica</p>
-                </div>
-                
-                <div class="parceiro-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="parceiro-icon">
-                        <i data-lucide="headphones"></i>
-                    </div>
-                    <h3>Suporte Dedicado</h3>
-                    <p>Equipe técnica disponível para tirar dúvidas e garantir qualidade nas entregas</p>
-                </div>
-                
-                <div class="parceiro-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="parceiro-icon">
-                        <i data-lucide="zap"></i>
-                    </div>
-                    <h3>Prazos Preferenciais</h3>
-                    <p>Parceiros têm prioridade no atendimento e prazos diferenciados</p>
-                </div>
-            </div>
-            
-            <div class="parceiros-form-wrapper" data-aos="fade-up" data-aos-delay="500">
-                <div class="form-intro">
-                    <i data-lucide="file-text"></i>
-                    <p>Ao preencher o formulário, você receberá nosso Guia de Parceria em PDF com informações detalhadas</p>
-                </div>
-                
-                <form class="parceiros-form" id="parceirosForm">
-                    <div class="form-row">
+                <div class="briefing-form slide-right">
+                    <form id="briefingForm">
                         <div class="form-group">
-                            <label for="parceiro-nome">Nome Completo</label>
-                            <input type="text" id="parceiro-nome" name="nome" required>
+                            <label>Nome completo*</label>
+                            <input type="text" class="form-control" name="name" required>
                         </div>
                         <div class="form-group">
-                            <label for="parceiro-empresa">Empresa/Agência</label>
-                            <input type="text" id="parceiro-empresa" name="empresa">
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="parceiro-cidade">Cidade/Estado</label>
-                            <input type="text" id="parceiro-cidade" name="cidade" placeholder="Cidade - UF" required>
+                            <label>E-mail*</label>
+                            <input type="email" class="form-control" name="email" required>
                         </div>
                         <div class="form-group">
-                            <label for="parceiro-telefone">Telefone/WhatsApp</label>
-                            <input type="tel" id="parceiro-telefone" name="telefone" required>
+                            <label>WhatsApp*</label>
+                            <input type="tel" class="form-control" name="phone" required>
                         </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="parceiro-email">E-mail</label>
-                        <input type="email" id="parceiro-email" name="email" required>
-                    </div>
-                    
-                    <div class="form-row">
                         <div class="form-group">
-                            <label for="parceiro-tipo">Tipo de Parceria</label>
-                            <select id="parceiro-tipo" name="tipo" required>
+                            <label>Nome do negócio*</label>
+                            <input type="text" class="form-control" name="business" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Segmento/Nicho*</label>
+                            <input type="text" class="form-control" name="segment" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Objetivo principal do site*</label>
+                            <select class="form-control" name="objective" required>
                                 <option value="">Selecione...</option>
-                                <option value="Revenda (White-label)">Revenda (White-label)</option>
-                                <option value="Co-desenvolvimento">Co-desenvolvimento</option>
-                                <option value="Indicação de clientes">Indicação de clientes</option>
-                                <option value="Outro">Outro</option>
+                                <option>Vender produtos/serviços</option>
+                                <option>Captar leads/contatos</option>
+                                <option>Apenas informativo</option>
+                                <option>Site institucional</option>
+                                <option>Outro</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="parceiro-experiencia">Experiência na área</label>
-                            <select id="parceiro-experiencia" name="experiencia">
+                            <label>Qual plano tem interesse?*</label>
+                            <select class="form-control" name="plan" required>
                                 <option value="">Selecione...</option>
-                                <option value="Menos de 1 ano">Menos de 1 ano</option>
-                                <option value="1-3 anos">1-3 anos</option>
-                                <option value="3-5 anos">3-5 anos</option>
-                                <option value="Mais de 5 anos">Mais de 5 anos</option>
+                                <option>Site PRO</option>
+                                <option>Site PREMIUM</option>
+                                <option>Projeto Personalizado</option>
+                                <option>Não sei ainda</option>
                             </select>
                         </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="parceiro-observacoes">Observações</label>
-                        <textarea id="parceiro-observacoes" name="observacoes" rows="4" maxlength="500"></textarea>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary btn-block">
-                        <span>Quero Ser Parceiro</span>
-                        <i data-lucide="arrow-right"></i>
-                    </button>
-                </form>
+                        <div class="form-group">
+                            <label>Informações adicionais</label>
+                            <textarea class="form-control" name="message"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                            <span>ENVIAR PARA WHATSAPP</span>
+                            <i class="fab fa-whatsapp"></i>
+                        </button>
+                        <div class="form-notice">
+                            <i class="fas fa-shield-alt"></i>
+                            Seus dados estão seguros e serão usados apenas para contato.
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
@@ -651,218 +2242,339 @@
     <!-- FAQ Section -->
     <section id="faq" class="faq">
         <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-badge">
-                    <i data-lucide="help-circle"></i>
-                    Dúvidas
-                </span>
-                <h2 class="section-title">Perguntas Frequentes</h2>
-                <p class="section-description">Encontre respostas rapidamente para as dúvidas mais comuns</p>
+            <div class="section-header">
+                <h2 class="section-title fade-in">Dúvidas Frequentes</h2>
+                <p class="section-subtitle fade-in">Respostas para as perguntas mais comuns sobre nossos serviços</p>
             </div>
-            
-            <div class="faq-search" data-aos="fade-up" data-aos-delay="100">
-                <i data-lucide="search"></i>
-                <input type="text" id="faqSearch" placeholder="Buscar pergunta...">
-            </div>
-            
             <div class="faq-container">
-                <div class="faq-category" data-aos="fade-up" data-aos-delay="200">
-                    <div class="category-header">
-                        <i data-lucide="dollar-sign"></i>
-                        <h3>Orçamento</h3>
+                <div class="faq-item active fade-in">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Quanto tempo leva para desenvolver meu site?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
                     </div>
-                    <div class="faq-items">
-                        <div class="faq-item active">
-                            <div class="faq-question">
-                                <span>Como funciona o orçamento?</span>
-                                <i data-lucide="chevron-down"></i>
-                            </div>
-                            <div class="faq-answer">
-                                <p>Preencha o formulário de briefing com as informações do seu projeto. Nossa equipe analisará suas necessidades e enviará um orçamento detalhado e personalizado em até 24 horas úteis via WhatsApp.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <span>O orçamento é gratuito?</span>
-                                <i data-lucide="chevron-down"></i>
-                            </div>
-                            <div class="faq-answer">
-                                <p>Sim! A elaboração do orçamento é 100% gratuita e sem compromisso. Você receberá uma proposta completa detalhando funcionalidades, prazos e investimento necessário.</p>
-                            </div>
+                    <div class="faq-answer">
+                        <p>Sites PRO ficam prontos em 7-14 dias, enquanto sites PREMIUM levam de 14-21 dias. Projetos personalizados têm prazo negociado conforme complexidade.</p>
+                        <div class="faq-cta">
+                            <a href="https://wa.me/5583991816152?text=Tenho%20dúvidas%20sobre%20prazo" target="_blank">
+                                Ainda tem dúvidas? Fale conosco →
+                            </a>
                         </div>
                     </div>
                 </div>
-                
-                <div class="faq-category" data-aos="fade-up" data-aos-delay="300">
-                    <div class="category-header">
-                        <i data-lucide="clock"></i>
-                        <h3>Prazos</h3>
+
+                <div class="faq-item fade-in">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Como funciona o pagamento?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
                     </div>
-                    <div class="faq-items">
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <span>Qual o prazo médio de entrega?</span>
-                                <i data-lucide="chevron-down"></i>
-                            </div>
-                            <div class="faq-answer">
-                                <p>Sites PRO ficam prontos em 7 a 14 dias úteis. Sites PREMIUM levam de 14 a 21 dias úteis. Projetos personalizados têm prazos definidos conforme complexidade.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <span>Os prazos podem ser personalizados?</span>
-                                <i data-lucide="chevron-down"></i>
-                            </div>
-                            <div class="faq-answer">
-                                <p>Sim! Se precisar do site em prazo menor, trabalhamos em regime de urgência mediante taxa adicional. Também ajustamos o cronograma conforme sua disponibilidade.</p>
-                            </div>
+                    <div class="faq-answer">
+                        <p>Cobramos 50% de sinal para iniciar o projeto e 50% na entrega final após sua aprovação. Aceitamos PIX, transferência e cartão em até 12x.</p>
+                        <div class="faq-cta">
+                            <a href="https://wa.me/5583991816152?text=Tenho%20dúvidas%20sobre%20pagamento" target="_blank">
+                                Ainda tem dúvidas? Fale conosco →
+                            </a>
                         </div>
                     </div>
                 </div>
-                
-                <div class="faq-category" data-aos="fade-up" data-aos-delay="400">
-                    <div class="category-header">
-                        <i data-lucide="wrench"></i>
-                        <h3>Manutenção</h3>
+
+                <div class="faq-item fade-in">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>O que inclui a manutenção de 60/90 dias?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
                     </div>
-                    <div class="faq-items">
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <span>O que está incluído na manutenção de 60 dias?</span>
-                                <i data-lucide="chevron-down"></i>
-                            </div>
-                            <div class="faq-answer">
-                                <p><strong>A manutenção de 60 dias inclui:</strong></p>
-                                <ul>
-                                    <li>Correção de bugs e erros técnicos</li>
-                                    <li>Updates de segurança e pequenas atualizações</li>
-                                    <li>Alterações de conteúdo (textos, imagens) até 5 horas de trabalho</li>
-                                    <li>Suporte técnico via WhatsApp</li>
-                                </ul>
-                                <p><strong>Não estão incluídos:</strong></p>
-                                <ul>
-                                    <li>Novas funcionalidades ou módulos</li>
-                                    <li>Redesign completo ou alterações estruturais</li>
-                                    <li>Integrações com novos sistemas</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <span>Qual o prazo de resposta do suporte?</span>
-                                <i data-lucide="chevron-down"></i>
-                            </div>
-                            <div class="faq-answer">
-                                <p>Garantimos resposta inicial em até 24 horas úteis via WhatsApp. Correções urgentes são priorizadas conforme SLA acordado em contrato.</p>
-                            </div>
+                    <div class="faq-answer">
+                        <p><strong>Inclui:</strong> Correção de bugs, ajustes de texto/imagem, atualizações de conteúdo básico. <strong>Não inclui:</strong> Novas páginas, funcionalidades extras ou redesign. <strong>SLA:</strong> Respondemos em até 24h úteis.</p>
+                        <div class="faq-cta">
+                            <a href="https://wa.me/5583991816152?text=Tenho%20dúvidas%20sobre%20manutenção" target="_blank">
+                                Ainda tem dúvidas? Fale conosco →
+                            </a>
                         </div>
                     </div>
                 </div>
-                
-                <div class="faq-category" data-aos="fade-up" data-aos-delay="500">
-                    <div class="category-header">
-                        <i data-lucide="credit-card"></i>
-                        <h3>Pagamentos</h3>
+
+                <div class="faq-item fade-in">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Posso adicionar mais WhatsApp sem custo?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
                     </div>
-                    <div class="faq-items">
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <span>Quais são as condições de pagamento?</span>
-                                <i data-lucide="chevron-down"></i>
-                            </div>
-                            <div class="faq-answer">
-                                <ul>
-                                    <li>Sinal de 50% no aceite da proposta</li>
-                                    <li>Pagamento final de 50% na entrega e aprovação</li>
-                                    <li>Formas aceitas: PIX, boleto, cartão em até 12x</li>
-                                    <li>Garantia de satisfação ou dinheiro de volta</li>
-                                </ul>
-                            </div>
+                    <div class="faq-answer">
+                        <p>Sim! Você pode adicionar quantos números de WhatsApp precisar para diferentes atendentes, sem custo adicional.</p>
+                        <div class="faq-cta">
+                            <a href="https://wa.me/5583991816152?text=Tenho%20dúvidas" target="_blank">
+                                Ainda tem dúvidas? Fale conosco →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>O site vai funcionar bem no celular?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sim! Todos os sites são 100% responsivos e otimizados para proporcionar experiência perfeita em smartphones, tablets e computadores.</p>
+                        <div class="faq-cta">
+                            <a href="https://wa.me/5583991816152?text=Tenho%20dúvidas" target="_blank">
+                                Ainda tem dúvidas? Fale conosco →
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <div class="faq-cta" data-aos="fade-up" data-aos-delay="600">
-                <i data-lucide="message-circle"></i>
-                <h3>Ainda tem dúvidas?</h3>
-                <p>Fale diretamente com nossa equipe</p>
-                <a href="https://wa.me/5583991816152?text=Tenho%20d%C3%BAvidas%20sobre%20os%20servi%C3%A7os!" class="btn btn-primary" target="_blank">
-                    Falar com Especialista
-                    <i data-lucide="arrow-right"></i>
-                </a>
+        </div>
+    </section>
+
+    <!-- Partner Section -->
+    <section id="partner" class="partner">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title fade-in">Seja Nosso Parceiro</h2>
+                <p class="section-subtitle fade-in">Programa especial para agências e profissionais de marketing digital</p>
+            </div>
+            <div class="partner-content">
+                <div class="partner-info slide-left">
+                    <h3>Como funciona a parceria?</h3>
+                    <p>Você vende nossos serviços com total liberdade de precificação, enquanto cuidamos de toda a parte técnica. É simples, lucrativo e sem complicação.</p>
+                    
+                    <div class="partner-benefits">
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <div>
+                                <h4>Venda com sua marca</h4>
+                                <p>Você divulga nossos serviços no seu Instagram, feed, stories, destaques e bio. O cliente é seu!</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <div>
+                                <h4>Defina seu preço</h4>
+                                <p>Converse com o cliente, entenda o que ele precisa e venda pelo preço que achar justo. Você controla sua margem.</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <div>
+                                <h4>Nós entregamos tudo</h4>
+                                <p>Fornecemos sites profissionais, com qualidade garantida e dentro do prazo. Você só cuida da venda.</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="fas fa-shield-check"></i>
+                            </div>
+                            <div>
+                                <h4>Responsabilidade total</h4>
+                                <p>Assumimos toda a responsabilidade técnica, suporte e garantia. Sua reputação está protegida.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="partner-whatsapp-cta slide-right">
+                    <h3>Pronto para crescer?</h3>
+                    <p>Clique no botão abaixo e comece hoje mesmo a oferecer sites profissionais aos seus clientes sem precisar desenvolver nada.</p>
+                    <a href="https://wa.me/5583991816152?text=Quero%20ser%20um%20parceiro%20da%20Dezain%20Code!" class="btn-whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>QUERO SER PARCEIRO</span>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer>
         <div class="container">
-            <div class="footer-content">
+            <div class="footer-grid">
                 <div class="footer-col">
-                    <div class="footer-logo">
-                        <i data-lucide="code-2"></i>
-                        <span>Dezain Code</span>
-                    </div>
-                    <p class="footer-description">Transformando visões em resultados digitais com sites modernos, responsivos e otimizados para vendas.</p>
-                    <div class="footer-social">
-                        <a href="https://www.instagram.com/arthur.fellp/" target="_blank" aria-label="Instagram">
-                            <i data-lucide="instagram"></i>
-                        </a>
-                        <a href="https://wa.me/5583991816152" target="_blank" aria-label="WhatsApp">
-                            <i data-lucide="message-circle"></i>
-                        </a>
+                    <h3>Dezain Code</h3>
+                    <p>Transformando visões em resultados digitais com sites modernos, responsivos e otimizados para vendas.</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/arthur.fellp/" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/5583991816152" class="social-link" target="_blank"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
-                
                 <div class="footer-col">
-                    <h4>Serviços</h4>
-                    <ul>
-                        <li><a href="#servicos">Desenvolvimento de Sites</a></li>
-                        <li><a href="#servicos">Chatbots</a></li>
-                        <li><a href="#servicos">Personalização</a></li>
-                        <li><a href="#servicos">Manutenção</a></li>
+                    <h3>Serviços</h3>
+                    <ul class="footer-links">
+                        <li><a href="#services">Desenvolvimento Web</a></li>
+                        <li><a href="#services">Chatbot Inteligente</a></li>
+                        <li><a href="#services">Manutenção</a></li>
+                        <li><a href="#services">Personalização</a></li>
                     </ul>
                 </div>
-                
                 <div class="footer-col">
-                    <h4>Links Rápidos</h4>
-                    <ul>
+                    <h3>Links Rápidos</h3>
+                    <ul class="footer-links">
                         <li><a href="#home">Início</a></li>
                         <li><a href="#plans">Planos</a></li>
-                        <li><a href="#benefits">Benefícios</a></li>
+                        <li><a href="#showcase">Portfolio</a></li>
                         <li><a href="#faq">FAQ</a></li>
                     </ul>
                 </div>
-                
                 <div class="footer-col">
-                    <h4>Contato</h4>
-                    <ul class="footer-contact">
-                        <li>
-                            <i data-lucide="map-pin"></i>
-                            <span>João Pessoa - Paraíba</span>
-                        </li>
-                        <li>
-                            <i data-lucide="phone"></i>
-                            <a href="tel:+5583993690482">(83) 99369-0482</a>
-                        </li>
-                    </ul>
-                    <a href="https://wa.me/5583993690482" class="btn btn-primary btn-sm" target="_blank">
-                        <i data-lucide="message-circle"></i>
-                        WhatsApp
-                    </a>
+                    <h3>Contato</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> João Pessoa - Paraíba</p>
+                    <p><i class="fas fa-phone"></i> (83) 99181-6152</p>
+                    <p><i class="fas fa-envelope"></i> lipdzy@gmail.com</p>
                 </div>
             </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2025 Dezain Code. Todos os direitos reservados.</p>
+            <div class="copyright">
+                © 2025 Dezain Code. Todos os direitos reservados.
             </div>
         </div>
     </footer>
 
-    <script src="script-redesign.js"></script>
+    <script>
+        // Create particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const numParticles = 20;
+            
+            for (let i = 0; i < numParticles; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                const size = Math.random() * 6 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                
+                const blueHue = Math.floor(Math.random() * 40) + 200;
+                const brightness = Math.floor(Math.random() * 40) + 60;
+                particle.style.backgroundColor = `hsla(${blueHue}, 100%, ${brightness}%, 0.6)`;
+                particle.style.boxShadow = `0 0 ${size * 2}px hsla(${blueHue}, 100%, ${brightness}%, 0.8)`;
+                
+                particle.style.animationDelay = `${Math.random() * 10}s`;
+                particle.style.opacity = Math.random() * 0.7 + 0.3;
+                
+                container.appendChild(particle);
+            }
+        }
+
+        // Scroll Reveal Animation
+        function revealOnScroll() {
+            const elements = document.querySelectorAll('.fade-in, .slide-left, .slide-right, .scale-in');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementBottom = element.getBoundingClientRect().bottom;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100 && elementBottom > 0) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Counter Animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.counter-number');
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const duration = 2000;
+                const increment = target / (duration / 16);
+                let current = 0;
+                
+                const updateCounter = () => {
+                    current += increment;
+                    if (current < target) {
+                        counter.textContent = Math.floor(current);
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target;
+                    }
+                };
+                
+                const counterTop = counter.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (counterTop < windowHeight && !counter.classList.contains('animated')) {
+                    counter.classList.add('animated');
+                    updateCounter();
+                }
+            });
+        }
+
+        // FAQ Toggle
+        function toggleFaq(element) {
+            const faqItem = element.parentElement;
+            const allItems = document.querySelectorAll('.faq-item');
+            
+            allItems.forEach(item => {
+                if (item !== faqItem) {
+                    item.classList.remove('active');
+                }
+            });
+            
+            faqItem.classList.toggle('active');
+        }
+
+        // Briefing Form
+        document.getElementById('briefingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            let message = '*🔵 NOVO BRIEFING DEZAIN CODE*\n\n';
+            
+            formData.forEach((value, key) => {
+                const labels = {
+                    name: 'Nome',
+                    email: 'E-mail',
+                    phone: 'WhatsApp',
+                    business: 'Negócio',
+                    segment: 'Segmento',
+                    objective: 'Objetivo do site',
+                    plan: 'Plano de interesse',
+                    message: 'Informações adicionais'
+                };
+                if (value) {
+                    message += `*${labels[key]}:* ${value}\n`;
+                }
+            });
+            
+            const whatsappUrl = `https://wa.me/5583991816152?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+            this.reset();
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Event Listeners
+        window.addEventListener('scroll', () => {
+            revealOnScroll();
+            animateCounters();
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            revealOnScroll();
+        });
+    </script>
 </body>
 </html>
