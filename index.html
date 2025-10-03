@@ -259,6 +259,58 @@
             background: linear-gradient(135deg, #001538, #002966);
         }
 
+        /* Carousel Background */
+        .hero-carousel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .hero-carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            animation: slideShow 12s infinite;
+        }
+
+        .hero-carousel-slide:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .hero-carousel-slide:nth-child(2) {
+            animation-delay: 4s;
+        }
+
+        .hero-carousel-slide:nth-child(3) {
+            animation-delay: 8s;
+        }
+
+        @keyframes slideShow {
+            0% { opacity: 0; transform: scale(1); }
+            8.33% { opacity: 1; transform: scale(1.05); }
+            33.33% { opacity: 1; transform: scale(1.05); }
+            41.66% { opacity: 0; transform: scale(1); }
+            100% { opacity: 0; transform: scale(1); }
+        }
+
+        .hero-carousel-slide::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 21, 56, 0.85), rgba(0, 41, 102, 0.85));
+        }
+
         .tech-grid {
             position: absolute;
             top: 0;
@@ -1469,6 +1521,15 @@
 
         /* Responsive */
         @media (max-width: 1024px) {
+            .hero {
+                padding: 120px 0 80px;
+            }
+
+            .hero-carousel-slide {
+                background-size: cover;
+                background-position: center center;
+            }
+
             .hero h1 {
                 font-size: 44px;
             }
@@ -1501,16 +1562,25 @@
         }
 
         @media (max-width: 768px) {
+            .hero {
+                padding: 100px 0 80px;
+            }
+
+            .hero-carousel-slide {
+                background-size: cover;
+                background-position: center center;
+            }
+
+            .hero-carousel-slide::after {
+                background: linear-gradient(135deg, rgba(0, 21, 56, 0.90), rgba(0, 41, 102, 0.90));
+            }
+
             .container {
                 padding: 0 20px;
             }
 
             .nav-links {
                 display: none;
-            }
-
-            .hero {
-                padding: 100px 0 80px;
             }
 
             .hero h1 {
@@ -1633,6 +1703,19 @@
         }
 
         @media (max-width: 480px) {
+            .hero {
+                padding: 80px 0 60px;
+            }
+
+            .hero-carousel-slide {
+                background-size: cover;
+                background-position: center center;
+            }
+
+            .hero-carousel-slide::after {
+                background: linear-gradient(135deg, rgba(0, 21, 56, 0.92), rgba(0, 41, 102, 0.92));
+            }
+
             .hero h1 {
                 font-size: 28px;
             }
@@ -1740,6 +1823,11 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
+        <div class="hero-carousel">
+            <div class="hero-carousel-slide" style="background-image: url('https://i.postimg.cc/HWB3X0G6/IMG-1053.jpg');"></div>
+            <div class="hero-carousel-slide" style="background-image: url('https://i.postimg.cc/9QG7tV4n/IMG-1055.jpg');"></div>
+            <div class="hero-carousel-slide" style="background-image: url('https://i.postimg.cc/NG5dcNPM/IMG-1056.jpg');"></div>
+        </div>
         <div class="tech-grid"></div>
         <div class="particles-container" id="particles"></div>
         <div class="container">
