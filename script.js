@@ -176,15 +176,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Iniciar efeito de digitação
     typeWriter();
     
-    // CORREÇÃO - Garantir que botões do hero estejam sempre visíveis e clicáveis
-    const heroButtons = document.querySelectorAll('.hero .slide-btn');
-    heroButtons.forEach(btn => {
-        btn.classList.add('visible');
-        btn.style.pointerEvents = 'auto';
-        btn.style.opacity = '1';
-        btn.style.transform = 'translateY(0)';
-    });
-    
     // Iniciar animações de deslize
     initSlideAnimations();
     
