@@ -1,18 +1,31 @@
-// EFEITO DE DIGITAÇÃO NO TÍTULO PRINCIPAL
+// EFEITO DE DIGITAÇÃO NO TÍTULO PRINCIPAL COM DUAS CORES - AJUSTADO
 function typeWriter() {
-    const titleElement = document.querySelector('#typing-title span');
-    const text = 'Soluções Web Profissionais Para Seu Negócio';
-    let index = 0;
+    const blueElement = document.querySelector('#typing-title .title-blue');
+    const whiteElement = document.querySelector('#typing-title .title-white');
+    const textBlue = 'Soluções Web ';
+    const textWhite = 'Profissionais Para Seu Negócio';
+    let indexBlue = 0;
+    let indexWhite = 0;
     
-    function type() {
-        if (index < text.length) {
-            titleElement.textContent = text.substring(0, index + 1);
-            index++;
-            setTimeout(type, 80);
+    function typeBlue() {
+        if (indexBlue < textBlue.length) {
+            blueElement.textContent = textBlue.substring(0, indexBlue + 1);
+            indexBlue++;
+            setTimeout(typeBlue, 80);
+        } else {
+            setTimeout(typeWhite, 200);
         }
     }
     
-    setTimeout(type, 500);
+    function typeWhite() {
+        if (indexWhite < textWhite.length) {
+            whiteElement.textContent = textWhite.substring(0, indexWhite + 1);
+            indexWhite++;
+            setTimeout(typeWhite, 80);
+        }
+    }
+    
+    setTimeout(typeBlue, 500);
 }
 
 // ANIMAÇÕES DE DESLIZE PARA TÍTULOS E TEXTOS
@@ -478,3 +491,154 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+// SVG Icon Animations Enhancement
+document.addEventListener('DOMContentLoaded', function() {
+    // Adicionar animações interativas extras para os ícones SVG
+    const animatedIcons = document.querySelectorAll('.animated-icon');
+    
+    animatedIcons.forEach(icon => {
+        const card = icon.closest('.service-card, .benefit-item');
+        
+        if (card) {
+            card.addEventListener('mouseenter', function() {
+                icon.style.filter = 'drop-shadow(0 15px 30px rgba(0, 191, 165, 0.8))';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                icon.style.filter = 'drop-shadow(0 10px 20px rgba(0, 191, 165, 0.4))';
+            });
+        }
+    });
+});
+
+// Check Icon Animations Enhancement
+document.addEventListener('DOMContentLoaded', function() {
+    const checkIcons = document.querySelectorAll('.check-icon, .check-icon-small');
+    
+    checkIcons.forEach(icon => {
+        const item = icon.closest('.plan-feature, .showcase-features li');
+        
+        if (item) {
+            item.addEventListener('mouseenter', function() {
+                const circle = icon.querySelector('.check-circle');
+                const mark = icon.querySelector('.check-mark');
+                
+                if (circle && mark) {
+                    circle.style.animation = 'checkCirclePulse 0.5s ease-in-out';
+                    mark.style.animation = 'checkMarkDraw 0.5s ease-in-out';
+                    
+                    setTimeout(() => {
+                        circle.style.animation = '';
+                        mark.style.animation = '';
+                    }, 500);
+                }
+            });
+        }
+    });
+});
+
+// FAQ Icon Animation Enhancement
+document.addEventListener('DOMContentLoaded', function() {
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    
+    faqQuestions.forEach(question => {
+        question.addEventListener('mouseenter', function() {
+            const icon = this.querySelector('.faq-icon');
+            if (icon) {
+                icon.style.transform = 'scale(1.2)';
+                icon.style.transition = 'transform 0.3s ease';
+            }
+        });
+        
+        question.addEventListener('mouseleave', function() {
+            const icon = this.querySelector('.faq-icon');
+            const faqItem = this.closest('.faq-item');
+            if (icon && !faqItem.classList.contains('active')) {
+                icon.style.transform = 'scale(1)';
+            }
+        });
+    });
+});
+
+// Add smooth transitions to all interactive elements
+document.addEventListener('DOMContentLoaded', function() {
+    const interactiveElements = document.querySelectorAll('button, a, .btn, .service-card, .plan-card, .benefit-item');
+    
+    interactiveElements.forEach(element => {
+        element.style.transition = 'all 0.3s ease';
+    });
+});
+
+// Performance optimization: Pause animations when tab is not visible
+document.addEventListener('visibilitychange', function() {
+    if (document.hidden) {
+        // Pause heavy animations
+        document.querySelectorAll('.animated-icon').forEach(icon => {
+            icon.style.animationPlayState = 'paused';
+        });
+    } else {
+        // Resume animations
+        document.querySelectorAll('.animated-icon').forEach(icon => {
+            icon.style.animationPlayState = 'running';
+        });
+    }
+});
+
+// Add error handling for form submission
+document.addEventListener('DOMContentLoaded', function() {
+    const forms = document.querySelectorAll('form');
+    
+    forms.forEach(form => {
+        form.addEventListener('submit', function(e) {
+            const requiredFields = this.querySelectorAll('[required]');
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    isValid = false;
+                    field.style.borderColor = '#ff3b30';
+                    setTimeout(() => {
+                        field.style.borderColor = '';
+                    }, 2000);
+                }
+            });
+            
+            if (!isValid) {
+                e.preventDefault();
+                alert('Por favor, preencha todos os campos obrigatórios.');
+            }
+        });
+    });
+});
+
+// Add smooth fade-in for page load
+window.addEventListener('load', function() {
+    document.body.style.opacity = '0';
+    document.body.style.transition = 'opacity 0.5s ease';
+    
+    setTimeout(() => {
+        document.body.style.opacity = '1';
+    }, 100);
+});
+
+// Mobile touch optimization
+if ('ontouchstart' in window) {
+    document.addEventListener('DOMContentLoaded', function() {
+        const cards = document.querySelectorAll('.service-card, .plan-card, .benefit-item');
+        
+        cards.forEach(card => {
+            card.addEventListener('touchstart', function() {
+                this.style.transform = 'scale(0.98)';
+            });
+            
+            card.addEventListener('touchend', function() {
+                this.style.transform = '';
+            });
+        });
+    });
+}
+
+// Console message for developers
+console.log('%c🚀 Dezain Code - Site desenvolvido com excelência', 'color: #00bfa5; font-size: 16px; font-weight: bold;');
+console.log('%cTodos os direitos reservados © 2025', 'color: #667eea; font-size: 12px;');

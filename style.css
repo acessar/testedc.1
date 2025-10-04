@@ -295,7 +295,7 @@ nav {
     width: 100%;
 }
 
-/* Hero Section - CORRIGIDO */
+/* Hero Section - AJUSTADO */
 .hero {
     padding: 140px 0 100px;
     position: relative;
@@ -435,25 +435,30 @@ nav {
     z-index: 100;
 }
 
+/* TÍTULO MAIOR E COM DUAS CORES - AJUSTADO */
 .hero h1 {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 56px;
+    font-size: 85px;
     font-weight: 700;
-    line-height: 1.15;
-    margin-bottom: 24px;
+    line-height: 1.1;
+    margin-bottom: 20px;
     text-shadow: 0 2px 10px rgba(0, 194, 255, 0.3);
-    letter-spacing: -1.5px;
-    min-height: 130px;
+    letter-spacing: -2.5px;
+    min-height: 200px;
 }
 
-.hero h1 span {
+.hero h1 .title-blue {
     background: linear-gradient(135deg, #4da6ff 0%, #0080ff 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
+.hero h1 .title-white {
+    color: #ffffff;
+}
+
 /* CURSOR PISCANTE */
-.hero h1 span::after {
+.hero h1 .title-white::after {
     content: '|';
     color: #4da6ff;
     animation: blink 0.7s infinite;
@@ -465,11 +470,12 @@ nav {
     50% { opacity: 0; }
 }
 
+/* SUBTÍTULO MENOR E MAIS PRÓXIMO DOS BOTÕES - AJUSTADO */
 .hero p {
-    font-size: 20px;
+    font-size: 16px;
     color: var(--text-secondary);
-    margin-bottom: 40px;
-    line-height: 1.8;
+    margin-bottom: 24px;
+    line-height: 1.6;
     font-weight: 500;
 }
 
@@ -631,25 +637,164 @@ nav {
     z-index: 1;
     transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     display: inline-block;
+    width: 160px;
+    height: 160px;
 }
 
 .service-card:hover .service-icon-wrapper {
-    transform: scale(1.2) rotate(8deg);
+    transform: scale(1.15) rotate(5deg);
 }
 
-/* ÍCONES MAIORES - Services */
-.service-icon-wrapper i {
-    font-size: 160px !important;
-    background: var(--gradient-tech);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    display: block;
-    filter: drop-shadow(0 15px 30px rgba(0, 191, 165, 0.6));
-    line-height: 1;
+/* ÍCONES SVG ANIMADOS - Services */
+.animated-icon {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 10px 20px rgba(0, 191, 165, 0.4));
 }
 
-.service-card:hover .service-icon-wrapper i {
-    filter: drop-shadow(0 20px 40px rgba(0, 191, 165, 0.9));
+/* Laptop Icon Animations */
+.laptop-icon .laptop-screen {
+    animation: screenGlow 3s ease-in-out infinite;
+}
+
+.laptop-icon .code-bracket-1 {
+    animation: bracketPulse 2s ease-in-out infinite;
+}
+
+.laptop-icon .code-bracket-2 {
+    animation: bracketPulse 2s ease-in-out infinite 1s;
+}
+
+.laptop-icon .cursor-dot {
+    animation: cursorBlink 1.5s ease-in-out infinite;
+}
+
+@keyframes screenGlow {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+}
+
+@keyframes bracketPulse {
+    0%, 100% { transform: translateX(0); opacity: 0.7; }
+    50% { transform: translateX(5px); opacity: 1; }
+}
+
+@keyframes cursorBlink {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(1.3); }
+}
+
+/* Chatbot Icon Animations */
+.chatbot-icon .robot-eye-1,
+.chatbot-icon .robot-eye-2 {
+    animation: eyeBlink 3s ease-in-out infinite;
+}
+
+.chatbot-icon .antenna-bulb {
+    animation: antennaPulse 2s ease-in-out infinite;
+}
+
+.chatbot-icon .chat-bubble {
+    animation: bubbleFloat 3s ease-in-out infinite;
+}
+
+.chatbot-icon .chat-line-1 {
+    animation: lineType 2s ease-in-out infinite;
+}
+
+.chatbot-icon .chat-line-2 {
+    animation: lineType 2s ease-in-out infinite 0.5s;
+}
+
+@keyframes eyeBlink {
+    0%, 90%, 100% { opacity: 1; }
+    95% { opacity: 0; }
+}
+
+@keyframes antennaPulse {
+    0%, 100% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.3); opacity: 1; }
+}
+
+@keyframes bubbleFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+@keyframes lineType {
+    0% { stroke-dasharray: 0, 100; }
+    50% { stroke-dasharray: 100, 0; }
+    100% { stroke-dasharray: 0, 100; }
+}
+
+/* Paint Icon Animations */
+.paint-icon .brush-handle {
+    animation: brushStroke 3s ease-in-out infinite;
+}
+
+.paint-icon .paint-drop-1 {
+    animation: dropFall 2s ease-in-out infinite;
+}
+
+.paint-icon .paint-drop-2 {
+    animation: dropFall 2s ease-in-out infinite 0.5s;
+}
+
+.paint-icon .paint-drop-3 {
+    animation: dropFall 2s ease-in-out infinite 1s;
+}
+
+.paint-icon .color-dot-1,
+.paint-icon .color-dot-2,
+.paint-icon .color-dot-3,
+.paint-icon .color-dot-4 {
+    animation: colorPulse 2s ease-in-out infinite;
+}
+
+@keyframes brushStroke {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-5deg); }
+    75% { transform: rotate(5deg); }
+}
+
+@keyframes dropFall {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(20px); opacity: 0; }
+}
+
+@keyframes colorPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+/* Tools Icon Animations */
+.tools-icon .gear-main {
+    animation: gearRotate 4s linear infinite;
+    transform-origin: 60px 140px;
+}
+
+.tools-icon .wrench {
+    animation: wrenchMove 3s ease-in-out infinite;
+}
+
+.tools-icon .spark-1,
+.tools-icon .spark-2 {
+    animation: sparkle 1.5s ease-in-out infinite;
+}
+
+@keyframes gearRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes wrenchMove {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(10deg); }
+}
+
+@keyframes sparkle {
+    0%, 100% { opacity: 0; transform: scale(0); }
+    50% { opacity: 1; transform: scale(1.5); }
 }
 
 .service-card h3 {
@@ -844,16 +989,30 @@ nav {
     transform: translateX(5px);
 }
 
-/* ÍCONES MAIORES - Plans */
-.plan-feature i {
-    font-size: 36px !important;
-    background: var(--gradient-tech);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-top: 2px;
-    filter: drop-shadow(0 6px 12px rgba(0, 191, 165, 0.4));
-    line-height: 1;
+/* Check Icon Animations */
+.check-icon {
+    width: 36px;
+    height: 36px;
     flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.check-icon .check-circle {
+    animation: checkCirclePulse 2s ease-in-out infinite;
+}
+
+.check-icon .check-mark {
+    animation: checkMarkDraw 1s ease-in-out infinite;
+}
+
+@keyframes checkCirclePulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.1); opacity: 1; }
+}
+
+@keyframes checkMarkDraw {
+    0% { stroke-dasharray: 0, 100; }
+    100% { stroke-dasharray: 100, 0; }
 }
 
 .plan-footer {
@@ -921,25 +1080,133 @@ nav {
     flex-shrink: 0;
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     display: inline-block;
+    width: 110px;
+    height: 110px;
 }
 
 .benefit-item:hover .benefit-icon {
     transform: scale(1.2) rotate(8deg);
 }
 
-/* ÍCONES MAIORES - Benefits */
-.benefit-icon i {
-    font-size: 110px !important;
-    background: var(--gradient-tech);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    display: block;
-    filter: drop-shadow(0 12px 24px rgba(0, 191, 165, 0.5));
-    line-height: 1;
+/* Benefit SVG Icon Animations */
+.rocket-icon .rocket-body {
+    animation: rocketFloat 3s ease-in-out infinite;
 }
 
-.benefit-item:hover .benefit-icon i {
-    filter: drop-shadow(0 18px 36px rgba(0, 191, 165, 0.8));
+.rocket-icon .flame-1,
+.rocket-icon .flame-2,
+.rocket-icon .flame-3 {
+    animation: flameFlicker 0.5s ease-in-out infinite;
+}
+
+.rocket-icon .star-1,
+.rocket-icon .star-2 {
+    animation: starTwinkle 2s ease-in-out infinite;
+}
+
+@keyframes rocketFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes flameFlicker {
+    0%, 100% { opacity: 1; transform: scaleY(1); }
+    50% { opacity: 0.6; transform: scaleY(0.8); }
+}
+
+@keyframes starTwinkle {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.5); }
+}
+
+/* Mobile Icon Animations */
+.mobile-icon .phone-screen {
+    animation: screenFlash 3s ease-in-out infinite;
+}
+
+.mobile-icon .notification-dot {
+    animation: notificationPulse 2s ease-in-out infinite;
+}
+
+.mobile-icon .screen-line-1,
+.mobile-icon .screen-line-2,
+.mobile-icon .screen-line-3 {
+    animation: lineScroll 3s ease-in-out infinite;
+}
+
+@keyframes screenFlash {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+}
+
+@keyframes notificationPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.3); opacity: 0.7; }
+}
+
+@keyframes lineScroll {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(5px); }
+}
+
+/* Headset Icon Animations */
+.headset-icon .sound-wave-1,
+.headset-icon .sound-wave-2 {
+    animation: soundWave 2s ease-in-out infinite;
+}
+
+.headset-icon .mic-head {
+    animation: micPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes soundWave {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.3); opacity: 0.2; }
+}
+
+@keyframes micPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+/* Design Icon Animations */
+.design-icon .design-circle {
+    animation: shapeRotate 3s linear infinite;
+    transform-origin: 100px 85px;
+}
+
+.design-icon .design-square {
+    animation: shapePulse 2s ease-in-out infinite;
+}
+
+.design-icon .design-triangle {
+    animation: shapeFloat 3s ease-in-out infinite;
+}
+
+.design-icon .color-picker {
+    animation: colorChange 3s ease-in-out infinite;
+}
+
+@keyframes shapeRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes shapePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+@keyframes shapeFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+@keyframes colorChange {
+    0% { fill: #667eea; }
+    33% { fill: #00bfa5; }
+    66% { fill: #F97316; }
+    100% { fill: #667eea; }
 }
 
 .benefit-item h4 {
@@ -1005,15 +1272,18 @@ nav {
     transform: translateX(10px);
 }
 
-/* ÍCONES MAIORES - Showcase */
-.showcase-features li i {
-    font-size: 42px !important;
-    background: var(--gradient-tech);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 6px 12px rgba(0, 191, 165, 0.4));
-    line-height: 1;
+.check-icon-small {
+    width: 42px;
+    height: 42px;
     flex-shrink: 0;
+}
+
+.check-icon-small .check-circle {
+    animation: checkCirclePulse 2s ease-in-out infinite;
+}
+
+.check-icon-small .check-mark {
+    animation: checkMarkDraw 1s ease-in-out infinite;
 }
 
 .showcase-images {
@@ -1173,14 +1443,24 @@ select.form-control {
     font-family: 'Space Grotesk', sans-serif;
 }
 
-/* ÍCONES MAIORES - FAQ */
 .faq-icon {
-    transition: transform 0.3s ease;
-    font-size: 32px !important;
-    background: var(--gradient-tech);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    width: 32px;
+    height: 32px;
     flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.faq-icon .faq-circle {
+    animation: faqCirclePulse 2s ease-in-out infinite;
+}
+
+.faq-icon .faq-chevron {
+    transition: transform 0.3s ease;
+}
+
+@keyframes faqCirclePulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.1); opacity: 1; }
 }
 
 .faq-item.active .faq-icon {
@@ -1489,19 +1769,27 @@ footer {
     }
 
     .hero h1 {
-        font-size: 44px;
+        font-size: 68px;
+        min-height: 160px;
+    }
+
+    .hero p {
+        font-size: 15px;
+        margin-bottom: 22px;
     }
 
     .section-title {
         font-size: 40px;
     }
 
-    .service-icon-wrapper i {
-        font-size: 140px !important;
+    .service-icon-wrapper {
+        width: 140px;
+        height: 140px;
     }
 
-    .benefit-icon i {
-        font-size: 90px !important;
+    .benefit-icon {
+        width: 90px;
+        height: 90px;
     }
 
     .services-grid,
@@ -1516,7 +1804,6 @@ footer {
         gap: 48px;
     }
     
-    /* MOBILE - Cards sempre com efeito ativo */
     .service-card::before {
         opacity: 1;
     }
@@ -1550,12 +1837,14 @@ footer {
     }
 
     .hero h1 {
-        font-size: 32px;
-        min-height: 100px;
+        font-size: 52px;
+        min-height: 130px;
+        margin-bottom: 16px;
     }
 
     .hero p {
-        font-size: 18px;
+        font-size: 15px;
+        margin-bottom: 20px;
     }
 
     .section-title {
@@ -1566,24 +1855,29 @@ footer {
         font-size: 16px;
     }
 
-    .service-icon-wrapper i {
-        font-size: 120px !important;
+    .service-icon-wrapper {
+        width: 120px;
+        height: 120px;
     }
 
-    .benefit-icon i {
-        font-size: 80px !important;
+    .benefit-icon {
+        width: 80px;
+        height: 80px;
     }
 
-    .showcase-features li i {
-        font-size: 36px !important;
+    .check-icon-small {
+        width: 36px;
+        height: 36px;
     }
 
-    .plan-feature i {
-        font-size: 32px !important;
+    .check-icon {
+        width: 32px;
+        height: 32px;
     }
 
     .faq-icon {
-        font-size: 28px !important;
+        width: 28px;
+        height: 28px;
     }
 
     .showcase-content,
@@ -1674,7 +1968,6 @@ footer {
         font-size: 28px !important;
     }
     
-    /* MOBILE - Cards sempre com efeito ativo */
     .service-card::before {
         opacity: 1;
     }
@@ -1699,36 +1992,43 @@ footer {
     }
 
     .hero h1 {
-        font-size: 28px;
-        min-height: 90px;
+        font-size: 42px;
+        min-height: 110px;
+        margin-bottom: 14px;
     }
 
     .hero p {
-        font-size: 16px;
+        font-size: 14px;
+        margin-bottom: 18px;
     }
 
     .section-title {
         font-size: 28px;
     }
 
-    .service-icon-wrapper i {
-        font-size: 100px !important;
+    .service-icon-wrapper {
+        width: 100px;
+        height: 100px;
     }
 
-    .benefit-icon i {
-        font-size: 70px !important;
+    .benefit-icon {
+        width: 70px;
+        height: 70px;
     }
 
-    .showcase-features li i {
-        font-size: 32px !important;
+    .check-icon-small {
+        width: 32px;
+        height: 32px;
     }
 
-    .plan-feature i {
-        font-size: 28px !important;
+    .check-icon {
+        width: 28px;
+        height: 28px;
     }
 
     .faq-icon {
-        font-size: 24px !important;
+        width: 24px;
+        height: 24px;
     }
 
     .service-card,
@@ -1763,7 +2063,6 @@ footer {
         height: 28px;
     }
     
-    /* MOBILE - Cards sempre com efeito ativo */
     .service-card::before {
         opacity: 1;
     }

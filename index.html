@@ -60,10 +60,10 @@
         <div class="particles-container" id="particles"></div>
         <div class="container hero-container">
             <div class="hero-content">
-                <h1 id="typing-title"><span></span></h1>
+                <h1 id="typing-title"><span class="title-blue"></span><span class="title-white"></span></h1>
                 <p>Sites otimizados para conversão que funcionam 24/7 aumentando suas vendas e atraindo novos clientes</p>
                 <div class="cta-group">
-                    <a href="#plans" class="btn btn-primary">
+                    <a href="#services" class="btn btn-primary">
                         <span>ALAVANCAR MEU NEGÓCIO</span>
                         <i class="fas fa-arrow-right"></i>
                     </a>
@@ -87,7 +87,20 @@
             <div class="services-grid">
                 <div class="service-card fade-in stagger-1">
                     <div class="service-icon-wrapper">
-                        <i class="fas fa-laptop-code"></i>
+                        <svg class="animated-icon laptop-icon" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <rect class="laptop-screen" x="40" y="30" width="120" height="90" rx="5" fill="none" stroke="url(#grad-laptop)" stroke-width="4"/>
+                            <rect class="laptop-base" x="20" y="120" width="160" height="15" rx="3" fill="url(#grad-laptop)"/>
+                            <line class="laptop-line" x1="100" y1="120" x2="100" y2="135" stroke="url(#grad-laptop)" stroke-width="4"/>
+                            <path class="code-bracket-1" d="M 70 50 L 60 70 L 70 90" fill="none" stroke="#00bfa5" stroke-width="3" stroke-linecap="round"/>
+                            <path class="code-bracket-2" d="M 130 50 L 140 70 L 130 90" fill="none" stroke="#667eea" stroke-width="3" stroke-linecap="round"/>
+                            <circle class="cursor-dot" cx="100" cy="70" r="3" fill="#00bfa5"/>
+                            <defs>
+                                <linearGradient id="grad-laptop" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#667eea"/>
+                                    <stop offset="100%" style="stop-color:#00bfa5"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
                     </div>
                     <div class="highlight-badge">MAIS VENDIDO</div>
                     <h3>Desenvolvimento de Sites</h3>
@@ -104,7 +117,23 @@
 
                 <div class="service-card fade-in stagger-2">
                     <div class="service-icon-wrapper">
-                        <i class="fas fa-robot"></i>
+                        <svg class="animated-icon chatbot-icon" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <circle class="robot-head" cx="100" cy="80" r="45" fill="none" stroke="url(#grad-robot)" stroke-width="4"/>
+                            <rect class="robot-body" x="70" y="110" width="60" height="50" rx="8" fill="url(#grad-robot)"/>
+                            <circle class="robot-eye-1" cx="85" cy="75" r="6" fill="#00bfa5"/>
+                            <circle class="robot-eye-2" cx="115" cy="75" r="6" fill="#667eea"/>
+                            <path class="robot-antenna" d="M 100 35 L 100 20" stroke="url(#grad-robot)" stroke-width="3" stroke-linecap="round"/>
+                            <circle class="antenna-bulb" cx="100" cy="20" r="5" fill="#00bfa5"/>
+                            <path class="chat-bubble" d="M 140 60 L 170 60 L 170 85 L 155 85 L 150 95 L 150 85 L 140 85 Z" fill="none" stroke="#667eea" stroke-width="2"/>
+                            <line class="chat-line-1" x1="145" y1="68" x2="165" y2="68" stroke="#00bfa5" stroke-width="2"/>
+                            <line class="chat-line-2" x1="145" y1="77" x2="160" y2="77" stroke="#667eea" stroke-width="2"/>
+                            <defs>
+                                <linearGradient id="grad-robot" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#667eea"/>
+                                    <stop offset="100%" style="stop-color:#00bfa5"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
                     </div>
                     <h3>Chatbot Inteligente</h3>
                     <p>Atendimento automático que trabalha 24 horas por dia.</p>
@@ -120,7 +149,24 @@
 
                 <div class="service-card fade-in stagger-3">
                     <div class="service-icon-wrapper">
-                        <i class="fas fa-paint-roller"></i>
+                        <svg class="animated-icon paint-icon" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <path class="brush-handle" d="M 150 50 L 120 80" stroke="url(#grad-paint)" stroke-width="8" stroke-linecap="round"/>
+                            <ellipse class="brush-tip" cx="110" cy="90" rx="15" ry="20" transform="rotate(-45 110 90)" fill="url(#grad-paint)"/>
+                            <circle class="paint-drop-1" cx="95" cy="105" r="5" fill="#667eea" opacity="0.8"/>
+                            <circle class="paint-drop-2" cx="85" cy="120" r="4" fill="#00bfa5" opacity="0.8"/>
+                            <circle class="paint-drop-3" cx="75" cy="135" r="3" fill="#667eea" opacity="0.8"/>
+                            <circle class="palette-circle" cx="50" cy="100" r="35" fill="none" stroke="url(#grad-paint)" stroke-width="3"/>
+                            <circle class="color-dot-1" cx="35" cy="90" r="6" fill="#667eea"/>
+                            <circle class="color-dot-2" cx="50" cy="80" r="6" fill="#00bfa5"/>
+                            <circle class="color-dot-3" cx="65" cy="90" r="6" fill="#F97316"/>
+                            <circle class="color-dot-4" cx="50" cy="115" r="6" fill="#667eea"/>
+                            <defs>
+                                <linearGradient id="grad-paint" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#667eea"/>
+                                    <stop offset="100%" style="stop-color:#00bfa5"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
                     </div>
                     <h3>Personalização Sazonal</h3>
                     <p>Atualizações temáticas para campanhas sazonais por R$ 300/mês.</p>
@@ -136,7 +182,23 @@
 
                 <div class="service-card fade-in stagger-4">
                     <div class="service-icon-wrapper">
-                        <i class="fas fa-tools"></i>
+                        <svg class="animated-icon tools-icon" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <path class="wrench" d="M 80 60 L 70 70 L 80 80 L 120 120 L 130 110 L 90 70 L 100 60 Q 105 55 110 60 L 125 75 Q 130 80 135 75 L 145 65 Q 150 60 145 55 L 135 45 Q 130 40 125 45 L 115 55 Q 110 60 105 55 L 90 40 Q 85 35 80 40 Z" fill="url(#grad-tools)" stroke="url(#grad-tools)" stroke-width="2"/>
+                            <circle class="gear-main" cx="60" cy="140" r="25" fill="none" stroke="url(#grad-tools)" stroke-width="4"/>
+                            <circle class="gear-center" cx="60" cy="140" r="10" fill="#00bfa5"/>
+                            <line class="gear-spoke-1" x1="60" y1="115" x2="60" y2="125" stroke="#667eea" stroke-width="3"/>
+                            <line class="gear-spoke-2" x1="85" y1="140" x2="75" y2="140" stroke="#667eea" stroke-width="3"/>
+                            <line class="gear-spoke-3" x1="60" y1="165" x2="60" y2="155" stroke="#667eea" stroke-width="3"/>
+                            <line class="gear-spoke-4" x1="35" y1="140" x2="45" y2="140" stroke="#667eea" stroke-width="3"/>
+                            <circle class="spark-1" cx="140" cy="100" r="3" fill="#00bfa5"/>
+                            <circle class="spark-2" cx="150" cy="110" r="2" fill="#667eea"/>
+                            <defs>
+                                <linearGradient id="grad-tools" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#667eea"/>
+                                    <stop offset="100%" style="stop-color:#00bfa5"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
                     </div>
                     <h3>Manutenção e Suporte</h3>
                     <p>Correções, atualizações e suporte técnico contínuo.</p>
@@ -170,7 +232,23 @@
                 <div class="benefits-list slide-right">
                     <div class="benefit-item stagger-1">
                         <div class="benefit-icon">
-                            <i class="fas fa-rocket"></i>
+                            <svg class="animated-icon rocket-icon" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                                <path class="rocket-body" d="M 100 30 L 90 70 L 75 90 L 75 110 L 100 130 L 125 110 L 125 90 L 110 70 Z" fill="url(#grad-rocket)" stroke="url(#grad-rocket)" stroke-width="3"/>
+                                <ellipse class="rocket-window" cx="100" cy="55" rx="12" ry="15" fill="#00bfa5"/>
+                                <path class="rocket-fin-left" d="M 75 90 L 55 100 L 75 110 Z" fill="#667eea"/>
+                                <path class="rocket-fin-right" d="M 125 90 L 145 100 L 125 110 Z" fill="#667eea"/>
+                                <path class="flame-1" d="M 95 130 L 90 145 L 95 135 Z" fill="#F97316" opacity="0.8"/>
+                                <path class="flame-2" d="M 100 130 L 100 150 L 100 135 Z" fill="#00bfa5" opacity="0.8"/>
+                                <path class="flame-3" d="M 105 130 L 110 145 L 105 135 Z" fill="#667eea" opacity="0.8"/>
+                                <circle class="star-1" cx="50" cy="50" r="2" fill="#00bfa5"/>
+                                <circle class="star-2" cx="150" cy="60" r="2" fill="#667eea"/>
+                                <defs>
+                                    <linearGradient id="grad-rocket" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#667eea"/>
+                                        <stop offset="100%" style="stop-color:#00bfa5"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
                         </div>
                         <div>
                             <h4>Aumento das vendas</h4>
@@ -179,7 +257,21 @@
                     </div>
                     <div class="benefit-item stagger-2">
                         <div class="benefit-icon">
-                            <i class="fas fa-mobile-alt"></i>
+                            <svg class="animated-icon mobile-icon" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                                <rect class="phone-body" x="60" y="30" width="80" height="140" rx="12" fill="none" stroke="url(#grad-mobile)" stroke-width="4"/>
+                                <rect class="phone-screen" x="70" y="45" width="60" height="100" rx="3" fill="url(#grad-mobile)" opacity="0.3"/>
+                                <circle class="phone-button" cx="100" cy="155" r="8" fill="none" stroke="#00bfa5" stroke-width="3"/>
+                                <line class="screen-line-1" x1="75" y1="55" x2="120" y2="55" stroke="#667eea" stroke-width="2"/>
+                                <line class="screen-line-2" x1="75" y1="65" x2="115" y2="65" stroke="#00bfa5" stroke-width="2"/>
+                                <line class="screen-line-3" x1="75" y1="75" x2="125" y2="75" stroke="#667eea" stroke-width="2"/>
+                                <circle class="notification-dot" cx="130" cy="40" r="5" fill="#F97316"/>
+                                <defs>
+                                    <linearGradient id="grad-mobile" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#667eea"/>
+                                        <stop offset="100%" style="stop-color:#00bfa5"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
                         </div>
                         <div>
                             <h4>100% Responsivo</h4>
@@ -188,7 +280,21 @@
                     </div>
                     <div class="benefit-item stagger-3">
                         <div class="benefit-icon">
-                            <i class="fas fa-headset"></i>
+                            <svg class="animated-icon headset-icon" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                                <path class="headband" d="M 60 80 Q 60 50 100 50 Q 140 50 140 80" fill="none" stroke="url(#grad-headset)" stroke-width="5" stroke-linecap="round"/>
+                                <rect class="ear-left" x="50" y="75" width="20" height="35" rx="5" fill="url(#grad-headset)"/>
+                                <rect class="ear-right" x="130" y="75" width="20" height="35" rx="5" fill="url(#grad-headset)"/>
+                                <path class="mic-arm" d="M 150 95 L 165 110" stroke="url(#grad-headset)" stroke-width="4" stroke-linecap="round"/>
+                                <circle class="mic-head" cx="170" cy="115" r="8" fill="#00bfa5"/>
+                                <circle class="sound-wave-1" cx="40" cy="90" r="8" fill="none" stroke="#667eea" stroke-width="2" opacity="0.6"/>
+                                <circle class="sound-wave-2" cx="40" cy="90" r="15" fill="none" stroke="#00bfa5" stroke-width="2" opacity="0.4"/>
+                                <defs>
+                                    <linearGradient id="grad-headset" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#667eea"/>
+                                        <stop offset="100%" style="stop-color:#00bfa5"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
                         </div>
                         <div>
                             <h4>Suporte técnico</h4>
@@ -197,7 +303,21 @@
                     </div>
                     <div class="benefit-item stagger-4">
                         <div class="benefit-icon">
-                            <i class="fas fa-paint-brush"></i>
+                            <svg class="animated-icon design-icon" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                                <rect class="canvas" x="50" y="50" width="100" height="100" rx="5" fill="none" stroke="url(#grad-design)" stroke-width="4"/>
+                                <circle class="design-circle" cx="100" cy="85" r="15" fill="none" stroke="#667eea" stroke-width="3"/>
+                                <rect class="design-square" x="80" y="105" width="40" height="30" fill="none" stroke="#00bfa5" stroke-width="3"/>
+                                <path class="design-triangle" d="M 100 60 L 115 75 L 85 75 Z" fill="#F97316" opacity="0.7"/>
+                                <line class="ruler-line-1" x1="45" y1="60" x2="45" y2="140" stroke="#667eea" stroke-width="2"/>
+                                <line class="ruler-line-2" x1="60" y1="45" x2="140" y2="45" stroke="#00bfa5" stroke-width="2"/>
+                                <circle class="color-picker" cx="160" cy="140" r="8" fill="#667eea"/>
+                                <defs>
+                                    <linearGradient id="grad-design" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#667eea"/>
+                                        <stop offset="100%" style="stop-color:#00bfa5"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
                         </div>
                         <div>
                             <h4>Design exclusivo</h4>
@@ -225,27 +345,51 @@
                     </div>
                     <div class="plan-features">
                         <div class="plan-feature">
-                            <i class="fas fa-check-circle"></i>
+                            <svg class="check-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <circle class="check-circle" cx="12" cy="12" r="10" fill="none" stroke="url(#grad-check)" stroke-width="2"/>
+                                <path class="check-mark" d="M 7 12 L 10 15 L 17 8" fill="none" stroke="#00bfa5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <defs>
+                                    <linearGradient id="grad-check" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#667eea"/>
+                                        <stop offset="100%" style="stop-color:#00bfa5"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
                             <span>Site institucional completo</span>
                         </div>
                         <div class="plan-feature">
-                            <i class="fas fa-check-circle"></i>
+                            <svg class="check-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <circle class="check-circle" cx="12" cy="12" r="10" fill="none" stroke="url(#grad-check)" stroke-width="2"/>
+                                <path class="check-mark" d="M 7 12 L 10 15 L 17 8" fill="none" stroke="#00bfa5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
                             <span>Design responsivo e moderno</span>
                         </div>
                         <div class="plan-feature">
-                            <i class="fas fa-check-circle"></i>
+                            <svg class="check-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <circle class="check-circle" cx="12" cy="12" r="10" fill="none" stroke="url(#grad-check)" stroke-width="2"/>
+                                <path class="check-mark" d="M 7 12 L 10 15 L 17 8" fill="none" stroke="#00bfa5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
                             <span>Até 5 páginas</span>
                         </div>
                         <div class="plan-feature">
-                            <i class="fas fa-check-circle"></i>
+                            <svg class="check-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <circle class="check-circle" cx="12" cy="12" r="10" fill="none" stroke="url(#grad-check)" stroke-width="2"/>
+                                <path class="check-mark" d="M 7 12 L 10 15 L 17 8" fill="none" stroke="#00bfa5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
                             <span>Integração com WhatsApp</span>
                         </div>
                         <div class="plan-feature">
-                            <i class="fas fa-check-circle"></i>
+                            <svg class="check-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <circle class="check-circle" cx="12" cy="12" r="10" fill="none" stroke="url(#grad-check)" stroke-width="2"/>
+                                <path class="check-mark" d="M 7 12 L 10 15 L 17 8" fill="none" stroke="#00bfa5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
                             <span>60 dias de manutenção grátis</span>
                         </div>
                         <div class="plan-feature">
-                            <i class="fas fa-check-circle"></i>
+                            <svg class="check-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <circle class="check-circle" cx="12" cy="12" r="10" fill="none" stroke="url(#grad-check)" stroke-width="2"/>
+                                <path class="check-mark" d="M 7 12 L 10 15 L 17 8" fill="none" stroke="#00bfa5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
                             <span>Entrega em 7-14 dias</span>
                         </div>
                     </div>
@@ -262,31 +406,52 @@
                     </div>
                     <div class="plan-features">
                         <div class="plan-feature">
-                            <i class="fas fa-check-circle"></i>
+                            <svg class="check-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <circle class="check-circle" cx="12" cy="12" r="10" fill="none" stroke="url(#grad-check)" stroke-width="2"/>
+                                <path class="check-mark" d="M 7 12 L 10 15 L 17 8" fill="none" stroke="#00bfa5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
                             <span>Tudo do Plano PRO +</span>
                         </div>
                         <div class="plan-feature">
-                            <i class="fas fa-check-circle"></i>
+                            <svg class="check-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <circle class="check-circle" cx="12" cy="12" r="10" fill="none" stroke="url(#grad-check)" stroke-width="2"/>
+                                <path class="check-mark" d="M 7 12 L 10 15 L 17 8" fill="none" stroke="#00bfa5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
                             <span>Até 10 páginas</span>
                         </div>
                         <div class="plan-feature">
-                            <i class="fas fa-check-circle"></i>
+                            <svg class="check-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <circle class="check-circle" cx="12" cy="12" r="10" fill="none" stroke="url(#grad-check)" stroke-width="2"/>
+                                <path class="check-mark" d="M 7 12 L 10 15 L 17 8" fill="none" stroke="#00bfa5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
                             <span>Catálogo de produtos</span>
                         </div>
                         <div class="plan-feature">
-                            <i class="fas fa-check-circle"></i>
+                            <svg class="check-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <circle class="check-circle" cx="12" cy="12" r="10" fill="none" stroke="url(#grad-check)" stroke-width="2"/>
+                                <path class="check-mark" d="M 7 12 L 10 15 L 17 8" fill="none" stroke="#00bfa5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
                             <span>Formulários personalizados</span>
                         </div>
                         <div class="plan-feature">
-                            <i class="fas fa-check-circle"></i>
+                            <svg class="check-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <circle class="check-circle" cx="12" cy="12" r="10" fill="none" stroke="url(#grad-check)" stroke-width="2"/>
+                                <path class="check-mark" d="M 7 12 L 10 15 L 17 8" fill="none" stroke="#00bfa5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
                             <span>SEO básico otimizado</span>
                         </div>
                         <div class="plan-feature">
-                            <i class="fas fa-check-circle"></i>
+                            <svg class="check-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <circle class="check-circle" cx="12" cy="12" r="10" fill="none" stroke="url(#grad-check)" stroke-width="2"/>
+                                <path class="check-mark" d="M 7 12 L 10 15 L 17 8" fill="none" stroke="#00bfa5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
                             <span>90 dias de manutenção grátis</span>
                         </div>
                         <div class="plan-feature">
-                            <i class="fas fa-check-circle"></i>
+                            <svg class="check-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <circle class="check-circle" cx="12" cy="12" r="10" fill="none" stroke="url(#grad-check)" stroke-width="2"/>
+                                <path class="check-mark" d="M 7 12 L 10 15 L 17 8" fill="none" stroke="#00bfa5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
                             <span>Suporte prioritário</span>
                         </div>
                     </div>
@@ -303,27 +468,45 @@
                     </div>
                     <div class="plan-features">
                         <div class="plan-feature">
-                            <i class="fas fa-check-circle"></i>
+                            <svg class="check-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <circle class="check-circle" cx="12" cy="12" r="10" fill="none" stroke="url(#grad-check)" stroke-width="2"/>
+                                <path class="check-mark" d="M 7 12 L 10 15 L 17 8" fill="none" stroke="#00bfa5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
                             <span>Páginas ilimitadas</span>
                         </div>
                         <div class="plan-feature">
-                            <i class="fas fa-check-circle"></i>
+                            <svg class="check-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <circle class="check-circle" cx="12" cy="12" r="10" fill="none" stroke="url(#grad-check)" stroke-width="2"/>
+                                <path class="check-mark" d="M 7 12 L 10 15 L 17 8" fill="none" stroke="#00bfa5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
                             <span>Funcionalidades customizadas</span>
                         </div>
                         <div class="plan-feature">
-                            <i class="fas fa-check-circle"></i>
+                            <svg class="check-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <circle class="check-circle" cx="12" cy="12" r="10" fill="none" stroke="url(#grad-check)" stroke-width="2"/>
+                                <path class="check-mark" d="M 7 12 L 10 15 L 17 8" fill="none" stroke="#00bfa5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
                             <span>Integração com APIs</span>
                         </div>
                         <div class="plan-feature">
-                            <i class="fas fa-check-circle"></i>
+                            <svg class="check-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <circle class="check-circle" cx="12" cy="12" r="10" fill="none" stroke="url(#grad-check)" stroke-width="2"/>
+                                <path class="check-mark" d="M 7 12 L 10 15 L 17 8" fill="none" stroke="#00bfa5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
                             <span>Chatbot inteligente</span>
                         </div>
                         <div class="plan-feature">
-                            <i class="fas fa-check-circle"></i>
+                            <svg class="check-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <circle class="check-circle" cx="12" cy="12" r="10" fill="none" stroke="url(#grad-check)" stroke-width="2"/>
+                                <path class="check-mark" d="M 7 12 L 10 15 L 17 8" fill="none" stroke="#00bfa5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
                             <span>Dashboard administrativo</span>
                         </div>
                         <div class="plan-feature">
-                            <i class="fas fa-check-circle"></i>
+                            <svg class="check-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <circle class="check-circle" cx="12" cy="12" r="10" fill="none" stroke="url(#grad-check)" stroke-width="2"/>
+                                <path class="check-mark" d="M 7 12 L 10 15 L 17 8" fill="none" stroke="#00bfa5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
                             <span>Suporte VIP dedicado</span>
                         </div>
                     </div>
@@ -347,11 +530,47 @@
                     <h3 class="slide-title">Sites que Vendem de Verdade</h3>
                     <p>Cada projeto é pensado estrategicamente para converter visitantes em clientes. Utilizamos as melhores práticas de UX/UI e otimização para garantir resultados.</p>
                     <ul class="showcase-features">
-                        <li><i class="fas fa-check"></i> Design exclusivo e profissional</li>
-                        <li><i class="fas fa-check"></i> Carregamento ultra-rápido</li>
-                        <li><i class="fas fa-check"></i> Otimizado para SEO</li>
-                        <li><i class="fas fa-check"></i> Integração com redes sociais</li>
-                        <li><i class="fas fa-check"></i> Formulários e CTAs estratégicos</li>
+                        <li>
+                            <svg class="check-icon-small" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <circle class="check-circle" cx="12" cy="12" r="10" fill="none" stroke="url(#grad-check-small)" stroke-width="2"/>
+                                <path class="check-mark" d="M 7 12 L 10 15 L 17 8" fill="none" stroke="#00bfa5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <defs>
+                                    <linearGradient id="grad-check-small" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#667eea"/>
+                                        <stop offset="100%" style="stop-color:#00bfa5"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                            Design exclusivo e profissional
+                        </li>
+                        <li>
+                            <svg class="check-icon-small" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <circle class="check-circle" cx="12" cy="12" r="10" fill="none" stroke="url(#grad-check-small)" stroke-width="2"/>
+                                <path class="check-mark" d="M 7 12 L 10 15 L 17 8" fill="none" stroke="#00bfa5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Carregamento ultra-rápido
+                        </li>
+                        <li>
+                            <svg class="check-icon-small" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <circle class="check-circle" cx="12" cy="12" r="10" fill="none" stroke="url(#grad-check-small)" stroke-width="2"/>
+                                <path class="check-mark" d="M 7 12 L 10 15 L 17 8" fill="none" stroke="#00bfa5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Otimizado para SEO
+                        </li>
+                        <li>
+                            <svg class="check-icon-small" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <circle class="check-circle" cx="12" cy="12" r="10" fill="none" stroke="url(#grad-check-small)" stroke-width="2"/>
+                                <path class="check-mark" d="M 7 12 L 10 15 L 17 8" fill="none" stroke="#00bfa5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Integração com redes sociais
+                        </li>
+                        <li>
+                            <svg class="check-icon-small" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <circle class="check-circle" cx="12" cy="12" r="10" fill="none" stroke="url(#grad-check-small)" stroke-width="2"/>
+                                <path class="check-mark" d="M 7 12 L 10 15 L 17 8" fill="none" stroke="#00bfa5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Formulários e CTAs estratégicos
+                        </li>
                     </ul>
                     <a href="https://wa.me/5583991816152?text=Quero%20ver%20mais%20projetos!" class="btn btn-primary slide-btn" target="_blank">Ver Mais Projetos</a>
                 </div>
@@ -451,7 +670,16 @@
                 <div class="faq-item active fade-in stagger-1">
                     <div class="faq-question" onclick="toggleFaq(this)">
                         <span>Quanto tempo leva para desenvolver meu site?</span>
-                        <i class="fas fa-chevron-down faq-icon"></i>
+                        <svg class="faq-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <circle class="faq-circle" cx="12" cy="12" r="10" fill="none" stroke="url(#grad-faq)" stroke-width="2"/>
+                            <path class="faq-chevron" d="M 8 10 L 12 14 L 16 10" fill="none" stroke="#00bfa5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <defs>
+                                <linearGradient id="grad-faq" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#667eea"/>
+                                    <stop offset="100%" style="stop-color:#00bfa5"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
                     </div>
                     <div class="faq-answer">
                         <p>Sites PRO ficam prontos em 7-14 dias, enquanto sites PREMIUM levam de 14-21 dias. Projetos personalizados têm prazo negociado conforme complexidade.</p>
@@ -466,7 +694,10 @@
                 <div class="faq-item fade-in stagger-2">
                     <div class="faq-question" onclick="toggleFaq(this)">
                         <span>Como funciona o pagamento?</span>
-                        <i class="fas fa-chevron-down faq-icon"></i>
+                        <svg class="faq-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <circle class="faq-circle" cx="12" cy="12" r="10" fill="none" stroke="url(#grad-faq)" stroke-width="2"/>
+                            <path class="faq-chevron" d="M 8 10 L 12 14 L 16 10" fill="none" stroke="#00bfa5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                     </div>
                     <div class="faq-answer">
                         <p>Cobramos 50% de sinal para iniciar o projeto e 50% na entrega final após sua aprovação. Aceitamos PIX, transferência e cartão em até 12x.</p>
@@ -481,7 +712,10 @@
                 <div class="faq-item fade-in stagger-3">
                     <div class="faq-question" onclick="toggleFaq(this)">
                         <span>O que inclui a manutenção de 60/90 dias?</span>
-                        <i class="fas fa-chevron-down faq-icon"></i>
+                        <svg class="faq-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <circle class="faq-circle" cx="12" cy="12" r="10" fill="none" stroke="url(#grad-faq)" stroke-width="2"/>
+                            <path class="faq-chevron" d="M 8 10 L 12 14 L 16 10" fill="none" stroke="#00bfa5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                     </div>
                     <div class="faq-answer">
                         <p><strong>Inclui:</strong> Correção de bugs, ajustes de texto/imagem, atualizações de conteúdo básico. <strong>Não inclui:</strong> Novas páginas, funcionalidades extras ou redesign. <strong>SLA:</strong> Respondemos em até 24h úteis.</p>
@@ -496,7 +730,10 @@
                 <div class="faq-item fade-in stagger-4">
                     <div class="faq-question" onclick="toggleFaq(this)">
                         <span>Posso adicionar mais WhatsApp sem custo?</span>
-                        <i class="fas fa-chevron-down faq-icon"></i>
+                        <svg class="faq-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <circle class="faq-circle" cx="12" cy="12" r="10" fill="none" stroke="url(#grad-faq)" stroke-width="2"/>
+                            <path class="faq-chevron" d="M 8 10 L 12 14 L 16 10" fill="none" stroke="#00bfa5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                     </div>
                     <div class="faq-answer">
                         <p>Sim! Você pode adicionar quantos números de WhatsApp precisar para diferentes atendentes, sem custo adicional.</p>
@@ -511,7 +748,10 @@
                 <div class="faq-item fade-in stagger-5">
                     <div class="faq-question" onclick="toggleFaq(this)">
                         <span>O site vai funcionar bem no celular?</span>
-                        <i class="fas fa-chevron-down faq-icon"></i>
+                        <svg class="faq-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <circle class="faq-circle" cx="12" cy="12" r="10" fill="none" stroke="url(#grad-faq)" stroke-width="2"/>
+                            <path class="faq-chevron" d="M 8 10 L 12 14 L 16 10" fill="none" stroke="#00bfa5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                     </div>
                     <div class="faq-answer">
                         <p>Sim! Todos os sites são 100% responsivos e otimizados para proporcionar experiência perfeita em smartphones, tablets e computadores.</p>
