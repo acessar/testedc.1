@@ -88,12 +88,16 @@
                 <div class="service-card fade-in stagger-1">
                     <div class="service-icon-wrapper">
                         <svg class="animated-icon laptop-icon" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                            <rect class="laptop-screen" x="40" y="30" width="120" height="90" rx="5" fill="none" stroke="url(#grad-laptop)" stroke-width="4"/>
-                            <rect class="laptop-base" x="20" y="120" width="160" height="15" rx="3" fill="url(#grad-laptop)"/>
-                            <line class="laptop-line" x1="100" y1="120" x2="100" y2="135" stroke="url(#grad-laptop)" stroke-width="4"/>
-                            <path class="code-bracket-1" d="M 70 50 L 60 70 L 70 90" fill="none" stroke="#00bfa5" stroke-width="3" stroke-linecap="round"/>
-                            <path class="code-bracket-2" d="M 130 50 L 140 70 L 130 90" fill="none" stroke="#667eea" stroke-width="3" stroke-linecap="round"/>
-                            <circle class="cursor-dot" cx="100" cy="70" r="3" fill="#00bfa5"/>
+                            <!-- Laptop screen -->
+                            <rect class="laptop-screen" x="45" y="35" width="110" height="75" rx="4" fill="none" stroke="url(#grad-laptop)" stroke-width="2.5"/>
+                            <!-- Screen content - code lines -->
+                            <line class="code-line-1" x1="60" y1="55" x2="110" y2="55" stroke="#667eea" stroke-width="2" opacity="0.7"/>
+                            <line class="code-line-2" x1="60" y1="70" x2="130" y2="70" stroke="#00bfa5" stroke-width="2" opacity="0.7"/>
+                            <line class="code-line-3" x1="60" y1="85" x2="95" y2="85" stroke="#667eea" stroke-width="2" opacity="0.7"/>
+                            <!-- Laptop base -->
+                            <path class="laptop-base" d="M 30 110 L 170 110 L 165 125 L 35 125 Z" fill="none" stroke="url(#grad-laptop)" stroke-width="2.5"/>
+                            <!-- Cursor -->
+                            <rect class="cursor-blink" x="132" y="68" width="2" height="6" fill="#00bfa5"/>
                             <defs>
                                 <linearGradient id="grad-laptop" x1="0%" y1="0%" x2="100%" y2="100%">
                                     <stop offset="0%" style="stop-color:#667eea"/>
@@ -118,17 +122,18 @@
                 <div class="service-card fade-in stagger-2">
                     <div class="service-icon-wrapper">
                         <svg class="animated-icon chatbot-icon" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                            <circle class="robot-head" cx="100" cy="80" r="45" fill="none" stroke="url(#grad-robot)" stroke-width="4"/>
-                            <rect class="robot-body" x="70" y="110" width="60" height="50" rx="8" fill="url(#grad-robot)"/>
-                            <circle class="robot-eye-1" cx="85" cy="75" r="6" fill="#00bfa5"/>
-                            <circle class="robot-eye-2" cx="115" cy="75" r="6" fill="#667eea"/>
-                            <path class="robot-antenna" d="M 100 35 L 100 20" stroke="url(#grad-robot)" stroke-width="3" stroke-linecap="round"/>
-                            <circle class="antenna-bulb" cx="100" cy="20" r="5" fill="#00bfa5"/>
-                            <path class="chat-bubble" d="M 140 60 L 170 60 L 170 85 L 155 85 L 150 95 L 150 85 L 140 85 Z" fill="none" stroke="#667eea" stroke-width="2"/>
-                            <line class="chat-line-1" x1="145" y1="68" x2="165" y2="68" stroke="#00bfa5" stroke-width="2"/>
-                            <line class="chat-line-2" x1="145" y1="77" x2="160" y2="77" stroke="#667eea" stroke-width="2"/>
+                            <!-- Chat bubble -->
+                            <path class="chat-bubble" d="M 50 50 L 150 50 L 150 110 L 95 110 L 80 130 L 80 110 L 50 110 Z" fill="none" stroke="url(#grad-chat)" stroke-width="2.5"/>
+                            <!-- Dots -->
+                            <circle class="chat-dot-1" cx="80" cy="80" r="5" fill="#667eea"/>
+                            <circle class="chat-dot-2" cx="100" cy="80" r="5" fill="#00bfa5"/>
+                            <circle class="chat-dot-3" cx="120" cy="80" r="5" fill="#667eea"/>
+                            <!-- Bot icon -->
+                            <circle class="bot-icon" cx="100" cy="60" r="8" fill="none" stroke="#00bfa5" stroke-width="2"/>
+                            <line class="bot-antenna" x1="100" y1="52" x2="100" y2="45" stroke="#00bfa5" stroke-width="2"/>
+                            <circle class="bot-signal" cx="100" cy="42" r="3" fill="#00bfa5"/>
                             <defs>
-                                <linearGradient id="grad-robot" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <linearGradient id="grad-chat" x1="0%" y1="0%" x2="100%" y2="100%">
                                     <stop offset="0%" style="stop-color:#667eea"/>
                                     <stop offset="100%" style="stop-color:#00bfa5"/>
                                 </linearGradient>
@@ -149,19 +154,18 @@
 
                 <div class="service-card fade-in stagger-3">
                     <div class="service-icon-wrapper">
-                        <svg class="animated-icon paint-icon" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                            <path class="brush-handle" d="M 150 50 L 120 80" stroke="url(#grad-paint)" stroke-width="8" stroke-linecap="round"/>
-                            <ellipse class="brush-tip" cx="110" cy="90" rx="15" ry="20" transform="rotate(-45 110 90)" fill="url(#grad-paint)"/>
-                            <circle class="paint-drop-1" cx="95" cy="105" r="5" fill="#667eea" opacity="0.8"/>
-                            <circle class="paint-drop-2" cx="85" cy="120" r="4" fill="#00bfa5" opacity="0.8"/>
-                            <circle class="paint-drop-3" cx="75" cy="135" r="3" fill="#667eea" opacity="0.8"/>
-                            <circle class="palette-circle" cx="50" cy="100" r="35" fill="none" stroke="url(#grad-paint)" stroke-width="3"/>
-                            <circle class="color-dot-1" cx="35" cy="90" r="6" fill="#667eea"/>
-                            <circle class="color-dot-2" cx="50" cy="80" r="6" fill="#00bfa5"/>
-                            <circle class="color-dot-3" cx="65" cy="90" r="6" fill="#F97316"/>
-                            <circle class="color-dot-4" cx="50" cy="115" r="6" fill="#667eea"/>
+                        <svg class="animated-icon palette-icon" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Palette shape -->
+                            <path class="palette-shape" d="M 100 50 Q 60 50 40 80 Q 40 120 80 140 Q 120 140 140 110 Q 150 90 140 70 Q 120 50 100 50" fill="none" stroke="url(#grad-palette)" stroke-width="2.5"/>
+                            <!-- Color dots -->
+                            <circle class="palette-color-1" cx="70" cy="80" r="8" fill="#667eea"/>
+                            <circle class="palette-color-2" cx="100" cy="75" r="8" fill="#00bfa5"/>
+                            <circle class="palette-color-3" cx="120" cy="95" r="8" fill="#F97316"/>
+                            <!-- Brush -->
+                            <line class="brush-handle" x1="130" y1="60" x2="150" y2="40" stroke="url(#grad-palette)" stroke-width="3" stroke-linecap="round"/>
+                            <path class="brush-tip" d="M 148 42 L 155 35 L 158 40 L 152 45 Z" fill="#00bfa5"/>
                             <defs>
-                                <linearGradient id="grad-paint" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <linearGradient id="grad-palette" x1="0%" y1="0%" x2="100%" y2="100%">
                                     <stop offset="0%" style="stop-color:#667eea"/>
                                     <stop offset="100%" style="stop-color:#00bfa5"/>
                                 </linearGradient>
@@ -183,15 +187,16 @@
                 <div class="service-card fade-in stagger-4">
                     <div class="service-icon-wrapper">
                         <svg class="animated-icon tools-icon" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                            <path class="wrench" d="M 80 60 L 70 70 L 80 80 L 120 120 L 130 110 L 90 70 L 100 60 Q 105 55 110 60 L 125 75 Q 130 80 135 75 L 145 65 Q 150 60 145 55 L 135 45 Q 130 40 125 45 L 115 55 Q 110 60 105 55 L 90 40 Q 85 35 80 40 Z" fill="url(#grad-tools)" stroke="url(#grad-tools)" stroke-width="2"/>
-                            <circle class="gear-main" cx="60" cy="140" r="25" fill="none" stroke="url(#grad-tools)" stroke-width="4"/>
-                            <circle class="gear-center" cx="60" cy="140" r="10" fill="#00bfa5"/>
-                            <line class="gear-spoke-1" x1="60" y1="115" x2="60" y2="125" stroke="#667eea" stroke-width="3"/>
-                            <line class="gear-spoke-2" x1="85" y1="140" x2="75" y2="140" stroke="#667eea" stroke-width="3"/>
-                            <line class="gear-spoke-3" x1="60" y1="165" x2="60" y2="155" stroke="#667eea" stroke-width="3"/>
-                            <line class="gear-spoke-4" x1="35" y1="140" x2="45" y2="140" stroke="#667eea" stroke-width="3"/>
-                            <circle class="spark-1" cx="140" cy="100" r="3" fill="#00bfa5"/>
-                            <circle class="spark-2" cx="150" cy="110" r="2" fill="#667eea"/>
+                            <!-- Wrench -->
+                            <path class="wrench" d="M 120 50 L 110 60 L 70 100 L 60 90 L 50 100 L 70 120 L 80 110 L 120 70 L 130 80 L 140 70 Z" fill="none" stroke="url(#grad-tools)" stroke-width="2.5" stroke-linejoin="round"/>
+                            <!-- Gear -->
+                            <circle class="gear-circle" cx="100" cy="130" r="25" fill="none" stroke="url(#grad-tools)" stroke-width="2.5"/>
+                            <circle class="gear-center" cx="100" cy="130" r="10" fill="none" stroke="#00bfa5" stroke-width="2"/>
+                            <!-- Gear teeth -->
+                            <line class="gear-tooth-1" x1="100" y1="102" x2="100" y2="95" stroke="#667eea" stroke-width="2.5"/>
+                            <line class="gear-tooth-2" x1="128" y1="130" x2="135" y2="130" stroke="#667eea" stroke-width="2.5"/>
+                            <line class="gear-tooth-3" x1="100" y1="158" x2="100" y2="165" stroke="#667eea" stroke-width="2.5"/>
+                            <line class="gear-tooth-4" x1="72" y1="130" x2="65" y2="130" stroke="#667eea" stroke-width="2.5"/>
                             <defs>
                                 <linearGradient id="grad-tools" x1="0%" y1="0%" x2="100%" y2="100%">
                                     <stop offset="0%" style="stop-color:#667eea"/>
@@ -232,18 +237,19 @@
                 <div class="benefits-list slide-right">
                     <div class="benefit-item stagger-1">
                         <div class="benefit-icon">
-                            <svg class="animated-icon rocket-icon" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                                <path class="rocket-body" d="M 100 30 L 90 70 L 75 90 L 75 110 L 100 130 L 125 110 L 125 90 L 110 70 Z" fill="url(#grad-rocket)" stroke="url(#grad-rocket)" stroke-width="3"/>
-                                <ellipse class="rocket-window" cx="100" cy="55" rx="12" ry="15" fill="#00bfa5"/>
-                                <path class="rocket-fin-left" d="M 75 90 L 55 100 L 75 110 Z" fill="#667eea"/>
-                                <path class="rocket-fin-right" d="M 125 90 L 145 100 L 125 110 Z" fill="#667eea"/>
-                                <path class="flame-1" d="M 95 130 L 90 145 L 95 135 Z" fill="#F97316" opacity="0.8"/>
-                                <path class="flame-2" d="M 100 130 L 100 150 L 100 135 Z" fill="#00bfa5" opacity="0.8"/>
-                                <path class="flame-3" d="M 105 130 L 110 145 L 105 135 Z" fill="#667eea" opacity="0.8"/>
-                                <circle class="star-1" cx="50" cy="50" r="2" fill="#00bfa5"/>
-                                <circle class="star-2" cx="150" cy="60" r="2" fill="#667eea"/>
+                            <svg class="animated-icon chart-icon" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Chart frame -->
+                                <rect class="chart-frame" x="40" y="50" width="120" height="100" rx="4" fill="none" stroke="url(#grad-chart)" stroke-width="2.5"/>
+                                <!-- Ascending line -->
+                                <polyline class="growth-line" points="50,130 70,110 90,90 110,70 130,50 150,40" fill="none" stroke="#00bfa5" stroke-width="3" stroke-linecap="round"/>
+                                <!-- Arrow up -->
+                                <path class="arrow-growth" d="M 145 45 L 150 40 L 155 45" fill="none" stroke="#00bfa5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <!-- Dots -->
+                                <circle class="chart-point-1" cx="50" cy="130" r="4" fill="#667eea"/>
+                                <circle class="chart-point-2" cx="90" cy="90" r="4" fill="#00bfa5"/>
+                                <circle class="chart-point-3" cx="130" cy="50" r="4" fill="#00bfa5"/>
                                 <defs>
-                                    <linearGradient id="grad-rocket" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <linearGradient id="grad-chart" x1="0%" y1="0%" x2="100%" y2="100%">
                                         <stop offset="0%" style="stop-color:#667eea"/>
                                         <stop offset="100%" style="stop-color:#00bfa5"/>
                                     </linearGradient>
@@ -257,16 +263,16 @@
                     </div>
                     <div class="benefit-item stagger-2">
                         <div class="benefit-icon">
-                            <svg class="animated-icon mobile-icon" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                                <rect class="phone-body" x="60" y="30" width="80" height="140" rx="12" fill="none" stroke="url(#grad-mobile)" stroke-width="4"/>
-                                <rect class="phone-screen" x="70" y="45" width="60" height="100" rx="3" fill="url(#grad-mobile)" opacity="0.3"/>
-                                <circle class="phone-button" cx="100" cy="155" r="8" fill="none" stroke="#00bfa5" stroke-width="3"/>
-                                <line class="screen-line-1" x1="75" y1="55" x2="120" y2="55" stroke="#667eea" stroke-width="2"/>
-                                <line class="screen-line-2" x1="75" y1="65" x2="115" y2="65" stroke="#00bfa5" stroke-width="2"/>
-                                <line class="screen-line-3" x1="75" y1="75" x2="125" y2="75" stroke="#667eea" stroke-width="2"/>
-                                <circle class="notification-dot" cx="130" cy="40" r="5" fill="#F97316"/>
+                            <svg class="animated-icon device-icon" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Smartphone -->
+                                <rect class="phone-frame" x="70" y="40" width="60" height="110" rx="8" fill="none" stroke="url(#grad-device)" stroke-width="2.5"/>
+                                <line class="phone-top" x1="85" y1="50" x2="115" y2="50" stroke="#667eea" stroke-width="2"/>
+                                <circle class="phone-btn" cx="100" cy="138" r="5" fill="none" stroke="#00bfa5" stroke-width="2"/>
+                                <!-- Desktop outline -->
+                                <rect class="desktop-outline" x="45" y="80" width="50" height="35" rx="2" fill="none" stroke="#667eea" stroke-width="2" opacity="0.5"/>
+                                <line class="desktop-base" x1="50" y1="115" x2="90" y2="115" stroke="#667eea" stroke-width="2" opacity="0.5"/>
                                 <defs>
-                                    <linearGradient id="grad-mobile" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <linearGradient id="grad-device" x1="0%" y1="0%" x2="100%" y2="100%">
                                         <stop offset="0%" style="stop-color:#667eea"/>
                                         <stop offset="100%" style="stop-color:#00bfa5"/>
                                     </linearGradient>
@@ -280,16 +286,18 @@
                     </div>
                     <div class="benefit-item stagger-3">
                         <div class="benefit-icon">
-                            <svg class="animated-icon headset-icon" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                                <path class="headband" d="M 60 80 Q 60 50 100 50 Q 140 50 140 80" fill="none" stroke="url(#grad-headset)" stroke-width="5" stroke-linecap="round"/>
-                                <rect class="ear-left" x="50" y="75" width="20" height="35" rx="5" fill="url(#grad-headset)"/>
-                                <rect class="ear-right" x="130" y="75" width="20" height="35" rx="5" fill="url(#grad-headset)"/>
-                                <path class="mic-arm" d="M 150 95 L 165 110" stroke="url(#grad-headset)" stroke-width="4" stroke-linecap="round"/>
-                                <circle class="mic-head" cx="170" cy="115" r="8" fill="#00bfa5"/>
-                                <circle class="sound-wave-1" cx="40" cy="90" r="8" fill="none" stroke="#667eea" stroke-width="2" opacity="0.6"/>
-                                <circle class="sound-wave-2" cx="40" cy="90" r="15" fill="none" stroke="#00bfa5" stroke-width="2" opacity="0.4"/>
+                            <svg class="animated-icon support-icon" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Headset -->
+                                <path class="headset-band" d="M 60 80 Q 60 50 100 50 Q 140 50 140 80" fill="none" stroke="url(#grad-support)" stroke-width="2.5" stroke-linecap="round"/>
+                                <!-- Left ear -->
+                                <rect class="ear-left" x="50" y="75" width="20" height="30" rx="5" fill="none" stroke="url(#grad-support)" stroke-width="2.5"/>
+                                <!-- Right ear -->
+                                <rect class="ear-right" x="130" y="75" width="20" height="30" rx="5" fill="none" stroke="url(#grad-support)" stroke-width="2.5"/>
+                                <!-- Mic -->
+                                <path class="mic-arm" d="M 150 90 L 165 110" stroke="#00bfa5" stroke-width="2.5" stroke-linecap="round"/>
+                                <circle class="mic-circle" cx="168" cy="113" r="6" fill="none" stroke="#00bfa5" stroke-width="2"/>
                                 <defs>
-                                    <linearGradient id="grad-headset" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <linearGradient id="grad-support" x1="0%" y1="0%" x2="100%" y2="100%">
                                         <stop offset="0%" style="stop-color:#667eea"/>
                                         <stop offset="100%" style="stop-color:#00bfa5"/>
                                     </linearGradient>
@@ -303,16 +311,16 @@
                     </div>
                     <div class="benefit-item stagger-4">
                         <div class="benefit-icon">
-                            <svg class="animated-icon design-icon" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                                <rect class="canvas" x="50" y="50" width="100" height="100" rx="5" fill="none" stroke="url(#grad-design)" stroke-width="4"/>
-                                <circle class="design-circle" cx="100" cy="85" r="15" fill="none" stroke="#667eea" stroke-width="3"/>
-                                <rect class="design-square" x="80" y="105" width="40" height="30" fill="none" stroke="#00bfa5" stroke-width="3"/>
-                                <path class="design-triangle" d="M 100 60 L 115 75 L 85 75 Z" fill="#F97316" opacity="0.7"/>
-                                <line class="ruler-line-1" x1="45" y1="60" x2="45" y2="140" stroke="#667eea" stroke-width="2"/>
-                                <line class="ruler-line-2" x1="60" y1="45" x2="140" y2="45" stroke="#00bfa5" stroke-width="2"/>
-                                <circle class="color-picker" cx="160" cy="140" r="8" fill="#667eea"/>
+                            <svg class="animated-icon pen-icon" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Pen -->
+                                <path class="pen-body" d="M 130 50 L 120 60 L 80 100 L 70 90 L 60 100 L 80 120 L 130 70 L 140 60 Z" fill="none" stroke="url(#grad-pen)" stroke-width="2.5" stroke-linejoin="round"/>
+                                <line class="pen-tip" x1="70" y1="90" x2="80" y2="100" stroke="#00bfa5" stroke-width="3" stroke-linecap="round"/>
+                                <!-- Design elements -->
+                                <circle class="design-dot-1" cx="110" cy="130" r="6" fill="#667eea"/>
+                                <circle class="design-dot-2" cx="130" cy="140" r="5" fill="#00bfa5"/>
+                                <path class="design-curve" d="M 95 135 Q 105 145 115 135" fill="none" stroke="#667eea" stroke-width="2" stroke-linecap="round"/>
                                 <defs>
-                                    <linearGradient id="grad-design" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <linearGradient id="grad-pen" x1="0%" y1="0%" x2="100%" y2="100%">
                                         <stop offset="0%" style="stop-color:#667eea"/>
                                         <stop offset="100%" style="stop-color:#00bfa5"/>
                                     </linearGradient>
@@ -781,7 +789,21 @@
                     <div class="partner-benefits">
                         <div class="benefit-item stagger-1">
                             <div class="benefit-icon">
-                                <i class="fas fa-handshake"></i>
+                                <svg class="animated-icon brand-icon" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Tag/Label shape -->
+                                    <path class="tag-shape" d="M 50 70 L 90 70 L 110 100 L 90 130 L 50 130 L 70 100 Z" fill="none" stroke="url(#grad-brand)" stroke-width="2.5"/>
+                                    <!-- Star inside -->
+                                    <path class="star-brand" d="M 80 90 L 83 98 L 91 98 L 85 103 L 88 111 L 80 106 L 72 111 L 75 103 L 69 98 L 77 98 Z" fill="#00bfa5"/>
+                                    <!-- Megaphone -->
+                                    <path class="megaphone" d="M 110 80 L 135 70 L 135 130 L 110 120 Z" fill="none" stroke="#667eea" stroke-width="2.5"/>
+                                    <path class="sound-wave-1" d="M 145 85 Q 155 95 155 100 Q 155 105 145 115" fill="none" stroke="#00bfa5" stroke-width="2" stroke-linecap="round"/>
+                                    <defs>
+                                        <linearGradient id="grad-brand" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#667eea"/>
+                                            <stop offset="100%" style="stop-color:#00bfa5"/>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
                             </div>
                             <div>
                                 <h4>Venda com sua marca</h4>
@@ -790,7 +812,20 @@
                         </div>
                         <div class="benefit-item stagger-2">
                             <div class="benefit-icon">
-                                <i class="fas fa-dollar-sign"></i>
+                                <svg class="animated-icon price-icon" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Price tag -->
+                                    <path class="price-tag" d="M 60 60 L 100 60 L 140 100 L 100 140 L 60 100 Z" fill="none" stroke="url(#grad-price)" stroke-width="2.5"/>
+                                    <circle class="tag-hole" cx="80" cy="80" r="6" fill="none" stroke="#667eea" stroke-width="2"/>
+                                    <!-- Dollar sign -->
+                                    <path class="dollar" d="M 95 80 Q 85 80 85 90 Q 85 95 95 95 Q 105 95 105 105 Q 105 110 95 110" fill="none" stroke="#00bfa5" stroke-width="2.5" stroke-linecap="round"/>
+                                    <line class="dollar-line" x1="95" y1="75" x2="95" y2="115" stroke="#00bfa5" stroke-width="2.5"/>
+                                    <defs>
+                                        <linearGradient id="grad-price" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#667eea"/>
+                                            <stop offset="100%" style="stop-color:#00bfa5"/>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
                             </div>
                             <div>
                                 <h4>Defina seu preço</h4>
@@ -799,7 +834,21 @@
                         </div>
                         <div class="benefit-item stagger-3">
                             <div class="benefit-icon">
-                                <i class="fas fa-laptop-code"></i>
+                                <svg class="animated-icon delivery-icon" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Package box -->
+                                    <rect class="box" x="60" y="70" width="80" height="60" rx="4" fill="none" stroke="url(#grad-delivery)" stroke-width="2.5"/>
+                                    <line class="box-line-h" x1="60" y1="100" x2="140" y2="100" stroke="#667eea" stroke-width="2"/>
+                                    <line class="box-line-v" x1="100" y1="70" x2="100" y2="130" stroke="#667eea" stroke-width="2"/>
+                                    <!-- Check mark -->
+                                    <circle class="check-circle" cx="100" cy="100" r="20" fill="none" stroke="#00bfa5" stroke-width="2.5"/>
+                                    <path class="check-mark" d="M 90 100 L 97 107 L 110 93" fill="none" stroke="#00bfa5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <defs>
+                                        <linearGradient id="grad-delivery" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#667eea"/>
+                                            <stop offset="100%" style="stop-color:#00bfa5"/>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
                             </div>
                             <div>
                                 <h4>Nós entregamos tudo</h4>
@@ -808,7 +857,18 @@
                         </div>
                         <div class="benefit-item stagger-4">
                             <div class="benefit-icon">
-                                <i class="fas fa-shield-check"></i>
+                                <svg class="animated-icon shield-icon" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Shield -->
+                                    <path class="shield" d="M 100 50 L 140 65 L 140 100 Q 140 130 100 145 Q 60 130 60 100 L 60 65 Z" fill="none" stroke="url(#grad-shield)" stroke-width="2.5"/>
+                                    <!-- Check inside -->
+                                    <path class="shield-check" d="M 85 95 L 95 105 L 115 85" fill="none" stroke="#00bfa5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <defs>
+                                        <linearGradient id="grad-shield" x1="0%" y1="0%" x2="0%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#667eea"/>
+                                            <stop offset="100%" style="stop-color:#00bfa5"/>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
                             </div>
                             <div>
                                 <h4>Responsabilidade total</h4>

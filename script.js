@@ -510,6 +510,166 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     });
+    
+    // Animações específicas para o ícone de chatbot - SIMPLIFICADO
+    const chatbotIcon = document.querySelector('.chatbot-icon');
+    if (chatbotIcon) {
+        const card = chatbotIcon.closest('.service-card');
+        if (card) {
+            card.addEventListener('mouseenter', function() {
+                const dots = chatbotIcon.querySelectorAll('.typing-dot-1, .typing-dot-2, .typing-dot-3');
+                const signal = chatbotIcon.querySelector('.bot-signal');
+                
+                dots.forEach((dot, index) => {
+                    setTimeout(() => {
+                        dot.style.animation = 'typingBounce 0.5s ease-in-out 2';
+                    }, index * 100);
+                });
+                
+                if (signal) {
+                    signal.style.animation = 'signalPulse 0.5s ease-in-out 3';
+                }
+            });
+        }
+    }
+    
+    // Animações específicas para o ícone de personalização
+    const customIcon = document.querySelector('.custom-icon');
+    if (customIcon) {
+        const card = customIcon.closest('.service-card');
+        if (card) {
+            card.addEventListener('mouseenter', function() {
+                const colors = customIcon.querySelectorAll('[class^="color-circle"]');
+                colors.forEach((color, index) => {
+                    setTimeout(() => {
+                        color.style.animation = 'colorPulseCustom 0.5s ease-in-out';
+                    }, index * 100);
+                });
+            });
+        }
+    }
+    
+    // Animações específicas para o ícone de manutenção - SIMPLIFICADO
+    const maintenanceIcon = document.querySelector('.maintenance-icon');
+    if (maintenanceIcon) {
+        const card = maintenanceIcon.closest('.service-card');
+        if (card) {
+            card.addEventListener('mouseenter', function() {
+                const gear = maintenanceIcon.querySelector('.setting-gear');
+                const wrench = maintenanceIcon.querySelector('.wrench-tool');
+                const bolt = maintenanceIcon.querySelector('.bolt-head');
+                
+                if (gear) {
+                    gear.style.animation = 'gearRotate 1s linear infinite';
+                }
+                if (wrench) {
+                    wrench.style.animation = 'wrenchSwing 0.5s ease-in-out 3';
+                }
+                if (bolt) {
+                    bolt.style.animation = 'boltTighten 0.5s ease-in-out 2';
+                }
+            });
+        }
+    }
+    
+    // Animações específicas para o ícone de design (pintura)
+    const paintDesignIcon = document.querySelector('.paint-design-icon');
+    if (paintDesignIcon) {
+        const card = paintDesignIcon.closest('.benefit-item');
+        if (card) {
+            card.addEventListener('mouseenter', function() {
+                const strokes = paintDesignIcon.querySelectorAll('[class^="paint-stroke"]');
+                const stars = paintDesignIcon.querySelectorAll('[class^="creative-star"]');
+                
+                strokes.forEach((stroke, index) => {
+                    setTimeout(() => {
+                        stroke.style.animation = 'strokeDraw 1s ease-in-out';
+                    }, index * 200);
+                });
+                
+                stars.forEach(star => {
+                    star.style.animation = 'starSparkle 0.5s ease-in-out 2';
+                });
+            });
+        }
+    }
+    
+    // Animações específicas para o ícone de vendas
+    const salesIcon = document.querySelector('.sales-icon');
+    if (salesIcon) {
+        const chartLine = salesIcon.querySelector('.chart-line');
+        const dots = salesIcon.querySelectorAll('[class^="chart-dot"]');
+        
+        const card = salesIcon.closest('.benefit-item');
+        if (card) {
+            card.addEventListener('mouseenter', function() {
+                if (chartLine) {
+                    chartLine.style.animation = 'chartGrow 1s ease-in-out forwards';
+                }
+                dots.forEach((dot, index) => {
+                    setTimeout(() => {
+                        dot.style.animation = 'dotPulse 0.5s ease-in-out';
+                    }, index * 100);
+                });
+            });
+        }
+    }
+    
+    // Animações específicas para o ícone de handshake
+    const handshakeIcon = document.querySelector('.handshake-icon');
+    if (handshakeIcon) {
+        const card = handshakeIcon.closest('.benefit-item');
+        if (card) {
+            card.addEventListener('mouseenter', function() {
+                const hands = handshakeIcon.querySelectorAll('.hand-left, .hand-right');
+                hands.forEach(hand => {
+                    hand.style.animation = 'handShake 0.5s ease-in-out 3';
+                });
+            });
+        }
+    }
+    
+    // Animações específicas para o ícone de dinheiro
+    const moneyIcon = document.querySelector('.money-icon');
+    if (moneyIcon) {
+        const card = moneyIcon.closest('.benefit-item');
+        if (card) {
+            card.addEventListener('mouseenter', function() {
+                const coins = moneyIcon.querySelectorAll('.coin-1, .coin-2');
+                coins.forEach(coin => {
+                    coin.style.animation = 'coinSpin 1s ease-in-out';
+                });
+            });
+        }
+    }
+    
+    // Animações específicas para o ícone de entrega
+    const deliveryIcon = document.querySelector('.delivery-icon');
+    if (deliveryIcon) {
+        const card = deliveryIcon.closest('.benefit-item');
+        if (card) {
+            card.addEventListener('mouseenter', function() {
+                const check = deliveryIcon.querySelector('.check-delivery');
+                if (check) {
+                    check.style.animation = 'checkDraw 1s ease-in-out';
+                }
+            });
+        }
+    }
+    
+    // Animações específicas para o ícone de escudo
+    const shieldIcon = document.querySelector('.shield-icon');
+    if (shieldIcon) {
+        const card = shieldIcon.closest('.benefit-item');
+        if (card) {
+            card.addEventListener('mouseenter', function() {
+                const glows = shieldIcon.querySelectorAll('.shield-glow-1, .shield-glow-2');
+                glows.forEach(glow => {
+                    glow.style.animation = 'glowExpand 1s ease-in-out';
+                });
+            });
+        }
+    }
 });
 
 // Check Icon Animations Enhancement
