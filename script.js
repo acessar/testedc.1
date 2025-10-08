@@ -1,31 +1,31 @@
-// EFEITO DE DIGITAÇÃO NO TÍTULO PRINCIPAL COM DUAS CORES - AJUSTADO
+// EFEITO DE DIGITAÇÃO NO TÍTULO PRINCIPAL COM CORES HALLOWEEN
 function typeWriter() {
-    const blueElement = document.querySelector('#typing-title .title-blue');
-    const whiteElement = document.querySelector('#typing-title .title-white');
-    const textBlue = 'Soluções Web ';
-    const textWhite = 'Profissionais Para Seu Negócio';
-    let indexBlue = 0;
-    let indexWhite = 0;
+    const purpleElement = document.querySelector('#typing-title .title-purple');
+    const cyanElement = document.querySelector('#typing-title .title-cyan');
+    const textPurple = 'Soluções Web ';
+    const textCyan = 'Profissionais Para Seu Negócio';
+    let indexPurple = 0;
+    let indexCyan = 0;
     
-    function typeBlue() {
-        if (indexBlue < textBlue.length) {
-            blueElement.textContent = textBlue.substring(0, indexBlue + 1);
-            indexBlue++;
-            setTimeout(typeBlue, 80);
+    function typePurple() {
+        if (indexPurple < textPurple.length) {
+            purpleElement.textContent = textPurple.substring(0, indexPurple + 1);
+            indexPurple++;
+            setTimeout(typePurple, 80);
         } else {
-            setTimeout(typeWhite, 200);
+            setTimeout(typeCyan, 200);
         }
     }
     
-    function typeWhite() {
-        if (indexWhite < textWhite.length) {
-            whiteElement.textContent = textWhite.substring(0, indexWhite + 1);
-            indexWhite++;
-            setTimeout(typeWhite, 80);
+    function typeCyan() {
+        if (indexCyan < textCyan.length) {
+            cyanElement.textContent = textCyan.substring(0, indexCyan + 1);
+            indexCyan++;
+            setTimeout(typeCyan, 80);
         }
     }
     
-    setTimeout(typeBlue, 500);
+    setTimeout(typePurple, 500);
 }
 
 // ANIMAÇÕES DE DESLIZE PARA TÍTULOS E TEXTOS
@@ -46,10 +46,10 @@ function initSlideAnimations() {
     slideElements.forEach(element => observer.observe(element));
 }
 
-// Create particles with enhanced animation
+// Create Halloween-themed particles with enhanced animation
 function createParticles() {
     const container = document.getElementById('particles');
-    const numParticles = 25;
+    const numParticles = 30;
     
     for (let i = 0; i < numParticles; i++) {
         const particle = document.createElement('div');
@@ -64,16 +64,43 @@ function createParticles() {
         particle.style.left = `${posX}%`;
         particle.style.top = `${posY}%`;
         
-        const blueHue = Math.floor(Math.random() * 40) + 200;
-        const brightness = Math.floor(Math.random() * 40) + 60;
-        particle.style.backgroundColor = `hsla(${blueHue}, 100%, ${brightness}%, 0.7)`;
-        particle.style.boxShadow = `0 0 ${size * 3}px hsla(${blueHue}, 100%, ${brightness}%, 0.9)`;
+        // Halloween color palette
+        const colors = ['#ff6b35', '#ff8c42', '#4a1a5c', '#ff6b35'];
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        
+        particle.style.backgroundColor = randomColor;
+        particle.style.boxShadow = `0 0 ${size * 3}px ${randomColor}`;
         
         particle.style.animationDelay = `${Math.random() * 10}s`;
         particle.style.animationDuration = `${15 + Math.random() * 10}s`;
         particle.style.opacity = Math.random() * 0.8 + 0.3;
         
         container.appendChild(particle);
+    }
+}
+
+// Halloween-themed floating elements
+function createHalloweenElements() {
+    const container = document.querySelector('.halloween-elements');
+    
+    // Create additional floating elements
+    for (let i = 0; i < 5; i++) {
+        const element = document.createElement('div');
+        element.className = 'halloween-particle';
+        element.style.position = 'absolute';
+        element.style.width = Math.random() * 20 + 10 + 'px';
+        element.style.height = Math.random() * 20 + 10 + 'px';
+        element.style.left = Math.random() * 100 + '%';
+        element.style.top = Math.random() * 100 + '%';
+        element.style.background = `radial-gradient(circle, ${['#ff6b35', '#ff8c42', '#4a1a5c'][Math.floor(Math.random() * 3)]}, transparent)`;
+        element.style.borderRadius = '50%';
+        element.style.animation = `halloweenFloat ${5 + Math.random() * 10}s ease-in-out infinite`;
+        element.style.animationDelay = Math.random() * 5 + 's';
+        element.style.opacity = Math.random() * 0.5 + 0.2;
+        element.style.pointerEvents = 'none';
+        element.style.zIndex = '1';
+        
+        container.appendChild(element);
     }
 }
 
@@ -192,6 +219,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Iniciar animações de deslize
     initSlideAnimations();
     
+    // Create Halloween elements
+    createHalloweenElements();
+    
     const briefingForm = document.getElementById('briefingForm');
     
     if (briefingForm) {
@@ -199,7 +229,7 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             
             const formData = new FormData(this);
-            let message = '*🔵 NOVO BRIEFING DEZAIN CODE*\n\n';
+            let message = '*🎃 NOVO BRIEFING HALLOWEEN DEZAIN CODE*\n\n';
             
             const labels = {
                 name: '👤 Nome',
@@ -218,7 +248,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
             
-            message += '\n_Enviado através do site Dezain Code_';
+            message += '\n🎃 _Enviado através do site Halloween Special Dezain Code_';
             
             const whatsappUrl = `https://wa.me/5583991816152?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank');
@@ -226,8 +256,8 @@ document.addEventListener('DOMContentLoaded', function() {
             // Success animation
             const submitBtn = this.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-check"></i> ENVIADO COM SUCESSO!';
-            submitBtn.style.background = 'linear-gradient(135deg, #00d084, #00a86b)';
+            submitBtn.innerHTML = '<i class="fas fa-skull"></i> ENVIADO COM SUCESSO!';
+            submitBtn.style.background = 'linear-gradient(135deg, #ff6b35, #8b00ff)';
             
             setTimeout(() => {
                 submitBtn.innerHTML = originalText;
@@ -242,10 +272,12 @@ document.addEventListener('DOMContentLoaded', function() {
             control.addEventListener('focus', function() {
                 this.parentElement.style.transform = 'scale(1.02)';
                 this.parentElement.style.transition = 'transform 0.3s ease';
+                this.style.boxShadow = '0 0 0 3px rgba(0, 255, 255, 0.3)';
             });
             
             control.addEventListener('blur', function() {
                 this.parentElement.style.transform = 'scale(1)';
+                this.style.boxShadow = '';
             });
         });
     }
@@ -281,9 +313,11 @@ window.addEventListener('scroll', () => {
     if (currentScroll > 100) {
         header.style.padding = '15px 0';
         header.style.boxShadow = '0 5px 30px rgba(0, 0, 0, 0.3)';
+        header.style.background = 'rgba(10, 10, 10, 0.95)';
     } else {
         header.style.padding = '20px 0';
         header.style.boxShadow = 'none';
+        header.style.background = 'rgba(10, 10, 10, 0.85)';
     }
     
     lastScroll = currentScroll;
@@ -433,63 +467,73 @@ function animateTextOnScroll() {
     });
 }
 
-// Main Event Listeners
-window.addEventListener('scroll', () => {
-    revealOnScroll();
-    animateCounters();
-    animateBenefitItems();
-    animateTextOnScroll();
-});
-
-// Throttle scroll events for better performance
-let ticking = false;
-window.addEventListener('scroll', () => {
-    if (!ticking) {
-        window.requestAnimationFrame(() => {
-            revealOnScroll();
-            animateCounters();
-            ticking = false;
-        });
-        ticking = true;
-    }
-});
-
-// Initialize on DOM Load
-document.addEventListener('DOMContentLoaded', () => {
-    createParticles();
-    revealOnScroll();
-    initIntersectionObserver();
-    lazyLoadImages();
+// Halloween-themed interactive elements
+document.addEventListener('DOMContentLoaded', function() {
+    // Add Halloween sound effects on hover (visual feedback only)
+    const halloweenElements = document.querySelectorAll('.ghost, .bat, .skull, .pumpkin');
     
-    // Add entrance animation to hero
-    const heroContent = document.querySelector('.hero-content');
-    if (heroContent) {
-        setTimeout(() => {
-            heroContent.style.opacity = '1';
-            heroContent.style.transform = 'translateY(0)';
-        }, 300);
-    }
-});
-
-// Page Load Animation
-window.addEventListener('load', () => {
-    document.body.style.opacity = '1';
-    revealOnScroll();
-    animateCounters();
-});
-
-// Prevent layout shift
-document.addEventListener('DOMContentLoaded', () => {
-    const images = document.querySelectorAll('img');
-    images.forEach(img => {
-        if (!img.complete) {
-            img.style.opacity = '0';
-            img.addEventListener('load', function() {
-                this.style.transition = 'opacity 0.5s ease';
-                this.style.opacity = '1';
-            });
-        }
+    halloweenElements.forEach(element => {
+        element.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.2)';
+            this.style.transition = 'transform 0.3s ease';
+        });
+        
+        element.addEventListener('mouseleave', function() {
+            this.style.transform = '';
+        });
     });
+    
+    // Halloween-themed cursor trail
+    let mouseTrail = [];
+    const maxTrailLength = 10;
+    
+    document.addEventListener('mousemove', function(e) {
+        const trailElement = document.createElement('div');
+        trailElement.style.position = 'fixed';
+        trailElement.style.left = e.clientX + 'px';
+        trailElement.style.top = e.clientY + 'px';
+        trailElement.style.width = '4px';
+        trailElement.style.height = '4px';
+        trailElement.style.background = ['#ff6b35', '#ff8c42', '#4a1a5c'][Math.floor(Math.random() * 3)];
+        trailElement.style.borderRadius = '50%';
+        trailElement.style.pointerEvents = 'none';
+        trailElement.style.zIndex = '9999';
+        trailElement.style.opacity = '0.7';
+        trailElement.style.animation = 'fadeOut 1s ease-out forwards';
+        
+        document.body.appendChild(trailElement);
+        
+        mouseTrail.push(trailElement);
+        
+        if (mouseTrail.length > maxTrailLength) {
+            const oldTrail = mouseTrail.shift();
+            if (oldTrail && oldTrail.parentNode) {
+                oldTrail.parentNode.removeChild(oldTrail);
+            }
+        }
+        
+        setTimeout(() => {
+            if (trailElement && trailElement.parentNode) {
+                trailElement.parentNode.removeChild(trailElement);
+            }
+        }, 1000);
+    });
+    
+    // Add CSS for trail animation
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes fadeOut {
+            0% { opacity: 0.7; transform: scale(1); }
+            100% { opacity: 0; transform: scale(0.5); }
+        }
+        @keyframes halloweenFloat {
+            0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+            25% { transform: translateY(-20px) translateX(10px) rotate(90deg); }
+            50% { transform: translateY(-10px) translateX(-5px) rotate(180deg); }
+            75% { transform: translateY(-25px) translateX(5px) rotate(270deg); }
+        }
+    `;
+    document.head.appendChild(style);
 });
 
 // SVG Icon Animations Enhancement
@@ -502,22 +546,22 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (card) {
             card.addEventListener('mouseenter', function() {
-                icon.style.filter = 'drop-shadow(0 15px 30px rgba(0, 191, 165, 0.8))';
+                icon.style.filter = 'drop-shadow(0 15px 30px rgba(0, 255, 255, 0.8))';
             });
             
             card.addEventListener('mouseleave', function() {
-                icon.style.filter = 'drop-shadow(0 10px 20px rgba(0, 191, 165, 0.4))';
+                icon.style.filter = 'drop-shadow(0 10px 20px rgba(0, 255, 255, 0.4))';
             });
         }
     });
     
-    // Animações específicas para o ícone de chatbot - SIMPLIFICADO
+    // Animações específicas para o ícone de chatbot
     const chatbotIcon = document.querySelector('.chatbot-icon');
     if (chatbotIcon) {
         const card = chatbotIcon.closest('.service-card');
         if (card) {
             card.addEventListener('mouseenter', function() {
-                const dots = chatbotIcon.querySelectorAll('.typing-dot-1, .typing-dot-2, .typing-dot-3');
+                const dots = chatbotIcon.querySelectorAll('.chat-dot-1, .chat-dot-2, .chat-dot-3');
                 const signal = chatbotIcon.querySelector('.bot-signal');
                 
                 dots.forEach((dot, index) => {
@@ -534,71 +578,45 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Animações específicas para o ícone de personalização
-    const customIcon = document.querySelector('.custom-icon');
+    const customIcon = document.querySelector('.palette-icon');
     if (customIcon) {
         const card = customIcon.closest('.service-card');
         if (card) {
             card.addEventListener('mouseenter', function() {
-                const colors = customIcon.querySelectorAll('[class^="color-circle"]');
+                const colors = customIcon.querySelectorAll('[class*="color"]');
                 colors.forEach((color, index) => {
                     setTimeout(() => {
-                        color.style.animation = 'colorPulseCustom 0.5s ease-in-out';
+                        color.style.animation = 'colorPulse 0.5s ease-in-out';
                     }, index * 100);
                 });
             });
         }
     }
     
-    // Animações específicas para o ícone de manutenção - SIMPLIFICADO
-    const maintenanceIcon = document.querySelector('.maintenance-icon');
+    // Animações específicas para o ícone de manutenção
+    const maintenanceIcon = document.querySelector('.tools-icon');
     if (maintenanceIcon) {
         const card = maintenanceIcon.closest('.service-card');
         if (card) {
             card.addEventListener('mouseenter', function() {
-                const gear = maintenanceIcon.querySelector('.setting-gear');
-                const wrench = maintenanceIcon.querySelector('.wrench-tool');
-                const bolt = maintenanceIcon.querySelector('.bolt-head');
+                const gear = maintenanceIcon.querySelector('.gear-circle');
+                const wrench = maintenanceIcon.querySelector('.wrench');
                 
                 if (gear) {
-                    gear.style.animation = 'gearRotate 1s linear infinite';
+                    gear.style.animation = 'gearSpin 1s linear infinite';
                 }
                 if (wrench) {
-                    wrench.style.animation = 'wrenchSwing 0.5s ease-in-out 3';
+                    wrench.style.animation = 'wrenchRotate 0.5s ease-in-out 3';
                 }
-                if (bolt) {
-                    bolt.style.animation = 'boltTighten 0.5s ease-in-out 2';
-                }
-            });
-        }
-    }
-    
-    // Animações específicas para o ícone de design (pintura)
-    const paintDesignIcon = document.querySelector('.paint-design-icon');
-    if (paintDesignIcon) {
-        const card = paintDesignIcon.closest('.benefit-item');
-        if (card) {
-            card.addEventListener('mouseenter', function() {
-                const strokes = paintDesignIcon.querySelectorAll('[class^="paint-stroke"]');
-                const stars = paintDesignIcon.querySelectorAll('[class^="creative-star"]');
-                
-                strokes.forEach((stroke, index) => {
-                    setTimeout(() => {
-                        stroke.style.animation = 'strokeDraw 1s ease-in-out';
-                    }, index * 200);
-                });
-                
-                stars.forEach(star => {
-                    star.style.animation = 'starSparkle 0.5s ease-in-out 2';
-                });
             });
         }
     }
     
     // Animações específicas para o ícone de vendas
-    const salesIcon = document.querySelector('.sales-icon');
+    const salesIcon = document.querySelector('.chart-icon');
     if (salesIcon) {
-        const chartLine = salesIcon.querySelector('.chart-line');
-        const dots = salesIcon.querySelectorAll('[class^="chart-dot"]');
+        const chartLine = salesIcon.querySelector('.growth-line');
+        const dots = salesIcon.querySelectorAll('[class*="chart-point"]');
         
         const card = salesIcon.closest('.benefit-item');
         if (card) {
@@ -610,62 +628,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     setTimeout(() => {
                         dot.style.animation = 'dotPulse 0.5s ease-in-out';
                     }, index * 100);
-                });
-            });
-        }
-    }
-    
-    // Animações específicas para o ícone de handshake
-    const handshakeIcon = document.querySelector('.handshake-icon');
-    if (handshakeIcon) {
-        const card = handshakeIcon.closest('.benefit-item');
-        if (card) {
-            card.addEventListener('mouseenter', function() {
-                const hands = handshakeIcon.querySelectorAll('.hand-left, .hand-right');
-                hands.forEach(hand => {
-                    hand.style.animation = 'handShake 0.5s ease-in-out 3';
-                });
-            });
-        }
-    }
-    
-    // Animações específicas para o ícone de dinheiro
-    const moneyIcon = document.querySelector('.money-icon');
-    if (moneyIcon) {
-        const card = moneyIcon.closest('.benefit-item');
-        if (card) {
-            card.addEventListener('mouseenter', function() {
-                const coins = moneyIcon.querySelectorAll('.coin-1, .coin-2');
-                coins.forEach(coin => {
-                    coin.style.animation = 'coinSpin 1s ease-in-out';
-                });
-            });
-        }
-    }
-    
-    // Animações específicas para o ícone de entrega
-    const deliveryIcon = document.querySelector('.delivery-icon');
-    if (deliveryIcon) {
-        const card = deliveryIcon.closest('.benefit-item');
-        if (card) {
-            card.addEventListener('mouseenter', function() {
-                const check = deliveryIcon.querySelector('.check-delivery');
-                if (check) {
-                    check.style.animation = 'checkDraw 1s ease-in-out';
-                }
-            });
-        }
-    }
-    
-    // Animações específicas para o ícone de escudo
-    const shieldIcon = document.querySelector('.shield-icon');
-    if (shieldIcon) {
-        const card = shieldIcon.closest('.benefit-item');
-        if (card) {
-            card.addEventListener('mouseenter', function() {
-                const glows = shieldIcon.querySelectorAll('.shield-glow-1, .shield-glow-2');
-                glows.forEach(glow => {
-                    glow.style.animation = 'glowExpand 1s ease-in-out';
                 });
             });
         }
@@ -757,7 +719,7 @@ document.addEventListener('DOMContentLoaded', function() {
             requiredFields.forEach(field => {
                 if (!field.value.trim()) {
                     isValid = false;
-                    field.style.borderColor = '#ff3b30';
+                    field.style.borderColor = '#ff6b35';
                     setTimeout(() => {
                         field.style.borderColor = '';
                     }, 2000);
@@ -799,6 +761,65 @@ if ('ontouchstart' in window) {
     });
 }
 
+// Main Event Listeners
+window.addEventListener('scroll', () => {
+    revealOnScroll();
+    animateCounters();
+    animateBenefitItems();
+    animateTextOnScroll();
+});
+
+// Throttle scroll events for better performance
+let ticking = false;
+window.addEventListener('scroll', () => {
+    if (!ticking) {
+        window.requestAnimationFrame(() => {
+            revealOnScroll();
+            animateCounters();
+            ticking = false;
+        });
+        ticking = true;
+    }
+});
+
+// Initialize on DOM Load
+document.addEventListener('DOMContentLoaded', () => {
+    createParticles();
+    revealOnScroll();
+    initIntersectionObserver();
+    lazyLoadImages();
+    
+    // Add entrance animation to hero
+    const heroContent = document.querySelector('.hero-content');
+    if (heroContent) {
+        setTimeout(() => {
+            heroContent.style.opacity = '1';
+            heroContent.style.transform = 'translateY(0)';
+        }, 300);
+    }
+});
+
+// Page Load Animation
+window.addEventListener('load', () => {
+    document.body.style.opacity = '1';
+    revealOnScroll();
+    animateCounters();
+});
+
+// Prevent layout shift
+document.addEventListener('DOMContentLoaded', () => {
+    const images = document.querySelectorAll('img');
+    images.forEach(img => {
+        if (!img.complete) {
+            img.style.opacity = '0';
+            img.addEventListener('load', function() {
+                this.style.transition = 'opacity 0.5s ease';
+                this.style.opacity = '1';
+            });
+        }
+    });
+});
+
 // Console message for developers
-console.log('%c🚀 Dezain Code - Site desenvolvido com excelência', 'color: #00bfa5; font-size: 16px; font-weight: bold;');
-console.log('%cTodos os direitos reservados © 2025', 'color: #667eea; font-size: 12px;');
+console.log('%c🎃 Dezain Code - Halloween Special desenvolvido com excelência', 'color: #ff6b35; font-size: 16px; font-weight: bold;');
+console.log('%cTodos os direitos reservados © 2025', 'color: #8b00ff; font-size: 12px;');
