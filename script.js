@@ -46,17 +46,14 @@ function initSlideAnimations() {
     slideElements.forEach(element => observer.observe(element));
 }
 
-// CAROUSEL FUNCTIONALITY - MOBILE/TABLET ONLY
+// CAROUSEL FUNCTIONALITY - MOBILE NATIVO COM DOTS
 class MobileCarousel {
     constructor(carouselName) {
         this.carouselName = carouselName;
         this.container = document.querySelector(`[data-carousel="${carouselName}"]`);
         this.dotsContainer = document.querySelector(`[data-carousel-dots="${carouselName}"]`);
         this.currentIndex = 0;
-        this.items = [];
         this.dots = [];
-        this.touchStartX = 0;
-        this.touchEndX = 0;
         this.isEnabled = false;
         
         if (this.container && this.dotsContainer) {
@@ -65,21 +62,10 @@ class MobileCarousel {
     }
     
     init() {
-        // Check if carousel should be enabled (mobile/tablet only)
         this.checkViewport();
         window.addEventListener('resize', () => this.checkViewport());
-        
-        // Initialize items
-        this.updateItems();
-        
-        // Create dots
         this.createDots();
-        
-        // Add touch events
-        this.addTouchEvents();
-        
-        // Update initial state
-        this.updateCarousel();
+        this.setupScrollDetection();
     }
     
     checkViewport() {
@@ -94,39 +80,31 @@ class MobileCarousel {
     
     enable() {
         this.isEnabled = true;
-        this.updateItems();
         this.createDots();
-        this.updateCarousel();
     }
     
     disable() {
         this.isEnabled = false;
-        this.container.style.transform = '';
-        this.dotsContainer.style.display = 'none';
-    }
-    
-    updateItems() {
-        if (!this.isEnabled) return;
-        
-        // Get all direct children (cards)
-        this.items = Array.from(this.container.children);
-        
-        // Ensure current index is valid
-        if (this.currentIndex >= this.items.length) {
-            this.currentIndex = 0;
+        if (this.dotsContainer) {
+            this.dotsContainer.style.display = 'none';
         }
     }
     
+    getItems() {
+        return Array.from(this.container.children);
+    }
+    
     createDots() {
-        if (!this.isEnabled) return;
+        if (!this.isEnabled || !this.dotsContainer) return;
         
+        const items = this.getItems();
         this.dotsContainer.innerHTML = '';
         this.dots = [];
         
-        this.items.forEach((item, index) => {
+        items.forEach((item, index) => {
             const dot = document.createElement('button');
             dot.classList.add('carousel-dot');
-            if (index === this.currentIndex) {
+            if (index === 0) {
                 dot.classList.add('active');
             }
             dot.setAttribute('aria-label', `Ir para slide ${index + 1}`);
@@ -135,81 +113,50 @@ class MobileCarousel {
             this.dots.push(dot);
         });
         
-        this.dotsContainer.style.display = this.items.length > 1 ? 'flex' : 'none';
+        this.dotsContainer.style.display = items.length > 1 ? 'flex' : 'none';
     }
     
-    addTouchEvents() {
-        this.container.addEventListener('touchstart', (e) => {
-            this.touchStartX = e.changedTouches[0].screenX;
-        }, { passive: true });
+    setupScrollDetection() {
+        if (!this.container) return;
         
-        this.container.addEventListener('touchend', (e) => {
-            if (!this.isEnabled) return;
-            
-            this.touchEndX = e.changedTouches[0].screenX;
-            this.handleSwipe();
-        }, { passive: true });
-        
-        // Mouse events for desktop testing
-        this.container.addEventListener('mousedown', (e) => {
-            this.touchStartX = e.screenX;
-        });
-        
-        this.container.addEventListener('mouseup', (e) => {
-            if (!this.isEnabled) return;
-            
-            this.touchEndX = e.screenX;
-            this.handleSwipe();
+        let scrollTimeout;
+        this.container.addEventListener('scroll', () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                this.updateDotsBasedOnScroll();
+            }, 100);
         });
     }
     
-    handleSwipe() {
-        const swipeThreshold = 50;
-        const difference = this.touchStartX - this.touchEndX;
+    updateDotsBasedOnScroll() {
+        if (!this.isEnabled || !this.container) return;
         
-        if (Math.abs(difference) > swipeThreshold) {
-            if (difference > 0) {
-                // Swipe left - next slide
-                this.next();
-            } else {
-                // Swipe right - previous slide
-                this.prev();
-            }
+        const scrollLeft = this.container.scrollLeft;
+        const itemWidth = this.container.offsetWidth;
+        const newIndex = Math.round(scrollLeft / itemWidth);
+        
+        if (newIndex !== this.currentIndex) {
+            this.currentIndex = newIndex;
+            this.updateDots();
         }
     }
     
     goToSlide(index) {
-        if (!this.isEnabled) return;
+        if (!this.isEnabled || !this.container) return;
+        
+        const itemWidth = this.container.offsetWidth;
+        this.container.scrollTo({
+            left: index * itemWidth,
+            behavior: 'smooth'
+        });
         
         this.currentIndex = index;
-        this.updateCarousel();
+        this.updateDots();
     }
     
-    next() {
+    updateDots() {
         if (!this.isEnabled) return;
         
-        this.currentIndex = (this.currentIndex + 1) % this.items.length;
-        this.updateCarousel();
-    }
-    
-    prev() {
-        if (!this.isEnabled) return;
-        
-        this.currentIndex = (this.currentIndex - 1 + this.items.length) % this.items.length;
-        this.updateCarousel();
-    }
-    
-    updateCarousel() {
-        if (!this.isEnabled) return;
-        
-        // Calculate transform based on viewport width
-        const containerWidth = this.container.parentElement.offsetWidth;
-        const cardMargin = 24; // 12px on each side
-        const offset = this.currentIndex * containerWidth;
-        
-        this.container.style.transform = `translateX(-${offset}px)`;
-        
-        // Update dots
         this.dots.forEach((dot, index) => {
             if (index === this.currentIndex) {
                 dot.classList.add('active');
@@ -233,6 +180,8 @@ function initCarousels() {
 // Create particles with enhanced animation
 function createParticles() {
     const container = document.getElementById('particles');
+    if (!container) return;
+    
     const numParticles = 25;
     
     for (let i = 0; i < numParticles; i++) {
@@ -357,7 +306,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initSlideAnimations();
     
     // Initialize carousels
-    initCarousels();
+    setTimeout(initCarousels, 500);
     
     // Create particles
     createParticles();
@@ -443,56 +392,58 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 let lastScroll = 0;
 const header = document.querySelector('header');
 
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    
-    if (currentScroll > 100) {
-        header.style.padding = '15px 0';
-        header.style.boxShadow = '0 5px 30px rgba(0, 0, 0, 0.3)';
-    } else {
-        header.style.padding = '20px 0';
-        header.style.boxShadow = 'none';
-    }
-    
-    lastScroll = currentScroll;
-});
-
-// Enhanced Service Cards Hover Effect with Tilt
-document.addEventListener('DOMContentLoaded', function() {
-    const serviceCards = document.querySelectorAll('.service-card');
-    
-    serviceCards.forEach(card => {
-        card.addEventListener('mousemove', function(e) {
-            if (window.innerWidth <= 1024) return; // Disable on mobile
-            
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            
-            const rotateX = (y - centerY) / 15;
-            const rotateY = (centerX - x) / 15;
-            
-            card.style.transform = `
-                translateY(-16px) 
-                scale(1.02) 
-                perspective(1000px) 
-                rotateX(${rotateX}deg) 
-                rotateY(${rotateY}deg)
-            `;
-        });
+if (header) {
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
         
-        card.addEventListener('mouseleave', function() {
-            card.style.transform = '';
+        if (currentScroll > 100) {
+            header.style.padding = '15px 0';
+            header.style.boxShadow = '0 5px 30px rgba(0, 0, 0, 0.3)';
+        } else {
+            header.style.padding = '20px 0';
+            header.style.boxShadow = 'none';
+        }
+        
+        lastScroll = currentScroll;
+    });
+}
+
+// Enhanced Service Cards Hover Effect with Tilt (Desktop only)
+if (window.innerWidth > 1024) {
+    document.addEventListener('DOMContentLoaded', function() {
+        const serviceCards = document.querySelectorAll('.service-card');
+        
+        serviceCards.forEach(card => {
+            card.addEventListener('mousemove', function(e) {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 15;
+                const rotateY = (centerX - x) / 15;
+                
+                card.style.transform = `
+                    translateY(-16px) 
+                    scale(1.02) 
+                    perspective(1000px) 
+                    rotateX(${rotateX}deg) 
+                    rotateY(${rotateY}deg)
+                `;
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                card.style.transform = '';
+            });
         });
     });
-});
+}
 
-// Plan Cards Enhanced Animation
-document.addEventListener('DOMContentLoaded', function() {
-    if (window.innerWidth > 1024) {
+// Plan Cards Enhanced Animation (Desktop only)
+if (window.innerWidth > 1024) {
+    document.addEventListener('DOMContentLoaded', function() {
         const planCards = document.querySelectorAll('.plan-card');
         
         planCards.forEach(card => {
@@ -512,8 +463,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             });
         });
-    }
-});
+    });
+}
 
 // Benefit Items Stagger Animation
 function animateBenefitItems() {
@@ -537,37 +488,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const whatsappBtn = document.querySelector('.whatsapp-btn');
     
     if (whatsappBtn) {
-        let isHovering = false;
-        
         whatsappBtn.addEventListener('mouseenter', function() {
-            isHovering = true;
             this.style.animation = 'none';
         });
         
         whatsappBtn.addEventListener('mouseleave', function() {
-            isHovering = false;
             this.style.animation = 'pulse-whatsapp 2s infinite';
         });
     }
 });
-
-// Image Lazy Loading Effect
-function lazyLoadImages() {
-    const images = document.querySelectorAll('img[data-src]');
-    
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.removeAttribute('data-src');
-                observer.unobserve(img);
-            }
-        });
-    });
-    
-    images.forEach(img => imageObserver.observe(img));
-}
 
 // Initialize Intersection Observer for advanced animations
 function initIntersectionObserver() {
@@ -588,22 +517,6 @@ function initIntersectionObserver() {
     animatedElements.forEach(el => observer.observe(el));
 }
 
-// Text Animation on Scroll
-function animateTextOnScroll() {
-    const textElements = document.querySelectorAll('h1, h2, h3, p');
-    const windowHeight = window.innerHeight;
-    
-    textElements.forEach(element => {
-        const elementTop = element.getBoundingClientRect().top;
-        
-        if (elementTop < windowHeight * 0.9 && !element.classList.contains('text-animated')) {
-            element.classList.add('text-animated');
-            element.style.opacity = '1';
-            element.style.transform = 'translateY(0)';
-        }
-    });
-}
-
 // Throttle scroll events for better performance
 let ticking = false;
 window.addEventListener('scroll', () => {
@@ -612,7 +525,6 @@ window.addEventListener('scroll', () => {
             revealOnScroll();
             animateCounters();
             animateBenefitItems();
-            animateTextOnScroll();
             ticking = false;
         });
         ticking = true;
@@ -623,7 +535,6 @@ window.addEventListener('scroll', () => {
 document.addEventListener('DOMContentLoaded', () => {
     revealOnScroll();
     initIntersectionObserver();
-    lazyLoadImages();
     
     const heroContent = document.querySelector('.hero-content');
     if (heroContent) {
@@ -655,24 +566,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// SVG Icon Animations Enhancement
-document.addEventListener('DOMContentLoaded', function() {
-    const animatedIcons = document.querySelectorAll('.animated-icon');
-    
-    animatedIcons.forEach(icon => {
-        const card = icon.closest('.service-card, .benefit-item');
+// SVG Icon Animations Enhancement (Desktop only)
+if (window.innerWidth > 768) {
+    document.addEventListener('DOMContentLoaded', function() {
+        const animatedIcons = document.querySelectorAll('.animated-icon');
         
-        if (card && window.innerWidth > 768) {
-            card.addEventListener('mouseenter', function() {
-                icon.style.filter = 'drop-shadow(0 15px 30px rgba(0, 191, 165, 0.8))';
-            });
+        animatedIcons.forEach(icon => {
+            const card = icon.closest('.service-card, .benefit-item');
             
-            card.addEventListener('mouseleave', function() {
-                icon.style.filter = 'drop-shadow(0 10px 20px rgba(0, 191, 165, 0.4))';
-            });
-        }
+            if (card) {
+                card.addEventListener('mouseenter', function() {
+                    icon.style.filter = 'drop-shadow(0 15px 30px rgba(0, 191, 165, 0.8))';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    icon.style.filter = 'drop-shadow(0 10px 20px rgba(0, 191, 165, 0.4))';
+                });
+            }
+        });
     });
-});
+}
 
 // Add error handling for form submission
 document.addEventListener('DOMContentLoaded', function() {
@@ -693,22 +606,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
             
-            if (!isValid) {
+            if (!isValid && !e.defaultPrevented) {
                 e.preventDefault();
                 alert('Por favor, preencha todos os campos obrigatórios.');
             }
         });
     });
-});
-
-// Add smooth fade-in for page load
-window.addEventListener('load', function() {
-    document.body.style.opacity = '0';
-    document.body.style.transition = 'opacity 0.5s ease';
-    
-    setTimeout(() => {
-        document.body.style.opacity = '1';
-    }, 100);
 });
 
 // Mobile touch optimization
@@ -719,23 +622,26 @@ if ('ontouchstart' in window) {
         cards.forEach(card => {
             card.addEventListener('touchstart', function() {
                 this.style.transform = 'scale(0.98)';
-            });
+            }, { passive: true });
             
             card.addEventListener('touchend', function() {
-                this.style.transform = '';
-            });
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 100);
+            }, { passive: true });
         });
     });
 }
 
 // Performance optimization: Pause animations when tab is not visible
 document.addEventListener('visibilitychange', function() {
+    const animatedIcons = document.querySelectorAll('.animated-icon');
     if (document.hidden) {
-        document.querySelectorAll('.animated-icon').forEach(icon => {
+        animatedIcons.forEach(icon => {
             icon.style.animationPlayState = 'paused';
         });
     } else {
-        document.querySelectorAll('.animated-icon').forEach(icon => {
+        animatedIcons.forEach(icon => {
             icon.style.animationPlayState = 'running';
         });
     }
