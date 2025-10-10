@@ -1,4 +1,4 @@
-// EFEITO DE DIGITAÇÃO NO TÍTULO PRINCIPAL COM DUAS CORES - AJUSTADO
+// EFEITO DE DIGITAÇÃO NO TÍTULO PRINCIPAL COM DUAS CORES
 function typeWriter() {
     const blueElement = document.querySelector('#typing-title .title-blue');
     const whiteElement = document.querySelector('#typing-title .title-white');
@@ -46,6 +46,190 @@ function initSlideAnimations() {
     slideElements.forEach(element => observer.observe(element));
 }
 
+// CAROUSEL FUNCTIONALITY - MOBILE/TABLET ONLY
+class MobileCarousel {
+    constructor(carouselName) {
+        this.carouselName = carouselName;
+        this.container = document.querySelector(`[data-carousel="${carouselName}"]`);
+        this.dotsContainer = document.querySelector(`[data-carousel-dots="${carouselName}"]`);
+        this.currentIndex = 0;
+        this.items = [];
+        this.dots = [];
+        this.touchStartX = 0;
+        this.touchEndX = 0;
+        this.isEnabled = false;
+        
+        if (this.container && this.dotsContainer) {
+            this.init();
+        }
+    }
+    
+    init() {
+        // Check if carousel should be enabled (mobile/tablet only)
+        this.checkViewport();
+        window.addEventListener('resize', () => this.checkViewport());
+        
+        // Initialize items
+        this.updateItems();
+        
+        // Create dots
+        this.createDots();
+        
+        // Add touch events
+        this.addTouchEvents();
+        
+        // Update initial state
+        this.updateCarousel();
+    }
+    
+    checkViewport() {
+        const shouldEnable = window.innerWidth <= 1024;
+        
+        if (shouldEnable && !this.isEnabled) {
+            this.enable();
+        } else if (!shouldEnable && this.isEnabled) {
+            this.disable();
+        }
+    }
+    
+    enable() {
+        this.isEnabled = true;
+        this.updateItems();
+        this.createDots();
+        this.updateCarousel();
+    }
+    
+    disable() {
+        this.isEnabled = false;
+        this.container.style.transform = '';
+        this.dotsContainer.style.display = 'none';
+    }
+    
+    updateItems() {
+        if (!this.isEnabled) return;
+        
+        // Get all direct children (cards)
+        this.items = Array.from(this.container.children);
+        
+        // Ensure current index is valid
+        if (this.currentIndex >= this.items.length) {
+            this.currentIndex = 0;
+        }
+    }
+    
+    createDots() {
+        if (!this.isEnabled) return;
+        
+        this.dotsContainer.innerHTML = '';
+        this.dots = [];
+        
+        this.items.forEach((item, index) => {
+            const dot = document.createElement('button');
+            dot.classList.add('carousel-dot');
+            if (index === this.currentIndex) {
+                dot.classList.add('active');
+            }
+            dot.setAttribute('aria-label', `Ir para slide ${index + 1}`);
+            dot.addEventListener('click', () => this.goToSlide(index));
+            this.dotsContainer.appendChild(dot);
+            this.dots.push(dot);
+        });
+        
+        this.dotsContainer.style.display = this.items.length > 1 ? 'flex' : 'none';
+    }
+    
+    addTouchEvents() {
+        this.container.addEventListener('touchstart', (e) => {
+            this.touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        
+        this.container.addEventListener('touchend', (e) => {
+            if (!this.isEnabled) return;
+            
+            this.touchEndX = e.changedTouches[0].screenX;
+            this.handleSwipe();
+        }, { passive: true });
+        
+        // Mouse events for desktop testing
+        this.container.addEventListener('mousedown', (e) => {
+            this.touchStartX = e.screenX;
+        });
+        
+        this.container.addEventListener('mouseup', (e) => {
+            if (!this.isEnabled) return;
+            
+            this.touchEndX = e.screenX;
+            this.handleSwipe();
+        });
+    }
+    
+    handleSwipe() {
+        const swipeThreshold = 50;
+        const difference = this.touchStartX - this.touchEndX;
+        
+        if (Math.abs(difference) > swipeThreshold) {
+            if (difference > 0) {
+                // Swipe left - next slide
+                this.next();
+            } else {
+                // Swipe right - previous slide
+                this.prev();
+            }
+        }
+    }
+    
+    goToSlide(index) {
+        if (!this.isEnabled) return;
+        
+        this.currentIndex = index;
+        this.updateCarousel();
+    }
+    
+    next() {
+        if (!this.isEnabled) return;
+        
+        this.currentIndex = (this.currentIndex + 1) % this.items.length;
+        this.updateCarousel();
+    }
+    
+    prev() {
+        if (!this.isEnabled) return;
+        
+        this.currentIndex = (this.currentIndex - 1 + this.items.length) % this.items.length;
+        this.updateCarousel();
+    }
+    
+    updateCarousel() {
+        if (!this.isEnabled) return;
+        
+        // Calculate transform based on viewport width
+        const containerWidth = this.container.parentElement.offsetWidth;
+        const cardMargin = 24; // 12px on each side
+        const offset = this.currentIndex * containerWidth;
+        
+        this.container.style.transform = `translateX(-${offset}px)`;
+        
+        // Update dots
+        this.dots.forEach((dot, index) => {
+            if (index === this.currentIndex) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
+    }
+}
+
+// Initialize all carousels
+let carousels = {};
+
+function initCarousels() {
+    carousels.services = new MobileCarousel('services');
+    carousels.benefits = new MobileCarousel('benefits');
+    carousels.plans = new MobileCarousel('plans');
+    carousels.partner = new MobileCarousel('partner');
+}
+
 // Create particles with enhanced animation
 function createParticles() {
     const container = document.getElementById('particles');
@@ -86,7 +270,6 @@ function revealOnScroll() {
         const elementTop = element.getBoundingClientRect().top;
         const elementBottom = element.getBoundingClientRect().bottom;
         
-        // Trigger animation when element is 15% into viewport
         if (elementTop < windowHeight * 0.85 && elementBottom > 0) {
             element.classList.add('visible');
         }
@@ -104,22 +287,6 @@ function revealOnScroll() {
         
         if (rect.top < windowHeight && rect.bottom > 0) {
             img.style.transform = `translateY(${yPos}px)`;
-        }
-    });
-    
-    // Smooth parallax for service cards
-    const serviceCards = document.querySelectorAll('.service-card');
-    serviceCards.forEach((card, index) => {
-        const speed = 0.02 + (index * 0.01);
-        const rect = card.getBoundingClientRect();
-        
-        if (rect.top < windowHeight && rect.bottom > 0) {
-            const scrollPercentage = (windowHeight - rect.top) / windowHeight;
-            const translateY = scrollPercentage * 20 * speed;
-            
-            if (card.classList.contains('visible')) {
-                card.style.transform = `translateY(calc(-16px + ${translateY}px))`;
-            }
         }
     });
 }
@@ -145,7 +312,6 @@ function animateCounters() {
                 const elapsed = currentTime - startTime;
                 const progress = Math.min(elapsed / duration, 1);
                 
-                // Easing function for smooth animation
                 const easeOutQuart = 1 - Math.pow(1 - progress, 4);
                 
                 const current = Math.floor(target * easeOutQuart);
@@ -169,14 +335,12 @@ function toggleFaq(element) {
     const allItems = document.querySelectorAll('.faq-item');
     const isActive = faqItem.classList.contains('active');
     
-    // Close all items with animation
     allItems.forEach(item => {
         if (item !== faqItem) {
             item.classList.remove('active');
         }
     });
     
-    // Toggle current item
     if (!isActive) {
         faqItem.classList.add('active');
     } else {
@@ -191,6 +355,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Iniciar animações de deslize
     initSlideAnimations();
+    
+    // Initialize carousels
+    initCarousels();
+    
+    // Create particles
+    createParticles();
     
     const briefingForm = document.getElementById('briefingForm');
     
@@ -223,7 +393,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const whatsappUrl = `https://wa.me/5583991816152?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank');
             
-            // Success animation
             const submitBtn = this.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerHTML;
             submitBtn.innerHTML = '<i class="fas fa-check"></i> ENVIADO COM SUCESSO!';
@@ -236,7 +405,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 3000);
         });
         
-        // Enhanced form field animations
         const formControls = briefingForm.querySelectorAll('.form-control');
         formControls.forEach(control => {
             control.addEventListener('focus', function() {
@@ -295,6 +463,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     serviceCards.forEach(card => {
         card.addEventListener('mousemove', function(e) {
+            if (window.innerWidth <= 1024) return; // Disable on mobile
+            
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
@@ -322,25 +492,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Plan Cards Enhanced Animation
 document.addEventListener('DOMContentLoaded', function() {
-    const planCards = document.querySelectorAll('.plan-card');
-    
-    planCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            planCards.forEach(otherCard => {
-                if (otherCard !== card && !otherCard.classList.contains('featured')) {
-                    otherCard.style.opacity = '0.6';
-                    otherCard.style.transform = 'scale(0.95)';
-                }
-            });
-        });
+    if (window.innerWidth > 1024) {
+        const planCards = document.querySelectorAll('.plan-card');
         
-        card.addEventListener('mouseleave', function() {
-            planCards.forEach(otherCard => {
-                otherCard.style.opacity = '1';
-                otherCard.style.transform = '';
+        planCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                planCards.forEach(otherCard => {
+                    if (otherCard !== card && !otherCard.classList.contains('featured')) {
+                        otherCard.style.opacity = '0.6';
+                        otherCard.style.transform = 'scale(0.95)';
+                    }
+                });
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                planCards.forEach(otherCard => {
+                    otherCard.style.opacity = '1';
+                    otherCard.style.transform = '';
+                });
             });
         });
-    });
+    }
 });
 
 // Benefit Items Stagger Animation
@@ -412,7 +584,6 @@ function initIntersectionObserver() {
         });
     }, observerOptions);
     
-    // Observe all animated elements
     const animatedElements = document.querySelectorAll('.fade-in, .slide-left, .slide-right, .scale-in');
     animatedElements.forEach(el => observer.observe(el));
 }
@@ -433,14 +604,6 @@ function animateTextOnScroll() {
     });
 }
 
-// Main Event Listeners
-window.addEventListener('scroll', () => {
-    revealOnScroll();
-    animateCounters();
-    animateBenefitItems();
-    animateTextOnScroll();
-});
-
 // Throttle scroll events for better performance
 let ticking = false;
 window.addEventListener('scroll', () => {
@@ -448,6 +611,8 @@ window.addEventListener('scroll', () => {
         window.requestAnimationFrame(() => {
             revealOnScroll();
             animateCounters();
+            animateBenefitItems();
+            animateTextOnScroll();
             ticking = false;
         });
         ticking = true;
@@ -456,12 +621,10 @@ window.addEventListener('scroll', () => {
 
 // Initialize on DOM Load
 document.addEventListener('DOMContentLoaded', () => {
-    createParticles();
     revealOnScroll();
     initIntersectionObserver();
     lazyLoadImages();
     
-    // Add entrance animation to hero
     const heroContent = document.querySelector('.hero-content');
     if (heroContent) {
         setTimeout(() => {
@@ -494,13 +657,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // SVG Icon Animations Enhancement
 document.addEventListener('DOMContentLoaded', function() {
-    // Adicionar animações interativas extras para os ícones SVG
     const animatedIcons = document.querySelectorAll('.animated-icon');
     
     animatedIcons.forEach(icon => {
         const card = icon.closest('.service-card, .benefit-item');
         
-        if (card) {
+        if (card && window.innerWidth > 768) {
             card.addEventListener('mouseenter', function() {
                 icon.style.filter = 'drop-shadow(0 15px 30px rgba(0, 191, 165, 0.8))';
             });
@@ -510,239 +672,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     });
-    
-    // Animações específicas para o ícone de chatbot - SIMPLIFICADO
-    const chatbotIcon = document.querySelector('.chatbot-icon');
-    if (chatbotIcon) {
-        const card = chatbotIcon.closest('.service-card');
-        if (card) {
-            card.addEventListener('mouseenter', function() {
-                const dots = chatbotIcon.querySelectorAll('.typing-dot-1, .typing-dot-2, .typing-dot-3');
-                const signal = chatbotIcon.querySelector('.bot-signal');
-                
-                dots.forEach((dot, index) => {
-                    setTimeout(() => {
-                        dot.style.animation = 'typingBounce 0.5s ease-in-out 2';
-                    }, index * 100);
-                });
-                
-                if (signal) {
-                    signal.style.animation = 'signalPulse 0.5s ease-in-out 3';
-                }
-            });
-        }
-    }
-    
-    // Animações específicas para o ícone de personalização
-    const customIcon = document.querySelector('.custom-icon');
-    if (customIcon) {
-        const card = customIcon.closest('.service-card');
-        if (card) {
-            card.addEventListener('mouseenter', function() {
-                const colors = customIcon.querySelectorAll('[class^="color-circle"]');
-                colors.forEach((color, index) => {
-                    setTimeout(() => {
-                        color.style.animation = 'colorPulseCustom 0.5s ease-in-out';
-                    }, index * 100);
-                });
-            });
-        }
-    }
-    
-    // Animações específicas para o ícone de manutenção - SIMPLIFICADO
-    const maintenanceIcon = document.querySelector('.maintenance-icon');
-    if (maintenanceIcon) {
-        const card = maintenanceIcon.closest('.service-card');
-        if (card) {
-            card.addEventListener('mouseenter', function() {
-                const gear = maintenanceIcon.querySelector('.setting-gear');
-                const wrench = maintenanceIcon.querySelector('.wrench-tool');
-                const bolt = maintenanceIcon.querySelector('.bolt-head');
-                
-                if (gear) {
-                    gear.style.animation = 'gearRotate 1s linear infinite';
-                }
-                if (wrench) {
-                    wrench.style.animation = 'wrenchSwing 0.5s ease-in-out 3';
-                }
-                if (bolt) {
-                    bolt.style.animation = 'boltTighten 0.5s ease-in-out 2';
-                }
-            });
-        }
-    }
-    
-    // Animações específicas para o ícone de design (pintura)
-    const paintDesignIcon = document.querySelector('.paint-design-icon');
-    if (paintDesignIcon) {
-        const card = paintDesignIcon.closest('.benefit-item');
-        if (card) {
-            card.addEventListener('mouseenter', function() {
-                const strokes = paintDesignIcon.querySelectorAll('[class^="paint-stroke"]');
-                const stars = paintDesignIcon.querySelectorAll('[class^="creative-star"]');
-                
-                strokes.forEach((stroke, index) => {
-                    setTimeout(() => {
-                        stroke.style.animation = 'strokeDraw 1s ease-in-out';
-                    }, index * 200);
-                });
-                
-                stars.forEach(star => {
-                    star.style.animation = 'starSparkle 0.5s ease-in-out 2';
-                });
-            });
-        }
-    }
-    
-    // Animações específicas para o ícone de vendas
-    const salesIcon = document.querySelector('.sales-icon');
-    if (salesIcon) {
-        const chartLine = salesIcon.querySelector('.chart-line');
-        const dots = salesIcon.querySelectorAll('[class^="chart-dot"]');
-        
-        const card = salesIcon.closest('.benefit-item');
-        if (card) {
-            card.addEventListener('mouseenter', function() {
-                if (chartLine) {
-                    chartLine.style.animation = 'chartGrow 1s ease-in-out forwards';
-                }
-                dots.forEach((dot, index) => {
-                    setTimeout(() => {
-                        dot.style.animation = 'dotPulse 0.5s ease-in-out';
-                    }, index * 100);
-                });
-            });
-        }
-    }
-    
-    // Animações específicas para o ícone de handshake
-    const handshakeIcon = document.querySelector('.handshake-icon');
-    if (handshakeIcon) {
-        const card = handshakeIcon.closest('.benefit-item');
-        if (card) {
-            card.addEventListener('mouseenter', function() {
-                const hands = handshakeIcon.querySelectorAll('.hand-left, .hand-right');
-                hands.forEach(hand => {
-                    hand.style.animation = 'handShake 0.5s ease-in-out 3';
-                });
-            });
-        }
-    }
-    
-    // Animações específicas para o ícone de dinheiro
-    const moneyIcon = document.querySelector('.money-icon');
-    if (moneyIcon) {
-        const card = moneyIcon.closest('.benefit-item');
-        if (card) {
-            card.addEventListener('mouseenter', function() {
-                const coins = moneyIcon.querySelectorAll('.coin-1, .coin-2');
-                coins.forEach(coin => {
-                    coin.style.animation = 'coinSpin 1s ease-in-out';
-                });
-            });
-        }
-    }
-    
-    // Animações específicas para o ícone de entrega
-    const deliveryIcon = document.querySelector('.delivery-icon');
-    if (deliveryIcon) {
-        const card = deliveryIcon.closest('.benefit-item');
-        if (card) {
-            card.addEventListener('mouseenter', function() {
-                const check = deliveryIcon.querySelector('.check-delivery');
-                if (check) {
-                    check.style.animation = 'checkDraw 1s ease-in-out';
-                }
-            });
-        }
-    }
-    
-    // Animações específicas para o ícone de escudo
-    const shieldIcon = document.querySelector('.shield-icon');
-    if (shieldIcon) {
-        const card = shieldIcon.closest('.benefit-item');
-        if (card) {
-            card.addEventListener('mouseenter', function() {
-                const glows = shieldIcon.querySelectorAll('.shield-glow-1, .shield-glow-2');
-                glows.forEach(glow => {
-                    glow.style.animation = 'glowExpand 1s ease-in-out';
-                });
-            });
-        }
-    }
-});
-
-// Check Icon Animations Enhancement
-document.addEventListener('DOMContentLoaded', function() {
-    const checkIcons = document.querySelectorAll('.check-icon, .check-icon-small');
-    
-    checkIcons.forEach(icon => {
-        const item = icon.closest('.plan-feature, .showcase-features li');
-        
-        if (item) {
-            item.addEventListener('mouseenter', function() {
-                const circle = icon.querySelector('.check-circle');
-                const mark = icon.querySelector('.check-mark');
-                
-                if (circle && mark) {
-                    circle.style.animation = 'checkCirclePulse 0.5s ease-in-out';
-                    mark.style.animation = 'checkMarkDraw 0.5s ease-in-out';
-                    
-                    setTimeout(() => {
-                        circle.style.animation = '';
-                        mark.style.animation = '';
-                    }, 500);
-                }
-            });
-        }
-    });
-});
-
-// FAQ Icon Animation Enhancement
-document.addEventListener('DOMContentLoaded', function() {
-    const faqQuestions = document.querySelectorAll('.faq-question');
-    
-    faqQuestions.forEach(question => {
-        question.addEventListener('mouseenter', function() {
-            const icon = this.querySelector('.faq-icon');
-            if (icon) {
-                icon.style.transform = 'scale(1.2)';
-                icon.style.transition = 'transform 0.3s ease';
-            }
-        });
-        
-        question.addEventListener('mouseleave', function() {
-            const icon = this.querySelector('.faq-icon');
-            const faqItem = this.closest('.faq-item');
-            if (icon && !faqItem.classList.contains('active')) {
-                icon.style.transform = 'scale(1)';
-            }
-        });
-    });
-});
-
-// Add smooth transitions to all interactive elements
-document.addEventListener('DOMContentLoaded', function() {
-    const interactiveElements = document.querySelectorAll('button, a, .btn, .service-card, .plan-card, .benefit-item');
-    
-    interactiveElements.forEach(element => {
-        element.style.transition = 'all 0.3s ease';
-    });
-});
-
-// Performance optimization: Pause animations when tab is not visible
-document.addEventListener('visibilitychange', function() {
-    if (document.hidden) {
-        // Pause heavy animations
-        document.querySelectorAll('.animated-icon').forEach(icon => {
-            icon.style.animationPlayState = 'paused';
-        });
-    } else {
-        // Resume animations
-        document.querySelectorAll('.animated-icon').forEach(icon => {
-            icon.style.animationPlayState = 'running';
-        });
-    }
 });
 
 // Add error handling for form submission
@@ -799,7 +728,19 @@ if ('ontouchstart' in window) {
     });
 }
 
+// Performance optimization: Pause animations when tab is not visible
+document.addEventListener('visibilitychange', function() {
+    if (document.hidden) {
+        document.querySelectorAll('.animated-icon').forEach(icon => {
+            icon.style.animationPlayState = 'paused';
+        });
+    } else {
+        document.querySelectorAll('.animated-icon').forEach(icon => {
+            icon.style.animationPlayState = 'running';
+        });
+    }
+});
+
 // Console message for developers
 console.log('%c🚀 Dezain Code - Site desenvolvido com excelência', 'color: #00bfa5; font-size: 16px; font-weight: bold;');
-
 console.log('%cTodos os direitos reservados © 2025', 'color: #667eea; font-size: 12px;');
