@@ -2234,7 +2234,7 @@ footer {
 }
 
 /* ========================================
-   CARROSSEL MOBILE - ADICIONAR NO FINAL DO STYLE.CSS
+   CARROSSEL MOBILE - VERSÃO COMPLETA
 ======================================== */
 
 @media (max-width: 768px) {
@@ -2272,10 +2272,13 @@ footer {
         box-sizing: border-box !important;
     }
     
-    /* SEM BORDAS VISÍVEIS - REMOVER GRADIENTES */
+    /* REMOVER BORDAS LATERAIS - CORREÇÃO 1 */
     .carousel-container::before,
     .carousel-container::after {
         display: none !important;
+        content: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
     }
     
     .carousel-track {
@@ -2348,110 +2351,120 @@ footer {
     }
     
     /* ============================================
-       SEÇÃO PARCERIA - MESMA LÓGICA DAS OUTRAS
+       SEÇÃO PARCERIA - CORREÇÃO 2 - CARD "COMO FUNCIONA"
     ============================================ */
     
-    /* Usar exatamente o mesmo padding e largura das outras seções */
-    .partner .carousel-slide {
-        padding: 0 20px !important;
-    }
-    
-    .partner .carousel-slide > * {
-        max-width: 340px !important;
-    }
-    
-    /* Ajustar apenas o conteúdo interno do card */
-    .partner .carousel-slide .benefit-item {
-        padding: 10px !important;
-        gap: 10px !important;
-        max-height: 100px !important;
-        min-height: 100px !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: flex-start !important;
-        border-radius: 14px !important;
-    }
-    
-    .partner .carousel-slide .benefit-icon {
-        width: 35px !important;
-        height: 35px !important;
-        min-width: 35px !important;
-        max-width: 35px !important;
-        flex-shrink: 0 !important;
-        margin-right: 5px !important;
-    }
-    
-    .partner .carousel-slide .benefit-icon svg {
+    /* Garantir que o partner-info siga as mesmas regras */
+    .partner-benefits .carousel-slide .partner-info {
         width: 100% !important;
-        height: 100% !important;
+        max-width: 340px !important;
+        margin: 0 auto !important;
+        padding: 24px !important;
     }
     
-    .partner .carousel-slide .benefit-item > div {
-        flex: 1 !important;
-        display: flex !important;
-        flex-direction: column !important;
-        justify-content: center !important;
-        min-width: 0 !important;
-        overflow: hidden !important;
-    }
-    
-    .partner .carousel-slide .benefit-item h4 {
-        font-size: 13px !important;
-        margin-bottom: 3px !important;
+    /* Ajustar tamanhos de texto */
+    .partner-benefits .carousel-slide .partner-info h3 {
+        font-size: 24px !important;
         line-height: 1.2 !important;
-        font-weight: 700 !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
+        margin-bottom: 16px !important;
     }
     
-    .partner .carousel-slide .benefit-item p {
-        font-size: 10px !important;
+    .partner-benefits .carousel-slide .partner-info > p {
+        font-size: 14px !important;
+        line-height: 1.6 !important;
+        margin-bottom: 20px !important;
+    }
+    
+    /* Ajustar os benefit-items dentro do partner-info */
+    .partner-benefits .carousel-slide .partner-info .benefit-item {
+        padding: 16px !important;
+        gap: 12px !important;
+        height: auto !important;
+    }
+    
+    .partner-benefits .carousel-slide .partner-info .benefit-icon {
+        width: 40px !important;
+        height: 40px !important;
+        min-width: 40px !important;
+        flex-shrink: 0 !important;
+    }
+    
+    .partner-benefits .carousel-slide .partner-info .benefit-item h4 {
+        font-size: 14px !important;
+        margin-bottom: 4px !important;
+    }
+    
+    .partner-benefits .carousel-slide .partner-info .benefit-item p {
+        font-size: 12px !important;
         line-height: 1.4 !important;
-        margin: 0 !important;
-        color: var(--text-secondary) !important;
-        overflow: hidden !important;
-        display: -webkit-box !important;
-        -webkit-line-clamp: 3 !important;
-        -webkit-box-orient: vertical !important;
     }
     
     /* ============================================
-       PLANOS - ALTURA CONTROLADA
+       PLANOS - CORREÇÃO 3 - REDUZIR HEADER
     ============================================ */
     
-    .plans .carousel-slide .plan-card {
+    .plans-grid .carousel-slide .plan-header {
+        padding: 24px 24px !important;
+    }
+    
+    .plans-grid .carousel-slide .plan-name {
+        font-size: 22px !important;
+        margin-bottom: 8px !important;
+    }
+    
+    .plans-grid .carousel-slide .plan-price {
+        font-size: 38px !important;
+        margin: 12px 0 !important;
+    }
+    
+    .plans-grid .carousel-slide .plan-header > p {
+        font-size: 14px !important;
+    }
+    
+    .plans-grid .carousel-slide .plan-features {
+        max-height: 300px !important;
+        padding: 24px !important;
+    }
+    
+    .plans-grid .carousel-slide .plan-feature {
+        margin-bottom: 12px !important;
+    }
+    
+    .plans-grid .carousel-slide .plan-footer {
+        padding: 0 24px 24px !important;
+    }
+    
+    .plans-grid .carousel-slide .plan-card {
         max-height: 600px !important;
         overflow: visible !important;
         display: flex !important;
         flex-direction: column !important;
     }
     
-    .plans .carousel-slide .plan-card .plan-header {
+    .plans-grid .carousel-slide .plan-card .plan-header {
         flex-shrink: 0 !important;
     }
     
-    .plans .carousel-slide .plan-card .plan-features {
+    .plans-grid .carousel-slide .plan-card .plan-features {
         flex: 1 !important;
         overflow-y: auto !important;
-        max-height: 240px !important;
-        padding-right: 8px !important;
     }
     
-    .plans .carousel-slide .plan-card .plan-features::-webkit-scrollbar {
+    .plans-grid .carousel-slide .plan-card .plan-features::-webkit-scrollbar {
         width: 4px !important;
     }
     
-    .plans .carousel-slide .plan-card .plan-features::-webkit-scrollbar-track {
+    .plans-grid .carousel-slide .plan-card .plan-features::-webkit-scrollbar-track {
         background: rgba(255, 255, 255, 0.05) !important;
         border-radius: 2px !important;
     }
     
-    .plans .carousel-slide .plan-card .plan-features::-webkit-scrollbar-thumb {
+    .plans-grid .carousel-slide .plan-card .plan-features::-webkit-scrollbar-thumb {
         background: var(--accent-primary) !important;
         border-radius: 2px !important;
     }
     
-    .plans .carousel-slide .plan-card .plan-footer {
+    .plans-grid .carousel-slide .plan-card .plan-footer {
         flex-shrink: 0 !important;
         margin-top: auto !important;
     }
@@ -2654,11 +2667,11 @@ footer {
 }
 
 /* ============================================
-   TELAS MUITO PEQUENAS (< 380px)
+   TELAS MUITO PEQUENAS (< 400px)
 ============================================ */
 
-@media (max-width: 380px) {
-    /* MANTER PADDING IGUAL EM TODAS AS SEÇÕES */
+@media (max-width: 400px) {
+    
     .carousel-slide {
         padding: 0 15px !important;
     }
@@ -2667,36 +2680,54 @@ footer {
         max-width: 300px !important;
     }
     
-    /* PARCERIA - MESMOS AJUSTES, SÓ ÍCONES MENORES */
-    .partner .carousel-slide {
-        padding: 0 15px !important;
-    }
-    
-    .partner .carousel-slide > * {
+    /* Partner info em telas pequenas */
+    .partner-benefits .carousel-slide .partner-info {
         max-width: 300px !important;
+        padding: 20px !important;
     }
     
-    .partner .carousel-slide .benefit-item {
-        padding: 8px !important;
-        max-height: 90px !important;
-        min-height: 90px !important;
-        gap: 8px !important;
+    .partner-benefits .carousel-slide .partner-info h3 {
+        font-size: 22px !important;
     }
     
-    .partner .carousel-slide .benefit-icon {
-        width: 30px !important;
-        height: 30px !important;
-        min-width: 30px !important;
-        max-width: 30px !important;
+    .partner-benefits .carousel-slide .partner-info > p {
+        font-size: 13px !important;
     }
     
-    .partner .carousel-slide .benefit-item h4 {
-        font-size: 12px !important;
+    .partner-benefits .carousel-slide .partner-info .benefit-item {
+        padding: 14px !important;
     }
     
-    .partner .carousel-slide .benefit-item p {
-        font-size: 9px !important;
-        -webkit-line-clamp: 2 !important;
+    .partner-benefits .carousel-slide .partner-info .benefit-icon {
+        width: 35px !important;
+        height: 35px !important;
+        min-width: 35px !important;
+    }
+    
+    .partner-benefits .carousel-slide .partner-info .benefit-item h4 {
+        font-size: 13px !important;
+    }
+    
+    .partner-benefits .carousel-slide .partner-info .benefit-item p {
+        font-size: 11px !important;
+    }
+    
+    /* Planos em telas pequenas */
+    .plans-grid .carousel-slide .plan-header {
+        padding: 20px 20px !important;
+    }
+    
+    .plans-grid .carousel-slide .plan-name {
+        font-size: 20px !important;
+    }
+    
+    .plans-grid .carousel-slide .plan-price {
+        font-size: 34px !important;
+    }
+    
+    .plans-grid .carousel-slide .plan-features {
+        max-height: 280px !important;
+        padding: 20px !important;
     }
     
     .carousel-btn {
@@ -2711,25 +2742,6 @@ footer {
     
     .carousel-controls {
         padding: 0 6px !important;
-    }
-}
-
-/* ============================================
-   TELAS MÉDIAS (380px - 480px)
-============================================ */
-
-@media (min-width: 381px) and (max-width: 480px) {
-    .partner .carousel-slide .benefit-item {
-        padding: 9px !important;
-        max-height: 95px !important;
-        min-height: 95px !important;
-    }
-    
-    .partner .carousel-slide .benefit-icon {
-        width: 32px !important;
-        height: 32px !important;
-        min-width: 32px !important;
-        max-width: 32px !important;
     }
 }
 
