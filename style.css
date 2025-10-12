@@ -1201,11 +1201,12 @@ select.form-control {
     margin-bottom: 32px;
 }
 
-/* AJUSTES PARA OS CARDS DA SEÇÃO PARCERIA - DESKTOP */
+/* FIX 2: AJUSTES PARA OS CARDS DA SEÇÃO PARCERIA - DESKTOP */
 .partner-benefits .benefit-item {
     display: flex;
     gap: 24px;
     align-items: center;
+    padding: 24px;
 }
 
 .partner-benefits .benefit-icon {
@@ -1225,17 +1226,24 @@ select.form-control {
 .partner-benefits .benefit-item > div {
     flex: 1;
     min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
 }
 
 .partner-benefits .benefit-item h4 {
     font-size: 20px;
-    margin-bottom: 8px;
+    margin-bottom: 0;
     line-height: 1.3;
+    word-wrap: break-word;
 }
 
 .partner-benefits .benefit-item p {
     font-size: 15px;
     line-height: 1.7;
+    margin: 0;
+    word-wrap: break-word;
 }
 
 .partner-whatsapp-cta {
@@ -1666,24 +1674,24 @@ footer {
         scroll-snap-align: center !important;
     }
 
-    /* AJUSTES CARDS PARCERIA - ALTURA MENOR, PROPORÇÃO 30/70 */
+    /* FIX 2: AJUSTES CARDS PARCERIA MOBILE - TEXTO JUNTO DO ÍCONE */
     #partnerCarousel .benefit-item {
-        padding: 16px 14px;
-        min-height: 100px;
-        max-height: 110px;
+        padding: 16px;
+        min-height: 140px;
+        max-height: 160px;
         display: flex;
         flex-direction: row;
-        gap: 14px;
-        align-items: center;
+        gap: 12px;
+        align-items: flex-start;
         box-sizing: border-box;
         width: 100%;
         margin: 0 auto;
     }
 
-    /* ÍCONE - 30% DO ESPAÇO, TAMANHO AUMENTADO */
+    /* ÍCONE MOBILE - TAMANHO COMPACTO */
     #partnerCarousel .benefit-icon {
-        width: 30%;
-        height: 70px;
+        width: 50px;
+        height: 50px;
         flex-shrink: 0;
         margin: 0;
         display: flex;
@@ -1697,29 +1705,32 @@ footer {
     #partnerCarousel .benefit-icon svg {
         width: 100%;
         height: 100%;
-        max-width: 70px;
-        max-height: 70px;
+        max-width: 50px;
+        max-height: 50px;
         filter: drop-shadow(0 4px 10px rgba(0, 191, 165, 0.4));
     }
 
-    /* ÁREA DE TEXTO - 70% DO ESPAÇO */
+    /* ÁREA DE TEXTO MOBILE - COMPACTA E BEM ORGANIZADA */
     #partnerCarousel .benefit-item > div {
         flex: 1;
-        width: 70%;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
+        align-items: flex-start;
         min-width: 0;
-        overflow: hidden;
-        gap: 4px;
+        gap: 6px;
+        text-align: left;
+        padding-top: 2px;
     }
 
     #partnerCarousel .benefit-item h4 {
         font-size: 15px;
-        margin-bottom: 4px;
-        line-height: 1.2;
+        margin-bottom: 0;
+        line-height: 1.3;
         font-weight: 700;
         color: var(--text-primary);
+        word-wrap: break-word;
+        width: 100%;
     }
 
     #partnerCarousel .benefit-item p {
@@ -1727,6 +1738,9 @@ footer {
         line-height: 1.4;
         margin: 0;
         color: var(--text-secondary);
+        word-wrap: break-word;
+        width: 100%;
+        overflow-wrap: break-word;
     }
 
     .partner-whatsapp-cta {
@@ -1870,37 +1884,50 @@ footer {
         font-size: 13px;
     }
 
-    /* PARTNER CAROUSEL - TELAS PEQUENAS */
+    /* FIX 2: PARTNER CAROUSEL - TELAS PEQUENAS COM TEXTO COMPACTO */
     .partner .carousel-container {
         width: 92%;
         max-width: 330px;
     }
 
     #partnerCarousel .benefit-item {
-        padding: 14px 12px;
-        min-height: 95px;
-        max-height: 105px;
-        gap: 12px;
+        padding: 14px;
+        min-height: 130px;
+        max-height: 150px;
+        gap: 10px;
+        align-items: flex-start;
     }
 
     #partnerCarousel .benefit-icon {
-        width: 30%;
-        height: 65px;
+        width: 45px;
+        height: 45px;
+        flex-shrink: 0;
     }
 
     #partnerCarousel .benefit-icon svg {
-        max-width: 65px;
-        max-height: 65px;
+        max-width: 45px;
+        max-height: 45px;
+    }
+
+    #partnerCarousel .benefit-item > div {
+        flex: 1;
+        align-items: flex-start;
+        gap: 5px;
+        padding-top: 1px;
     }
 
     #partnerCarousel .benefit-item h4 {
         font-size: 14px;
-        margin-bottom: 3px;
+        margin-bottom: 0;
+        line-height: 1.3;
+        width: 100%;
     }
 
     #partnerCarousel .benefit-item p {
         font-size: 11px;
         line-height: 1.35;
+        width: 100%;
+        overflow-wrap: break-word;
     }
 
     #partnerDots {
