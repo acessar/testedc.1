@@ -1,3 +1,27 @@
+// FIX 1: Forçar página a sempre carregar no topo (previne scroll automático)
+if (history.scrollRestoration) {
+    history.scrollRestoration = 'manual';
+}
+
+// Correção específica para mobile - força scroll ao topo
+function forceScrollToTop() {
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+}
+
+// Executar imediatamente
+forceScrollToTop();
+
+// Executar quando a página estiver carregada
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', forceScrollToTop);
+} else {
+    forceScrollToTop();
+}
+
+window.addEventListener('load', forceScrollToTop);
+
 // EFEITO DE DIGITAÇÃO NO TÍTULO PRINCIPAL COM DUAS CORES - AJUSTADO
 function typeWriter() {
     const blueElement = document.querySelector('#typing-title .title-blue');
@@ -56,21 +80,21 @@ function createParticles() {
         particle.classList.add('particle');
         
         const size = Math.random() * 8 + 3;
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
+        particle.style.width = ${size}px;
+        particle.style.height = ${size}px;
         
         const posX = Math.random() * 100;
         const posY = Math.random() * 100;
-        particle.style.left = `${posX}%`;
-        particle.style.top = `${posY}%`;
+        particle.style.left = ${posX}%;
+        particle.style.top = ${posY}%;
         
         const blueHue = Math.floor(Math.random() * 40) + 200;
         const brightness = Math.floor(Math.random() * 40) + 60;
-        particle.style.backgroundColor = `hsla(${blueHue}, 100%, ${brightness}%, 0.7)`;
-        particle.style.boxShadow = `0 0 ${size * 3}px hsla(${blueHue}, 100%, ${brightness}%, 0.9)`;
+        particle.style.backgroundColor = hsla(${blueHue}, 100%, ${brightness}%, 0.7);
+        particle.style.boxShadow = 0 0 ${size * 3}px hsla(${blueHue}, 100%, ${brightness}%, 0.9);
         
-        particle.style.animationDelay = `${Math.random() * 10}s`;
-        particle.style.animationDuration = `${15 + Math.random() * 10}s`;
+        particle.style.animationDelay = ${Math.random() * 10}s;
+        particle.style.animationDuration = ${15 + Math.random() * 10}s;
         particle.style.opacity = Math.random() * 0.8 + 0.3;
         
         container.appendChild(particle);
@@ -101,7 +125,7 @@ function revealOnScroll() {
         const yPos = -(diff * speed);
         
         if (rect.top < windowHeight && rect.bottom > 0) {
-            img.style.transform = `translateY(${yPos}px)`;
+            img.style.transform = translateY(${yPos}px);
         }
     });
     
@@ -115,7 +139,7 @@ function revealOnScroll() {
             const translateY = scrollPercentage * 20 * speed;
             
             if (card.classList.contains('visible')) {
-                card.style.transform = `translateY(calc(-16px + ${translateY}px))`;
+                card.style.transform = translateY(calc(-16px + ${translateY}px));
             }
         }
     });
@@ -193,18 +217,18 @@ function initCarousel(carouselId, dotsId) {
         // Clear existing dots
         dotsContainer.innerHTML = '';
         
-        // AJUSTE ESPECÍFICO PARA PARCERIA - LARGURA MENOR E CENTRALIZADO
+        // AJUSTE ESPECÍFICO PARA PARCERIA - APENAS 3 CARDS
         if (carouselId === 'partnerCarousel') {
-            const cardWidth = window.innerWidth <= 480 ? '68%' : '70%';
+            const cardWidth = window.innerWidth <= 480 ? '85%' : '88%';
             items.forEach(item => {
-                item.style.flex = `0 0 ${cardWidth}`;
+                item.style.flex = 0 0 ${cardWidth};
                 item.style.maxWidth = cardWidth;
                 item.style.scrollSnapAlign = 'center';
             });
-            const centerPadding = `calc((100% - ${cardWidth}) / 2)`;
-            carousel.style.padding = `20px ${centerPadding}`;
-            carousel.style.gap = '10px';
-            carousel.style.scrollPadding = `0 ${centerPadding}`;
+            const centerPadding = calc((100% - ${cardWidth}) / 2);
+            carousel.style.padding = 20px ${centerPadding};
+            carousel.style.gap = '12px';
+            carousel.style.scrollPadding = 0 ${centerPadding};
             
             // Centraliza o primeiro card ao carregar
             setTimeout(() => {
@@ -222,15 +246,45 @@ function initCarousel(carouselId, dotsId) {
             dotsContainer.appendChild(dot);
         }
         
-        // Update active dot on scroll
+        // FIX 3: Update active dot on scroll with better synchronization (3 cards only)
         carousel.addEventListener('scroll', () => {
             const scrollLeft = carousel.scrollLeft;
-            const itemWidth = items[0].offsetWidth + (carouselId === 'partnerCarousel' ? 10 : 16);
-            const activeIndex = Math.round(scrollLeft / itemWidth);
+            const carouselWidth = carousel.offsetWidth;
             
+            // Find which item is most centered in the viewport
+            let activeIndex = 0;
+            let minDistance = Infinity;
+            
+            items.forEach((item, index) => {
+                const itemLeft = item.offsetLeft - carousel.scrollLeft;
+                const itemCenter = itemLeft + (item.offsetWidth / 2);
+                const viewportCenter = carouselWidth / 2;
+                const distance = Math.abs(itemCenter - viewportCenter);
+                
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    activeIndex = index;
+                }
+            });
+            
+            // Ensure we only have 3 dots for partner carousel (now with 3 cards)
             const dots = dotsContainer.querySelectorAll('.carousel-dot');
+            if (carouselId === 'partnerCarousel' && dots.length !== 3) {
+                // Clear and recreate dots to ensure exactly 3
+                dotsContainer.innerHTML = '';
+                for (let i = 0; i < 3; i++) {
+                    const dot = document.createElement('div');
+                    dot.classList.add('carousel-dot');
+                    if (i === 0) dot.classList.add('active');
+                    dotsContainer.appendChild(dot);
+                }
+            }
+            
+            // Update active dot
             dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === activeIndex);
+                if (index < itemCount) {
+                    dot.classList.toggle('active', index === activeIndex);
+                }
             });
         });
         
@@ -292,7 +346,7 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             
             const formData = new FormData(this);
-            let message = '*🔵 NOVO BRIEFING DEZAIN CODE*\n\n';
+            let message = '🔵 NOVO BRIEFING DEZAIN CODE\n\n';
             
             const labels = {
                 name: '👤 Nome',
@@ -307,13 +361,13 @@ document.addEventListener('DOMContentLoaded', function() {
             
             formData.forEach((value, key) => {
                 if (value && labels[key]) {
-                    message += `*${labels[key]}:* ${value}\n`;
+                    message += *${labels[key]}:* ${value}\n;
                 }
             });
             
             message += '\n_Enviado através do site Dezain Code_';
             
-            const whatsappUrl = `https://wa.me/5583991816152?text=${encodeURIComponent(message)}`;
+            const whatsappUrl = https://wa.me/5583991816152?text=${encodeURIComponent(message)};
             window.open(whatsappUrl, '_blank');
             
             const submitBtn = this.querySelector('button[type="submit"]');
@@ -546,6 +600,20 @@ window.addEventListener('scroll', () => {
 
 // Initialize on DOM Load
 document.addEventListener('DOMContentLoaded', () => {
+    // FIX 1: Garantir que a página sempre carregue no topo (Home) - especialmente mobile
+    if (window.location.hash) {
+        // Remove o hash da URL para evitar scroll automático
+        history.replaceState(null, null, window.location.pathname + window.location.search);
+        setTimeout(() => {
+            forceScrollToTop();
+        }, 1);
+    }
+    
+    // Forçar scroll ao topo após um pequeno delay para mobile
+    setTimeout(() => {
+        forceScrollToTop();
+    }, 100);
+    
     createParticles();
     revealOnScroll();
     initIntersectionObserver();
@@ -562,6 +630,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Page Load Animation
 window.addEventListener('load', () => {
+    // FIX 1: Garantir scroll no topo após carregamento completo
+    forceScrollToTop();
     document.body.style.opacity = '1';
     revealOnScroll();
     animateCounters();
