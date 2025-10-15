@@ -1,27 +1,3 @@
-// FIX 1: Forçar página a sempre carregar no topo (previne scroll automático)
-if (history.scrollRestoration) {
-    history.scrollRestoration = 'manual';
-}
-
-// Correção específica para mobile - força scroll ao topo
-function forceScrollToTop() {
-    window.scrollTo(0, 0);
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
-}
-
-// Executar imediatamente
-forceScrollToTop();
-
-// Executar quando a página estiver carregada
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', forceScrollToTop);
-} else {
-    forceScrollToTop();
-}
-
-window.addEventListener('load', forceScrollToTop);
-
 // EFEITO DE DIGITAÇÃO NO TÍTULO PRINCIPAL COM DUAS CORES - AJUSTADO
 function typeWriter() {
     const blueElement = document.querySelector('#typing-title .title-blue');
@@ -217,9 +193,9 @@ function initCarousel(carouselId, dotsId) {
         // Clear existing dots
         dotsContainer.innerHTML = '';
         
-        // AJUSTE ESPECÍFICO PARA PARCERIA - APENAS 3 CARDS
+        // AJUSTE ESPECÍFICO PARA PARCERIA - LARGURA MENOR E CENTRALIZADO
         if (carouselId === 'partnerCarousel') {
-            const cardWidth = window.innerWidth <= 480 ? '85%' : '88%';
+            const cardWidth = window.innerWidth <= 480 ? '68%' : '70%';
             items.forEach(item => {
                 item.style.flex = `0 0 ${cardWidth}`;
                 item.style.maxWidth = cardWidth;
@@ -227,7 +203,7 @@ function initCarousel(carouselId, dotsId) {
             });
             const centerPadding = `calc((100% - ${cardWidth}) / 2)`;
             carousel.style.padding = `20px ${centerPadding}`;
-            carousel.style.gap = '12px';
+            carousel.style.gap = '10px';
             carousel.style.scrollPadding = `0 ${centerPadding}`;
             
             // Centraliza o primeiro card ao carregar
@@ -246,45 +222,15 @@ function initCarousel(carouselId, dotsId) {
             dotsContainer.appendChild(dot);
         }
         
-        // FIX 3: Update active dot on scroll with better synchronization (3 cards only)
+        // Update active dot on scroll
         carousel.addEventListener('scroll', () => {
             const scrollLeft = carousel.scrollLeft;
-            const carouselWidth = carousel.offsetWidth;
+            const itemWidth = items[0].offsetWidth + (carouselId === 'partnerCarousel' ? 10 : 16);
+            const activeIndex = Math.round(scrollLeft / itemWidth);
             
-            // Find which item is most centered in the viewport
-            let activeIndex = 0;
-            let minDistance = Infinity;
-            
-            items.forEach((item, index) => {
-                const itemLeft = item.offsetLeft - carousel.scrollLeft;
-                const itemCenter = itemLeft + (item.offsetWidth / 2);
-                const viewportCenter = carouselWidth / 2;
-                const distance = Math.abs(itemCenter - viewportCenter);
-                
-                if (distance < minDistance) {
-                    minDistance = distance;
-                    activeIndex = index;
-                }
-            });
-            
-            // Ensure we only have 3 dots for partner carousel (now with 3 cards)
             const dots = dotsContainer.querySelectorAll('.carousel-dot');
-            if (carouselId === 'partnerCarousel' && dots.length !== 3) {
-                // Clear and recreate dots to ensure exactly 3
-                dotsContainer.innerHTML = '';
-                for (let i = 0; i < 3; i++) {
-                    const dot = document.createElement('div');
-                    dot.classList.add('carousel-dot');
-                    if (i === 0) dot.classList.add('active');
-                    dotsContainer.appendChild(dot);
-                }
-            }
-            
-            // Update active dot
             dots.forEach((dot, index) => {
-                if (index < itemCount) {
-                    dot.classList.toggle('active', index === activeIndex);
-                }
+                dot.classList.toggle('active', index === activeIndex);
             });
         });
         
@@ -600,20 +546,6 @@ window.addEventListener('scroll', () => {
 
 // Initialize on DOM Load
 document.addEventListener('DOMContentLoaded', () => {
-    // FIX 1: Garantir que a página sempre carregue no topo (Home) - especialmente mobile
-    if (window.location.hash) {
-        // Remove o hash da URL para evitar scroll automático
-        history.replaceState(null, null, window.location.pathname + window.location.search);
-        setTimeout(() => {
-            forceScrollToTop();
-        }, 1);
-    }
-    
-    // Forçar scroll ao topo após um pequeno delay para mobile
-    setTimeout(() => {
-        forceScrollToTop();
-    }, 100);
-    
     createParticles();
     revealOnScroll();
     initIntersectionObserver();
@@ -630,8 +562,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Page Load Animation
 window.addEventListener('load', () => {
-    // FIX 1: Garantir scroll no topo após carregamento completo
-    forceScrollToTop();
     document.body.style.opacity = '1';
     revealOnScroll();
     animateCounters();
