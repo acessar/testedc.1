@@ -550,6 +550,7 @@ document.addEventListener('DOMContentLoaded', () => {
     revealOnScroll();
     initIntersectionObserver();
     lazyLoadImages();
+    initHalloweenAnimations();
     
     const heroContent = document.querySelector('.hero-content');
     if (heroContent) {
@@ -739,6 +740,30 @@ window.addEventListener('resize', () => {
     }, 250);
 });
 
+// Halloween Background Animation
+function initHalloweenAnimations() {
+    const bats = document.querySelectorAll('.bat');
+    
+    if (bats.length > 0) {
+        // Movimento aleatório dos morcegos a cada ciclo
+        function randomFlight() {
+            bats.forEach((bat, index) => {
+                const randomTop = Math.random() * 50 + 20; // entre 20% e 70%
+                const delay = index * 2000; // delay diferente para cada morcego
+                
+                setTimeout(() => {
+                    bat.style.top = randomTop + '%';
+                }, delay);
+            });
+        }
+        
+        // Iniciar movimento aleatório após o primeiro ciclo
+        setTimeout(() => {
+            setInterval(randomFlight, 12000); // intervalo maior para 3 morcegos
+        }, 12000);
+    }
+}
+
 // Console message for developers
-console.log('%c🚀 Dezain Code - Site desenvolvido com excelência', 'color: #00bfa5; font-size: 16px; font-weight: bold;');
-console.log('%cTodos os direitos reservados © 2025', 'color: #667eea; font-size: 12px;');
+console.log('%c🎃 Dezain Code - Versão Halloween desenvolvida com excelência', 'color: #F97316; font-size: 16px; font-weight: bold;');
+console.log('%cTodos os direitos reservados © 2025', 'color: #7E22CE; font-size: 12px;');
