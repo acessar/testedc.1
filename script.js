@@ -64,16 +64,61 @@ function createParticles() {
         particle.style.left = `${posX}%`;
         particle.style.top = `${posY}%`;
         
-        const blueHue = Math.floor(Math.random() * 40) + 200;
-        const brightness = Math.floor(Math.random() * 40) + 60;
-        particle.style.backgroundColor = `hsla(${blueHue}, 100%, ${brightness}%, 0.7)`;
-        particle.style.boxShadow = `0 0 ${size * 3}px hsla(${blueHue}, 100%, ${brightness}%, 0.9)`;
+        const purpleHue = Math.floor(Math.random() * 30) + 260;
+        const brightness = Math.floor(Math.random() * 30) + 70;
+        particle.style.backgroundColor = `hsla(${purpleHue}, 100%, ${brightness}%, 0.8)`;
+        particle.style.boxShadow = `0 0 ${size * 4}px hsla(${purpleHue}, 100%, ${brightness}%, 1)`;
         
         particle.style.animationDelay = `${Math.random() * 10}s`;
         particle.style.animationDuration = `${15 + Math.random() * 10}s`;
         particle.style.opacity = Math.random() * 0.8 + 0.3;
         
         container.appendChild(particle);
+    }
+}
+
+// Create floating tech elements
+function createFloatingTech() {
+    const hero = document.querySelector('.hero');
+    if (!hero) return;
+    
+    // Create additional floating orbs
+    for (let i = 0; i < 6; i++) {
+        const orb = document.createElement('div');
+        orb.classList.add('tech-orb');
+        
+        const size = Math.random() * 40 + 20;
+        orb.style.width = `${size}px`;
+        orb.style.height = `${size}px`;
+        
+        const posX = Math.random() * 100;
+        const posY = Math.random() * 100;
+        orb.style.left = `${posX}%`;
+        orb.style.top = `${posY}%`;
+        
+        orb.style.animationDelay = `${Math.random() * 8}s`;
+        orb.style.animationDuration = `${8 + Math.random() * 4}s`;
+        
+        hero.appendChild(orb);
+    }
+    
+    // Create floating lines
+    for (let i = 0; i < 4; i++) {
+        const line = document.createElement('div');
+        line.classList.add('tech-line');
+        
+        const width = Math.random() * 150 + 100;
+        line.style.width = `${width}px`;
+        
+        const posX = Math.random() * 100;
+        const posY = Math.random() * 100;
+        line.style.left = `${posX}%`;
+        line.style.top = `${posY}%`;
+        
+        line.style.animationDelay = `${Math.random() * 6}s`;
+        line.style.animationDuration = `${6 + Math.random() * 3}s`;
+        
+        hero.appendChild(line);
     }
 }
 
@@ -547,10 +592,10 @@ window.addEventListener('scroll', () => {
 // Initialize on DOM Load
 document.addEventListener('DOMContentLoaded', () => {
     createParticles();
+    createFloatingTech();
     revealOnScroll();
     initIntersectionObserver();
     lazyLoadImages();
-    initHalloweenAnimations();
     
     const heroContent = document.querySelector('.hero-content');
     if (heroContent) {
@@ -740,30 +785,6 @@ window.addEventListener('resize', () => {
     }, 250);
 });
 
-// Halloween Background Animation
-function initHalloweenAnimations() {
-    const bats = document.querySelectorAll('.bat');
-    
-    if (bats.length > 0) {
-        // Movimento aleatório dos morcegos a cada ciclo
-        function randomFlight() {
-            bats.forEach((bat, index) => {
-                const randomTop = Math.random() * 50 + 20; // entre 20% e 70%
-                const delay = index * 2000; // delay diferente para cada morcego
-                
-                setTimeout(() => {
-                    bat.style.top = randomTop + '%';
-                }, delay);
-            });
-        }
-        
-        // Iniciar movimento aleatório após o primeiro ciclo
-        setTimeout(() => {
-            setInterval(randomFlight, 12000); // intervalo maior para 3 morcegos
-        }, 12000);
-    }
-}
-
 // Console message for developers
-console.log('%c🎃 Dezain Code - Versão Halloween desenvolvida com excelência', 'color: #F97316; font-size: 16px; font-weight: bold;');
-console.log('%cTodos os direitos reservados © 2025', 'color: #7E22CE; font-size: 12px;');
+console.log('%c🚀 Dezain Code - Site desenvolvido com excelência', 'color: #00bfa5; font-size: 16px; font-weight: bold;');
+console.log('%cTodos os direitos reservados © 2025', 'color: #667eea; font-size: 12px;');
