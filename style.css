@@ -2586,3 +2586,37 @@ h1, h2, h3, h4, h5, h6 {
 .faq-question span {
     color: #ffffff;
 }
+
+/* CORREÇÃO: Garantir que TODOS os planos tenham texto branco */
+.plan-card .plan-name {
+    color: #ffffff !important;
+}
+
+.plan-card .plan-price {
+    color: #ffffff !important;
+}
+
+.plan-card .plan-header p {
+    color: #ffffff !important;
+}
+
+.plan-card h3 {
+    color: #ffffff !important;
+}
+
+/* CORREÇÃO: Garantir que TODOS os planos tenham texto branco */
+.plan-card .plan-name {
+    color: #ffffff !important;
+}
+
+.plan-card .plan-price {
+    color: #ffffff !important;
+}
+
+.plan-card .plan-header p {
+    color: #ffffff !important;
+}
+
+.plan-card h3 {
+    color: #ffffff !important;
+}
