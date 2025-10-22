@@ -1915,12 +1915,12 @@ select.form-control {
     right: 24px;
     width: 64px;
     height: 64px;
-    background: #9007eb;
+    background: #128c7e;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+    box-shadow: 0 8px 24px rgba(18, 140, 126, 0.4);
     z-index: 999;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     animation: pulse-whatsapp 2s infinite;
@@ -1928,12 +1928,12 @@ select.form-control {
 
 .whatsapp-btn:hover {
     transform: scale(1.2) rotate(10deg);
-    box-shadow: 0 15px 40px rgba(37, 211, 102, 0.7);
+    box-shadow: 0 15px 40px rgba(18, 140, 126, 0.7);
 }
 
 @keyframes pulse-whatsapp {
-    0%, 100% { box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4); }
-    50% { box-shadow: 0 8px 24px rgba(37, 211, 102, 0.8), 0 0 0 16px rgba(37, 211, 102, 0.1); }
+    0%, 100% { box-shadow: 0 8px 24px rgba(18, 140, 126, 0.4); }
+    50% { box-shadow: 0 8px 24px rgba(18, 140, 126, 0.8), 0 0 0 16px rgba(18, 140, 126, 0.1); }
 }
 
 .whatsapp-btn i {
@@ -2542,65 +2542,48 @@ footer {
         max-width: 330px;
     }
 }
-/* CORREÇÃO: Cores brancas para todos os títulos */
+/* CORREÇÃO: Cores brancas para todos os títulos e textos */
 h1, h2, h3, h4, h5, h6 {
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 .service-card h3 {
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 .benefits-text h3 {
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 .benefit-item h4 {
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 .showcase-description h3 {
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 .briefing-info h3 {
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 .partner-info h3 {
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 .partner-whatsapp-cta h3 {
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 .footer-col h3 {
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 .plan-name {
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 .faq-question span {
-    color: #ffffff;
-}
-
-/* CORREÇÃO: Garantir que TODOS os planos tenham texto branco */
-.plan-card .plan-name {
-    color: #ffffff !important;
-}
-
-.plan-card .plan-price {
-    color: #ffffff !important;
-}
-
-.plan-card .plan-header p {
-    color: #ffffff !important;
-}
-
-.plan-card h3 {
     color: #ffffff !important;
 }
 
@@ -2618,5 +2601,76 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .plan-card h3 {
+    color: #ffffff !important;
+}
+
+/* CORREÇÃO: Garantir que TODOS os textos do footer sejam brancos */
+.footer-col p {
+    color: #ffffff !important;
+}
+
+.footer-links a {
+    color: #ffffff !important;
+}
+
+.copyright {
+    color: #ffffff !important;
+}
+
+/* CORREÇÃO: Garantir que todos os textos de FAQ sejam brancos */
+.faq-question {
+    color: #ffffff !important;
+}
+
+.faq-answer p {
+    color: #ffffff !important;
+}
+
+.faq-cta a {
+    color: #ffffff !important;
+}
+
+/* CORREÇÃO: Garantir que todos os textos de benefícios sejam brancos */
+.benefit-item p {
+    color: #ffffff !important;
+}
+
+/* CORREÇÃO: Garantir que todos os textos de serviços sejam brancos */
+.service-card p {
+    color: #ffffff !important;
+}
+
+.service-features li {
+    color: #ffffff !important;
+}
+
+/* CORREÇÃO: Garantir que todos os textos de planos sejam brancos */
+.plan-feature span {
+    color: #ffffff !important;
+}
+
+/* CORREÇÃO: Garantir que todos os textos de formulário sejam brancos */
+.form-group label {
+    color: #ffffff !important;
+}
+
+.form-notice {
+    color: #ffffff !important;
+}
+
+/* CORREÇÃO: Garantir que todos os textos de seções sejam brancos */
+.section-subtitle {
+    color: #ffffff !important;
+}
+
+.hero p {
+    color: #ffffff !important;
+}
+
+.urgency-badge {
+    color: #ffffff !important;
+}
+
+.highlight-badge {
     color: #ffffff !important;
 }
