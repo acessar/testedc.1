@@ -8,7 +8,7 @@
     --text-primary: #f5f5f5;
     --text-secondary: #b8c5d6;
     --text-muted: #7b8a9e;
-    --border-subtle: rgba(255, 255, 255, 0.1);
+    --border-subtle: rgb(162 56 243);
     --gradient-tech: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
     --gradient-card: linear-gradient(135deg, rgba(168, 85, 247, 0.15) 0%, rgba(124, 58, 237, 0.15) 100%);
     --gradient-popular: linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #7c3aed 100%);
@@ -23,38 +23,88 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: 'Inter', sans-serif;
-    background: var(--gradient-bg);
-    color: var(--text-primary);
-    line-height: 1.6;
-    overflow-x: hidden;
-    min-height: 100vh;
-}
+.best-seller-badge { display: none; }
+    .best-seller-banner { display: none; }
+    .best-seller-flag { display: none; }
 
-html {
-    overflow-x: hidden;
-}
+    /* Folded ribbon/banner cobrindo topo do card estilo 'laço' */
+    .best-seller-folded {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 32px; /* ainda mais fino */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+        color: white;
+        font-weight: 800;
+        font-size: 12px;
+        letter-spacing: 0.4px;
+        z-index: 30;
+        box-shadow: 0 5px 14px rgba(16, 13, 40, 0.14);
+        border-top-left-radius: 18px;
+        border-top-right-radius: 18px;
+        overflow: visible;
+        /* animação de slide-in */
+        opacity: 0;
+        transform: translateY(-12px);
+        animation: ribbonSlideIn 420ms cubic-bezier(0.2, 0.9, 0.2, 1) 200ms forwards;
+    }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-}
+    /* Dobra esquerda */
+    .best-seller-folded::before {
+        content: '';
+        position: absolute;
+        left: -12px;
+        top: 22px;
+        width: 26px;
+        height: 26px;
+        background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+        transform: rotate(-45deg);
+        border-bottom-left-radius: 5px;
+        box-shadow: 0 4px 10px rgba(16,13,40,0.12);
+        z-index: 29;
+    }
 
-.bg-pattern {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0.03;
-    background-image: 
-        repeating-linear-gradient(0deg, transparent, transparent 2px, var(--text-primary) 2px, var(--text-primary) 3px),
-        repeating-linear-gradient(90deg, transparent, transparent 2px, var(--text-primary) 2px, var(--text-primary) 3px);
-    background-size: 40px 40px;
-    pointer-events: none;
-    z-index: 0;
-}
+    /* Dobra direita */
+    .best-seller-folded::after {
+        content: '';
+        position: absolute;
+        right: -12px;
+        top: 22px;
+        width: 26px;
+        height: 26px;
+        background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+        transform: rotate(45deg);
+        border-bottom-right-radius: 5px;
+        box-shadow: 0 4px 10px rgba(16,13,40,0.12);
+        z-index: 29;
+    }
+
+    /* Ajuste para que o laço não seja cortado pelo card */
+    .plan-card.featured {
+        overflow: visible;
+        padding-top: 32px; /* ajustar conforme nova altura do ribbon */
+    }
+
+    @media (max-width: 768px) {
+        .best-seller-folded {
+            height: 28px; /* ainda mais fino em mobile */
+            font-size: 11px;
+        }
+        .best-seller-folded::before,
+        .best-seller-folded::after {
+            width: 22px;
+            height: 22px;
+            left: -10px;
+            right: -10px;
+            top: 20px;
+        }
+        .plan-card.featured { padding-top: 28px; }
+    }
+    
 
 .container {
     max-width: 1200px;
@@ -614,10 +664,11 @@ nav {
 }
 
 .hero h1 .title-blue {
-    background: linear-gradient(135deg, #4da6ff 0%, #0080ff 100%);
+    background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    color: transparent;
 }
 
 .hero h1 .title-white {
@@ -723,6 +774,7 @@ nav {
     padding: 100px 0;
     position: relative;
     overflow: hidden;
+    background: #252b48;
 }
 
 .services::before {
@@ -756,6 +808,7 @@ nav {
     position: relative;
     display: inline-block;
     letter-spacing: -1.5px;
+    color: #ffffff;
 }
 
 .section-title::after {
@@ -771,34 +824,37 @@ nav {
 }
 
 .plans-title {
+    /* Neon roxo apenas no título: gradiente + glow discreto */
     background: var(--gradient-popular);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: transparent;
     position: relative;
     animation: titleGlow 3s ease-in-out infinite;
-    text-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
+    text-shadow: 0 0 28px rgba(139, 92, 246, 0.55);
 }
 
 .plans-title::before {
     content: '✨';
     position: absolute;
-    left: -40px;
+    left: -36px;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 24px;
-    animation: sparkle 2s ease-in-out infinite;
+    font-size: 20px;
+    opacity: 0.6;
+    animation: sparkle 2.2s ease-in-out infinite;
 }
 
 .plans-title::after {
     content: '✨';
     position: absolute;
-    right: -40px;
+    right: -36px;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 24px;
-    animation: sparkle 2s ease-in-out infinite 1s;
+    font-size: 20px;
+    opacity: 0.6;
+    animation: sparkle 2.2s ease-in-out infinite 1s;
 }
 
 @keyframes titleGlow {
@@ -823,7 +879,7 @@ nav {
 
 .section-subtitle {
     font-size: 18px;
-    color: var(--text-secondary);
+    color: #ffffff;
     max-width: 600px;
     margin: 24px auto 0;
     font-weight: 500;
@@ -1102,19 +1158,17 @@ nav {
 }
 
 .plans::before {
+    /* Removido brilhos neon do background da seção */
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: 
-        radial-gradient(circle at 10% 20%, rgba(168, 85, 247, 0.2) 0%, transparent 40%),
-        radial-gradient(circle at 90% 80%, rgba(192, 132, 252, 0.2) 0%, transparent 40%),
-        radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.08) 0%, transparent 60%);
+    background: none;
     pointer-events: none;
     z-index: 1;
-    animation: plansBgPulse 8s ease-in-out infinite;
+    animation: none;
 }
 
 .plans .container {
@@ -1145,35 +1199,134 @@ nav {
 }
 
 .plan-card.featured {
-    border: 3px solid transparent;
-    background: linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
-                var(--gradient-popular) border-box;
-    transform: scale(1.08);
-    box-shadow: 0 25px 60px rgba(139, 92, 246, 0.4), 
-                0 0 0 1px rgba(139, 92, 246, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    /* Agora segue o mesmo padrão dos outros cards: sem escala/neon/pills por padrão.
+       Destaque sutil será aplicado via borda/hover para manter contraste. */
+    border: 2px solid var(--border-subtle);
+    background: var(--bg-card);
+    transform: none; /* sem escala por padrão */
+    box-shadow: 0 18px 40px rgba(0,0,0,0.12);
     position: relative;
-    overflow: visible;
-    animation: featuredPulse 3s ease-in-out infinite;
+    overflow: hidden;
+    animation: none;
 }
 
 .plan-card.featured::before {
-    content: '🔥 MAIS VENDIDO';
+    /* Badge escondido para manter alinhamento com os demais cards (pode ser reativado no HTML se desejado) */
+    display: none;
+}
+
+/* Badge 'MAIS VENDIDO' inserido diretamente no HTML para controle total */
+.best-seller-badge { display: none; }
+
+/* Banner centralizado no topo do card (pill horizontal com pequeno triângulo) */
+.best-seller-banner {
     position: absolute;
-    top: -15px;
+    top: 12px;
     left: 50%;
     transform: translateX(-50%);
-    background: var(--gradient-popular);
+    background: var(--accent-primary);
     color: white;
-    padding: 12px 32px;
-    font-size: 14px;
+    padding: 8px 20px;
+    border-radius: 999px;
+    font-size: 13px;
     font-weight: 800;
-    border-radius: 25px;
-    z-index: 10;
-    letter-spacing: 1px;
-    font-family: 'Space Grotesk', sans-serif;
-    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.5);
-    animation: badgeFloat 2s ease-in-out infinite;
+    letter-spacing: 0.6px;
+    box-shadow: 0 8px 20px rgba(168,85,247,0.18);
+    z-index: 12;
+}
+
+.best-seller-banner::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -8px;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid var(--accent-primary);
+}
+
+@media (max-width: 768px) {
+    .best-seller-banner {
+        top: 10px;
+        padding: 6px 16px;
+        font-size: 12px;
+    }
+}
+
+@keyframes ribbonSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-12px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Respeitar preferências de animação reduzida */
+@media (prefers-reduced-motion: reduce) {
+    .best-seller-folded {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+    }
+}
+
+/* Animação alternativa: wiggle (pequena vibração) */
+@keyframes ribbonWiggle {
+    0% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-2px) rotate(-1deg); }
+    50% { transform: translateY(0) rotate(0.6deg); }
+    75% { transform: translateY(-1px) rotate(-0.4deg); }
+    100% { transform: translateY(0) rotate(0deg); }
+}
+
+.ribbon-wiggle {
+    animation: ribbonWiggle 700ms ease-in-out 0s 2;
+}
+
+/* Classe aplicada quando o ribbon está na viewport — garante transições suaves
+   (o JS controla transform/opacity para parallax) */
+.ribbon-in-view {
+    transition: transform 220ms cubic-bezier(0.2,0.9,0.2,1), opacity 220ms ease;
+}
+
+/* Espaço extra no topo do card para o banner em telas pequenas */
+.plan-card.featured {
+    padding-top: 28px;
+    /* permitir elementos posicionados fora do card (ex.: flag) */
+    overflow: visible;
+}
+
+/* Novo banner 'flag' vertical no canto superior esquerdo */
+.best-seller-flag {
+    position: absolute;
+    top: 12px;
+    left: -12px; /* menor deslocamento negativo para não ser cortado */
+    background: var(--accent-primary);
+    color: white;
+    padding: 10px 12px;
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: 0.6px;
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    box-shadow: 0 6px 18px rgba(168,85,247,0.14);
+    border-radius: 4px 4px 0 0;
+    z-index: 20;
+}
+
+@media (max-width: 768px) {
+    .best-seller-flag {
+        left: -8px;
+        padding: 8px 10px;
+        font-size: 11px;
+    }
 }
 
 .plan-card.featured::after {
@@ -1183,22 +1336,18 @@ nav {
     left: -2px;
     right: -2px;
     bottom: -2px;
-    background: var(--gradient-popular);
+    background: none;
     border-radius: 26px;
     z-index: -1;
-    animation: borderGlow 2s ease-in-out infinite;
+    animation: none;
 }
 
 @keyframes featuredPulse {
     0%, 100% {
-        box-shadow: 0 25px 60px rgba(139, 92, 246, 0.4), 
-                    0 0 0 1px rgba(139, 92, 246, 0.2),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        box-shadow: 0 18px 40px rgba(0,0,0,0.12);
     }
     50% {
-        box-shadow: 0 30px 70px rgba(139, 92, 246, 0.6), 
-                    0 0 0 2px rgba(139, 92, 246, 0.4),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        box-shadow: 0 20px 44px rgba(0,0,0,0.13);
     }
 }
 
@@ -1222,16 +1371,32 @@ nav {
 
 .plan-card:hover {
     transform: translateY(-16px) scale(1.02);
-    box-shadow: 0 30px 60px rgba(168, 85, 247, 0.4), 0 0 40px rgba(192, 132, 252, 0.3);
+    box-shadow: 0 24px 50px rgba(0,0,0,0.12);
 }
 
 .plan-card.featured:hover {
-    transform: translateY(-20px) scale(1.12);
-    box-shadow: 0 35px 80px rgba(168, 85, 247, 0.7), 
-                0 0 0 3px rgba(192, 132, 252, 0.4),
-                0 0 50px rgba(192, 132, 252, 0.5),
-                inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    animation: featuredHover 0.6s ease-out;
+    /* Hover alinhado com outros cards, mas com borda roxa para destacar */
+    transform: translateY(-16px) scale(1.02);
+    box-shadow: 0 24px 50px rgba(0,0,0,0.12);
+    border-color: var(--accent-primary);
+    animation: none;
+}
+
+/* Subtle purple style for a specific plan card state requested by user
+   Targets: .plan-card.scale-in.stagger-3.carousel-item.visible
+   Uses theme purple variables with low opacity to avoid harsh colors */
+.plan-card.scale-in.stagger-3.carousel-item.visible,
+.plan-card.scale-in.stagger-3.visible {
+    /* Sem neon: borda azul muito suave, fundo padrão de card e sombra neutra (sem brilho colorido) */
+    border-color: rgba(13,110,253,0.04); /* borda azul bem sutil */
+    box-shadow: 0 6px 14px rgba(0,0,0,0.10); /* sombra neutra, sem cor */
+    background: var(--bg-card); /* manter mesmo fundo dos cards, sem tint */
+}
+
+/* Garantir que no hover desse card não apareça sombra neon — usar sombra neutra */
+.plan-card.scale-in.stagger-3.carousel-item.visible:hover,
+.plan-card.scale-in.stagger-3.visible:hover {
+    box-shadow: 0 12px 28px rgba(0,0,0,0.12); /* sombra levemente maior, ainda neutra */
 }
 
 @keyframes featuredHover {
@@ -1254,37 +1419,68 @@ nav {
 }
 
 .plan-card.featured .plan-header {
-    background: var(--gradient-popular);
+    background: var(--bg-card);
     position: relative;
     overflow: hidden;
 }
 
 .plan-card.featured .plan-header::before {
+    /* remover shimmer */
     content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    animation: shimmer 3s ease-in-out infinite;
+    display: none;
 }
 
 @keyframes shimmer {
-    0% {
-        left: -100%;
-    }
-    100% {
-        left: 100%;
-    }
+    0% { left: 0; }
+    100% { left: 0; }
 }
 
 .plan-name {
+    color: #ffffff;
     font-family: 'Space Grotesk', sans-serif;
     font-size: 26px;
     font-weight: 700;
     margin-bottom: 8px;
     letter-spacing: -0.8px;
+}
+
+/* Texto dentro do featured card: garantir legibilidade em fundo roxo */
+.plan-card.featured .plan-name,
+.plan-card.featured .plan-price,
+.plan-card.featured .plan-header p {
+    /* Usar cor padrão dos cards para consistência; destaque ficará na borda/hover */
+    color: #ffffff;
+}
+
+.plan-card.featured .plan-features,
+.plan-card.featured .plan-feature,
+.plan-card.featured .plan-price span {
+    color: var(--text-secondary);
+}
+
+.plan-card.featured .btn {
+    /* manter botão neutro para contraste */
+    background: var(--btn-bg, white);
+    color: var(--btn-color, var(--bg-card));
+    box-shadow: none;
+}
+
+.plan-card.featured .plan-name.pill,
+.plan-card.featured .plan-price.pill,
+.plan-card.featured .plan-header p.pill {
+    /* Neutralizar possíveis 'pills' aplicadas sem alterar o HTML. */
+    background: transparent;
+    color: var(--text-primary);
+    padding: 0;
+    border-radius: 0;
+    font-weight: 700;
+}
+
+/* Garantir background-clip padrão sem efeitos adicionais */
+.plan-card.featured .plan-name,
+.plan-card.featured .plan-price,
+.plan-card.featured .plan-header p {
+    background-clip: padding-box;
 }
 
 .plan-price {
@@ -1293,6 +1489,7 @@ nav {
     margin: 16px 0;
     font-family: 'Space Grotesk', sans-serif;
     letter-spacing: -2px;
+    color: #ffffff;
 }
 
 .plan-price span {
@@ -1718,7 +1915,7 @@ select.form-control {
     right: 24px;
     width: 64px;
     height: 64px;
-    background: #25d366;
+    background: #9007eb;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -2344,4 +2541,48 @@ footer {
     #partnerDots {
         max-width: 330px;
     }
+}
+/* CORREÇÃO: Cores brancas para todos os títulos */
+h1, h2, h3, h4, h5, h6 {
+    color: #ffffff;
+}
+
+.service-card h3 {
+    color: #ffffff;
+}
+
+.benefits-text h3 {
+    color: #ffffff;
+}
+
+.benefit-item h4 {
+    color: #ffffff;
+}
+
+.showcase-description h3 {
+    color: #ffffff;
+}
+
+.briefing-info h3 {
+    color: #ffffff;
+}
+
+.partner-info h3 {
+    color: #ffffff;
+}
+
+.partner-whatsapp-cta h3 {
+    color: #ffffff;
+}
+
+.footer-col h3 {
+    color: #ffffff;
+}
+
+.plan-name {
+    color: #ffffff;
+}
+
+.faq-question span {
+    color: #ffffff;
 }

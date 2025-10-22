@@ -596,6 +596,8 @@ document.addEventListener('DOMContentLoaded', () => {
     revealOnScroll();
     initIntersectionObserver();
     lazyLoadImages();
+    // Ribbon scroll + hover animations
+    initRibbonScrollAnimations();
     
     const heroContent = document.querySelector('.hero-content');
     if (heroContent) {
@@ -605,6 +607,77 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 300);
     }
 });
+
+// Ribbon: animação ligada ao scroll + animação alternativa (wiggle) no hover
+function initRibbonScrollAnimations() {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
+
+    const ribbons = document.querySelectorAll('.best-seller-folded');
+    if (!ribbons || ribbons.length === 0) return;
+
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const el = entry.target;
+            if (entry.isIntersecting) {
+                el.dataset.inView = 'true';
+                el.classList.add('ribbon-in-view');
+            } else {
+                el.dataset.inView = 'false';
+                el.classList.remove('ribbon-in-view');
+                // limpar transform/opacity quando fora de vista
+                el.style.transform = '';
+                el.style.opacity = '';
+            }
+        });
+    }, { threshold: [0, 0.1, 0.5, 1] });
+
+    ribbons.forEach(r => io.observe(r));
+
+    let ticking = false;
+
+    function onScroll() {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                ribbons.forEach(el => {
+                    if (el.dataset.inView !== 'true' || el.dataset.pauseScroll === 'true') return;
+
+                    const rect = el.getBoundingClientRect();
+                    const windowH = window.innerHeight || document.documentElement.clientHeight;
+                    const progress = Math.min(Math.max((windowH - rect.top) / (windowH + rect.height), 0), 1);
+
+                    // translateY vai de -12px (fora) para 0 (no centro) — adaptável
+                    const translateY = -12 + (progress * 12);
+                    const opacity = Math.min(1, 0.6 + progress * 0.4);
+
+                    el.style.transform = `translateY(${translateY}px)`;
+                    el.style.opacity = opacity;
+                });
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // hover / pointer interactions: aplicar wiggle e pausar scroll-driven transform
+    ribbons.forEach(el => {
+        el.addEventListener('pointerenter', () => {
+            el.dataset.pauseScroll = 'true';
+            el.classList.add('ribbon-wiggle');
+        });
+        el.addEventListener('pointerleave', () => {
+            delete el.dataset.pauseScroll;
+            el.classList.remove('ribbon-wiggle');
+            // recalcular posição imediatamente
+            setTimeout(onScroll, 20);
+        });
+    });
+
+    // inicial run
+    onScroll();
+}
 
 // Page Load Animation
 window.addEventListener('load', () => {
